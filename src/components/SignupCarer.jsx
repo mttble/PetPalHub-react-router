@@ -3,8 +3,8 @@ import React from 'react';
 function SignupCarer() {
     // Logic for signup page
     return (
-        <div>
-            <h1>Signup Page</h1>
+        <div className="centered-container">
+            <h1>Signup Carer Page</h1>
             {/* Add your signup form and content */}
         </div>
     )

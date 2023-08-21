@@ -4,8 +4,8 @@ import './SignupUser.css'
 function SignupUser() {
   // Logic for signup page
     return (
-        <div>
-            <h1>Signup Page</h1>
+        <div className="centered-container">
+            <h1>Signup User Page</h1>
             {/* Add your signup form and content */}
         </div>
     )

@@ -7,7 +7,7 @@ function Home() {
   // Logic for login page
     return (
         <div className="centered-container">
-        <h1>Home Page</h1>
+        <h1>Welcome to PetPal Hub</h1>
         {/* Add your login form and content */}
         </div>
     );

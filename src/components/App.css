@@ -1,6 +1,6 @@
-
 body {
-  background-color: #272727;
-  color: white;
+    background-color: #222222; /* Set dark background color */
+    color: white; /* Set white text color */
+    margin: 0;
+    padding: 0;
 }
-

@@ -1,0 +1,15 @@
+/* Home.css */
+.centered-container {
+    background-color: #222222; /* Set dark background color */
+    color: white; /* Set white text color */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 5vh; /* Use full viewport height */
+    margin: 3px;
+    padding: 0;
+}
+
+.centered-container h1 {
+    /* Add any specific styles for the <h1> element */
+}

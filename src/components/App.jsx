@@ -8,10 +8,7 @@ import SignupUser from './SignupUser.jsx'
 import SignupCarer from './SignupCarer.jsx'
 import NavBar from "./NavBar.jsx"
 
-
 import './App.css'
-
-
 
 
 function App() {
@@ -21,7 +18,6 @@ function App() {
   const toggleForm = (forName) => {
     setCurrentForm(forName)
   }
-
 
   return (
     <>
@@ -33,7 +29,6 @@ function App() {
         <Route path="/signup-user" element={<SignupUser />} />
         <Route path="/signup-carer" element={<SignupCarer />} />
         <Route path='*' element={<h3>Page not found</h3>} />
-        {/* Add more Route elements for other pages */}
       </Routes>
     </>
   );

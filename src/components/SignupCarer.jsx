@@ -5,7 +5,6 @@ function SignupCarer() {
     return (
         <div className="centered-container">
             <h1>Signup Carer Page</h1>
-            {/* Add your signup form and content */}
         </div>
     )
 }

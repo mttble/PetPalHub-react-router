@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from "react-router-dom"
 
 import Home from './Home.jsx'
@@ -8,12 +8,21 @@ import SignupUser from './SignupUser.jsx'
 import SignupCarer from './SignupCarer.jsx'
 import NavBar from "./NavBar.jsx"
 
+
 import './App.css'
 
 
 
 
 function App() {
+
+  const [currentForm, setCurrentForm] = useState('login')
+
+  const toggleForm = (forName) => {
+    setCurrentForm(forName)
+  }
+
+
   return (
     <>
       <NavBar />

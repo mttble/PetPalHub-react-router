@@ -6,7 +6,7 @@ function Login() {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
 
-    const handleSubmit = (e) => {
+    const loginUser = (e) => {
         e.preventDefault()
         console.log(email)
     }
@@ -15,7 +15,7 @@ function Login() {
             <div className="centered-container">
                 <h1>Login Page</h1>
             </div>
-            <form className="login-form" onSubmit={ handleSubmit }>
+            <form className="login-form" onSubmit={ loginUser }>
                 <label htmlFor="email">email</label>
                 <input value={ email } onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>
                 <label htmlFor="password">password</label>

@@ -14,7 +14,7 @@ function SignupCarer() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
-    const handleSubmit = (e) => {
+    const registerCarer = (e) => {
         e.preventDefault()
         console.log(email)
     }
@@ -24,16 +24,16 @@ function SignupCarer() {
             <div className="centered-container">
                 <h1>Signup Carer Page</h1>
             </div>
-            <form className="signup-user-form" onSubmit={handleSubmit}>
+            <form className="signup-user-form" onSubmit={ registerCarer }>
 
                 <label htmlFor="firstName">First name</label>
-                <input value={firstName} onChange={(e) => setFirstName(e.target.value)} firstName="firstName" id="firstName" placeholder="First Name" />
+                <input value={firstName} onChange={(e) => setFirstName(e.target.value)} id="firstName" placeholder="First Name" />
 
                 <label htmlFor="lastName">Last name</label>
-                <input value={lastName} onChange={(e) => setLastName(e.target.value)} lastName="lastName" id="lastName" placeholder="Last Name" />
+                <input value={lastName} onChange={(e) => setLastName(e.target.value)} id="lastName" placeholder="Last Name" />
 
                 <label htmlFor="mobile">Mobile Number</label>
-                <input value={mobile} onChange={(e) => setMobile(e.target.value)} mobile="mobile" id="mobile" placeholder="Mobile Number" />
+                <input value={mobile} onChange={(e) => setMobile(e.target.value)} id="mobile" placeholder="Mobile Number" />
 
                 <label htmlFor="dateOfBirth">Date of Birth</label>
                 <input value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} type="date" id="dateOfBirth" />

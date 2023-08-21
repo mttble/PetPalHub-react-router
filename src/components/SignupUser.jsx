@@ -7,6 +7,7 @@ function SignupUser() {
     const [lastName, setLastName] = useState('')
     const [mobile, setMobile] = useState('')
     const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
 
@@ -14,16 +15,6 @@ function SignupUser() {
         e.preventDefault()
         console.log(email)
     }
-
-    const cities = [
-        'Melbourne',
-        'Sydney',
-        'Brisbane',
-        'Adelaide',
-        'Perth',
-        'Darwin',
-        'Canberra',
-    ]
 
     return (
         <>
@@ -41,16 +32,12 @@ function SignupUser() {
                 <label htmlFor="mobile">Mobile Number</label>
                 <input value={mobile} onChange={(e) => setMobile(e.target.value)} mobile="mobile" id="mobile" placeholder="Mobile Number" />
 
+                <label htmlFor="country">Country</label>
+                <input value={country} onChange={(e) => setCountry(e.target.value)} type="text" id="country" placeholder="Country" />
+
                 <label htmlFor="city">City</label>
-                <select value={city} onChange={(e) => setCity(e.target.value)} id="city">
-                    <option value="">Select a city</option>
-                    {cities.map((cityName) => (
-                        <option key={cityName} value={cityName}>
-                            {cityName}
-                        </option>
-                        )
-                    )}
-                </select>
+                <input value={city} onChange={(e) => setCity(e.target.value)} type="text" id="city" placeholder="City" />
+
 
                 <label htmlFor="email">email</label>
                 <input value={ email } onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>

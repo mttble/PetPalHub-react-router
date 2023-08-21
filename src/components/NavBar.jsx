@@ -6,14 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './NavBar.css'
 
 
-// const handleLogin = () => {
-//   // Logic to open login modal or redirect to login page
-// };
-
-// const handleSignUp = () => {
-//   // Logic to open signup modal or redirect to signup page
-// };
-
 function ResponsiveNavbar() {
   return (
     <div className="navbar">

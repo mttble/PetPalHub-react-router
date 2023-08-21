@@ -1,0 +1,58 @@
+
+.signup-prompt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.signup-user,
+.signup-carer {
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    border-radius: 10px;
+    padding: 5vh 5vh;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.signup-user {
+    background-color: #007bff;
+}
+
+.signup-carer {
+    background-color: #007bff;
+}
+
+.signup-user:hover,
+.signup-carer:hover {
+    background-color: #0056b3;
+}
+
+@media (min-width: 768px) {
+    .signup-user,
+    .signup-carer {
+        padding: 10vh 10vh;
+        font-size: 28px;
+    }
+    .signup-prompt {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .signup-user,
+    .signup-carer {
+        padding: 20vh 20vh;
+        font-size: 32px;
+    }
+}

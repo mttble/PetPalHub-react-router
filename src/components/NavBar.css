@@ -1,0 +1,54 @@
+
+/* NavBar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #222222;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand-container {
+    display: flex; /* Use flexbox to center text */
+    align-items: center; /* Center vertically */
+    background-color: #ffc107; /* Yellow background color */
+    border-radius: 10px; /* Rounded edges */
+    padding: 8px 15px; /* Padding inside the container */
+}
+
+.navbar-brand {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0
+}
+
+.navbar-buttons {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Apply larger styles for tablet view */
+@media (min-width: 768px) {
+    .navbar-brand {
+      font-size: 32px; /* Adjust as needed */
+    }
+
+    .navbar-buttons button {
+      font-size: 18px; /* Adjust as needed */
+      padding: 12px 20px; /* Adjust padding for buttons */
+    }
+}
+
+/* Apply even larger styles for larger monitors */
+@media (min-width: 1200px) {
+    .navbar-brand {
+      font-size: 40px; /* Adjust as needed */
+    }
+
+    .navbar-buttons button {
+      font-size: 22px; /* Adjust as needed */
+      padding: 14px 24px; /* Adjust padding for buttons */
+    }
+}
+

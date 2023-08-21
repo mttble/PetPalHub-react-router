@@ -23,7 +23,6 @@ function SignupUser() {
         'Perth',
         'Darwin',
         'Canberra',
-        // Add more city names here
     ]
 
     return (

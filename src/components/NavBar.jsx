@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './NavBar.css'
 
 
-
 // const handleLogin = () => {
 //   // Logic to open login modal or redirect to login page
 // };

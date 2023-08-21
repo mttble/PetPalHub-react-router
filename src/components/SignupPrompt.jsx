@@ -8,7 +8,6 @@ function SignupPrompt() {
     <>
       <div className="centered-container">
         <h1>Signup Prompt</h1>
-        {/* Add your signup form and content */}
       </div>
       <div className="signup-prompt">
         <Link to="/signup-user" className="signup-user">

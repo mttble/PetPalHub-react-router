@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import CreateProfile from './CreateProfile';
 import ViewProfile from './ViewProfile';
 import './NavBar.css';
-import './AccountUser.css';
+import './AccountCarer.css';
 
-function AccountUser() {
-  const [hasProfile, setHasProfile] = useState(false); // Change to false initially
-  const [userProfile, setUserProfile] = useState(null); // Store the user's profile data
+function AccountCarer() {
+  const hasProfile = true;
+  const navigate = useNavigate();
 
-  const handleCreateProfile = (profileData) => {
-    setUserProfile(profileData);
-    setHasProfile(true); // Mark that the user has a profile
+  const handleCreateProfile = () => {
+    navigate('/create-profile');
   };
 
   return (
@@ -40,11 +39,13 @@ function AccountUser() {
                 </Button>
               </Link>
             ) : (
-              <Link to="/create-profile">
-                <Button variant="primary" className="size-sm-lg">
-                  Create Profile
-                </Button>
-              </Link>
+              <Button
+                variant="primary"
+                className="size-sm-lg"
+                onClick={handleCreateProfile}
+              >
+                Create Profile
+              </Button>
             )}
           </div>
           <Routes>
@@ -52,7 +53,7 @@ function AccountUser() {
               path="/create-profile"
               element={<CreateProfile onCreateProfile={handleCreateProfile} />}
             />
-            <Route path="/view-profile" element={<ViewProfile userProfile={userProfile} />} />
+            <Route path="/view-profile" element={<ViewProfile />} />
           </Routes>
         </div>
       </div>
@@ -60,4 +61,4 @@ function AccountUser() {
   );
 }
 
-export default AccountUser;
+export default AccountCarer;

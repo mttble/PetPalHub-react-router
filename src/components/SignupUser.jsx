@@ -17,7 +17,6 @@ function SignupUser() {
 
     const registerUser = async (e) => {
         e.preventDefault()
-        console.log(email)
         const {firstName, lastName, mobile, country, city, email, password} = data
         try {
             const {data} = await post('/register', {firstName, lastName, mobile, country, city, email, password

@@ -7,8 +7,13 @@ import SignupPrompt from './SignupPrompt.jsx'
 import SignupUser from './SignupUser.jsx'
 import SignupCarer from './SignupCarer.jsx'
 import NavBar from "./NavBar.jsx"
+import { Toaster } from 'react-hot-toast'
 
 import './App.css'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:5505'
+axios.defaults.withCredentials = true
 
 
 function App() {
@@ -22,6 +27,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <Toaster position='bottom-right' toastOptions={{duration:2000}}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

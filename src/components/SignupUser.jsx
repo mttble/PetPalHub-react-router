@@ -1,20 +1,37 @@
 import React, { useState } from 'react'
 import './SignupUser.css'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function SignupUser() {
+    const navigate = useNavigate()
+    const [data, setData] = useState({
+        firstName: '',
+        lastName: '',
+        mobile: '',
+        country: '',
+        city: '',
+        email: '',
+        password: '',
+    })
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [mobile, setMobile] = useState('')
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [email, setEmail] = useState('')
-    const [pass, setPass] = useState('')
-
-    const registerUser = (e) => {
+    const registerUser = async (e) => {
         e.preventDefault()
-        console.log(email)
-    }
+        const {firstName, lastName, mobile, country, city, email, password} = data
+        try {
+            const {data} = await axios.post('http://localhost:5505/register', {firstName, lastName, mobile, country, city, email, password
+            })
+            if(data.error) {
+                toast.error(data.error)
+            } else {
+                setData({})
+                toast.success('Register Successfull, Weclome!')
+                navigate('/')
+            }
+        } catch (err) {
+            console.log(err)
+        }}
 
     return (
         <>
@@ -24,26 +41,25 @@ function SignupUser() {
             <form className="signup-user-form" onSubmit={ registerUser }>
 
                 <label htmlFor="firstName">First name</label>
-                <input value={firstName} onChange={(e) => setFirstName(e.target.value)} id="firstName" placeholder="First Name" />
+                <input value={ data.firstName } onChange={(e) => setData({...data, firstName: e.target.value})} id="firstName" placeholder="First Name" />
 
                 <label htmlFor="lastName">Last name</label>
-                <input value={lastName} onChange={(e) => setLastName(e.target.value)} id="lastName" placeholder="Last Name" />
+                <input value={ data.lastName } onChange={(e) => setData({...data, lastName: e.target.value})} id="lastName" placeholder="Last Name" />
 
                 <label htmlFor="mobile">Mobile Number</label>
-                <input value={mobile} onChange={(e) => setMobile(e.target.value)} id="mobile" placeholder="Mobile Number" />
+                <input value={ data.mobile } onChange={(e) => setData({...data, mobile: e.target.value})} id="mobile" placeholder="Mobile Number" />
 
                 <label htmlFor="country">Country</label>
-                <input value={country} onChange={(e) => setCountry(e.target.value)} type="text" id="country" placeholder="Country" />
+                <input value={ data.country } onChange={(e) => setData({...data, country: e.target.value})} type="text" id="country" placeholder="Country" />
 
                 <label htmlFor="city">City</label>
-                <input value={city} onChange={(e) => setCity(e.target.value)} type="text" id="city" placeholder="City" />
-
+                <input value={ data.city } onChange={(e) => setData({...data, city: e.target.value})} type="text" id="city" placeholder="City" />
 
                 <label htmlFor="email">email</label>
-                <input value={ email } onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>
+                <input value={ data.email } onChange={(e) => setData({...data, email: e.target.value})} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>
 
                 <label htmlFor="password">password</label>
-                <input value={ pass } onChange={(e) => setPass(e.target.value)} type="password" placeholder="**********" id="password" name="password"/>
+                <input value={ data.password } onChange={(e) => setData({...data, password: e.target.value})} type="password" placeholder="**********" id="password" name="password"/>
                 
                 <button type="submit">Sign Up</button>
             </form>

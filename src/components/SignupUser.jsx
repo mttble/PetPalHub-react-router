@@ -9,7 +9,7 @@ function SignupUser() {
     const [data, setData] = useState({
         firstName: '',
         lastName: '',
-        mobile: '',
+        phoneNumber: '',
         country: '',
         city: '',
         email: '',
@@ -18,15 +18,15 @@ function SignupUser() {
 
     const registerUser = async (e) => {
         e.preventDefault()
-        const {firstName, lastName, mobile, country, city, email, password} = data
+        const {firstName, lastName, phoneNumber, country, city, email, password} = data
         try {
-            const {data} = await axios.post('http://localhost:5505/register', {firstName, lastName, mobile, country, city, email, password
+            const {data} = await axios.post('http://localhost:5505/register', {firstName, lastName, phoneNumber, country, city, email, password
             })
             if(data.error) {
                 toast.error(data.error)
             } else {
                 setData({})
-                toast.success('Register Successfull, Weclome!')
+                toast.success('Register Successful, Weclome!')
                 navigate('/')
             }
         } catch (err) {
@@ -46,8 +46,8 @@ function SignupUser() {
                 <label htmlFor="lastName">Last name</label>
                 <input value={ data.lastName } onChange={(e) => setData({...data, lastName: e.target.value})} id="lastName" placeholder="Last Name" />
 
-                <label htmlFor="mobile">Mobile Number</label>
-                <input value={ data.mobile } onChange={(e) => setData({...data, mobile: e.target.value})} id="mobile" placeholder="Mobile Number" />
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <input value={ data.phoneNumber } onChange={(e) => setData({...data, phoneNumber: e.target.value})} id="phoneNumber" placeholder="Phone Number" />
 
                 <label htmlFor="country">Country</label>
                 <input value={ data.country } onChange={(e) => setData({...data, country: e.target.value})} type="text" id="country" placeholder="Country" />

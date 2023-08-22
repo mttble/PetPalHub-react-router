@@ -41,7 +41,7 @@ function Login() {
                 <label htmlFor="email">email:</label>
                 <input value={ data.email } onChange={(e) => setData({...data, email: e.target.value})} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>
                 <label htmlFor="password">password:</label>
-                <input value={ password } onChange={(e) => setData({...data, password: e.target.value})} type="password" placeholder="**********" id="password" name="password"/>
+                <input value={ data.password } onChange={(e) => setData({...data, password: e.target.value})} type="password" placeholder="**********" id="password" name="password"/>
                 <button type="submit">Log In</button>
             </form>
         </>

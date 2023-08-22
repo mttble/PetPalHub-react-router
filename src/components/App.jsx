@@ -7,6 +7,7 @@ import SignupPrompt from './SignupPrompt.jsx'
 import SignupUser from './SignupUser.jsx'
 import SignupCarer from './SignupCarer.jsx'
 import NavBar from "./NavBar.jsx"
+import { Toaster } from 'react-hot-toast'
 
 import './App.css'
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <Toaster position='bottom-right' toastOptions={{duration:2000}}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

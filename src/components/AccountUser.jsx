@@ -1,13 +1,15 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
+import CreateProfile from './CreateProfile';
+import ViewProfile from './ViewProfile';
 import './NavBar.css';
-import './PetSitterAccount.css';
+import './AccountUser.css';
 
-function PetSitterAccount() {
+function AccountUser() {
   const hasProfile = true;
-  
+
   return (
     <div>
       <NavBar />
@@ -39,10 +41,17 @@ function PetSitterAccount() {
               </Link>
             )}
           </div>
+          <Routes>
+            <Route
+              path="/create-profile"
+              element={<CreateProfile onCreateProfile={handleCreateProfile} />}
+            />
+            <Route path="/view-profile" element={<ViewProfile />} />
+          </Routes>
         </div>
       </div>
     </div>
   );
 }
 
-export default PetSitterAccount;
+export default AccountUser;

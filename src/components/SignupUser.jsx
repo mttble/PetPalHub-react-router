@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './SignupUser.css'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function SignupUser() {
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ function SignupUser() {
         e.preventDefault()
         const {firstName, lastName, mobile, country, city, email, password} = data
         try {
-            const {data} = await post('/register', {firstName, lastName, mobile, country, city, email, password
+            const {data} = await axios.post('http://localhost:5505/register', {firstName, lastName, mobile, country, city, email, password
             })
             if(data.error) {
                 toast.error(data.error)

@@ -58,7 +58,6 @@
     .edit-profile-form {
         gap: 30px;
     }
-}
 
 @media (min-width: 1200px) {
     /* Media queries for desktop view */
@@ -67,4 +66,4 @@
     .edit-profile-form {
         gap: 40px;
     }
-} */
+}

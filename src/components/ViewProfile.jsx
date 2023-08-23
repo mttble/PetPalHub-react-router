@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ViewProfile = ({ userProfile }) => {
   const { aboutMe, experience, additionalServices } = userProfile;
+  const navigate = useNavigate();
 
   return (
     <div>

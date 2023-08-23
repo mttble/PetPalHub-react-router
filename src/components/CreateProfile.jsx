@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProfile = ({ onCreateProfile }) => {
   const [profile, setProfile] = useState({
@@ -8,7 +8,7 @@ const CreateProfile = ({ onCreateProfile }) => {
     additionalServices: [],
   });
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -37,30 +37,55 @@ const CreateProfile = ({ onCreateProfile }) => {
 
   const handleCreateProfile = () => {
     onCreateProfile(profile);
-    history.push('/view-profile');
+    navigate('/view-profile');
   };
+
+  const additionalServicesOptions = [
+    'Pet Photography',
+    'Pet Transport',
+    'Grooming',
+    // Add other additional services here
+  ];
 
   return (
     <div>
-      <input
-        type="text"
-        name="aboutMe"
-        value={profile.aboutMe}
-        onChange={handleInputChange}
-      />
-      {additionalServicesOptions.map((service) => (
-        <div key={service}>
-          <label>
-            <input
-              type="checkbox"
-              name={service}
-              checked={profile.additionalServices.includes(service)}
-              onChange={handleCheckboxChange}
-            />
-            {service}
-          </label>
-        </div>
-      ))}
+      <h3>Create Profile</h3>
+      <div>
+        <h4>Categories</h4>
+        {/* ... (categories checkboxes) */}
+      </div>
+      <div>
+        <h4>Additional Services</h4>
+        {additionalServicesOptions.map((service) => (
+          <div key={service}>
+            <label>
+              <input
+                type="checkbox"
+                name={service}
+                checked={profile.additionalServices.includes(service)}
+                onChange={handleCheckboxChange}
+              />
+              {service}
+            </label>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h4>About Me</h4>
+        <textarea
+          name="aboutMe"
+          value={profile.aboutMe}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div>
+        <h4>Experience</h4>
+        <textarea
+          name="experience"
+          value={profile.experience}
+          onChange={handleInputChange}
+        />
+      </div>
       <button onClick={handleCreateProfile}>Create Profile</button>
     </div>
   );

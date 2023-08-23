@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
@@ -9,7 +8,13 @@ import './NavBar.css';
 import './AccountUser.css';
 
 function AccountUser() {
-  const hasProfile = true;
+  const [hasProfile, setHasProfile] = useState(false); // Change to false initially
+  const [userProfile, setUserProfile] = useState(null); // Store the user's profile data
+
+  const handleCreateProfile = (profileData) => {
+    setUserProfile(profileData);
+    setHasProfile(true); // Mark that the user has a profile
+  };
 
   return (
     <div>
@@ -47,7 +52,7 @@ function AccountUser() {
               path="/create-profile"
               element={<CreateProfile onCreateProfile={handleCreateProfile} />}
             />
-            <Route path="/view-profile" element={<ViewProfile />} />
+            <Route path="/view-profile" element={<ViewProfile userProfile={userProfile} />} />
           </Routes>
         </div>
       </div>

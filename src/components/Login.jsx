@@ -7,30 +7,35 @@ import './Login.css';
 
 
 function Login() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [data, setData] = useState({
         email: '',
         password: '',
-    })
+    });
 
     const loginUser = async (e) => {
-        e.preventDefault()
-        const { email, password } = data
+        e.preventDefault();
+        const { email, password } = data;
         try {
-            const {data} = await axios.post('/login', {
+            const response = await axios.post('/login', {
                 email,
                 password
-            })
-            if (data.error) {
-                toast.error(data.error)
+            });
+
+            if (response.data.error) {
+                toast.error(response.data.error);
             } else {
-                setData({})
-                navigate('/')
+                setData({});
+                navigate('/');
             }
         } catch (error) {
-            
+            if (error.response) {
+                toast.error(error.response.data.error);
+            } else {
+                toast.error('An error occurred while logging in.');
+            }
         }
-    }
+    };
 
     return (
         <>

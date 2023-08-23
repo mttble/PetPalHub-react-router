@@ -7,10 +7,17 @@ import SignupUser from './SignupUser.jsx';
 import SignupCarer from './SignupCarer.jsx';
 import NavBar from './NavBar.jsx';
 import { Toaster } from 'react-hot-toast';
-import AccountUser from './AccountUser.jsx';
-import CreateProfile from './CreateProfile.jsx';
-import ViewProfile from './ViewProfile.jsx';
-import EditProfile from './EditProfile.jsx';
+// <<<<<<< main
+// // import AccountUser from './AccountUser.jsx';
+// // import CreateProfile from './CreateProfile.jsx';
+// // import ViewProfile from './ViewProfile.jsx';
+// // import EditProfile from './EditProfile.jsx';
+// =======
+// import AccountUser from './AccountUser.jsx';
+// import CreateProfile from './CreateProfile.jsx';
+// import ViewProfile from './ViewProfile.jsx';
+// import EditProfile from './EditProfile.jsx';
+// >>>>>>> main
 import './App.css';
 import axios from 'axios';
 
@@ -34,10 +41,17 @@ function App() {
         <Route path="/signup" element={<SignupPrompt />} />
         <Route path="/signup-user" element={<SignupUser />} />
         <Route path="/signup-carer" element={<SignupCarer />} />
-        <Route path="/account-user" element={<AccountUser />} />
-        <Route path="/create-profile" element={<CreateProfile />} />
-        <Route path="/view-profile" element={<ViewProfile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
+// <<<<<<< main
+//         {/* <Route path="/account-user" element={<AccountUser />} /> */}
+//         {/* <Route path="/create-profile" element={<CreateProfile />} /> */}
+//         {/* <Route path="/view-profile" element={<ViewProfile />} /> */}
+//         {/* <Route path="/edit-profile" element={<EditProfile />} /> */}
+// =======
+//         <Route path="/account-user" element={<AccountUser />} />
+//         <Route path="/create-profile" element={<CreateProfile />} />
+//         <Route path="/view-profile" element={<ViewProfile />} />
+//         <Route path="/edit-profile" element={<EditProfile />} />
+// >>>>>>> main
         <Route path="*" element={<h3>Page not found</h3>} />
       </Routes>
     </>

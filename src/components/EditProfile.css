@@ -1,4 +1,5 @@
-/* .edit-profile-container {
+.edit-profile-container {
+
     background-color: #f5f5f5;
     border-radius: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -58,6 +59,7 @@
     .edit-profile-form {
         gap: 30px;
     }
+}
 
 @media (min-width: 1200px) {
     /* Media queries for desktop view */

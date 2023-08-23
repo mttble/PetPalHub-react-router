@@ -7,11 +7,12 @@ import SignupUser from './SignupUser.jsx';
 import SignupCarer from './SignupCarer.jsx';
 import NavBar from './NavBar.jsx';
 import { Toaster } from 'react-hot-toast';
-import { UserContextProvider } from '../Context/userContext.jsx';
+
 // import AccountUser from './AccountUser.jsx';
 // import CreateProfile from './CreateProfile.jsx';
 // import ViewProfile from './ViewProfile.jsx';
 // import EditProfile from './EditProfile.jsx';
+
 import './App.css';
 import axios from 'axios';
 import Dashboard from './Dashboard.jsx';

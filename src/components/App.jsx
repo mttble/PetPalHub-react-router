@@ -7,14 +7,15 @@ import SignupUser from './SignupUser.jsx';
 import SignupCarer from './SignupCarer.jsx';
 import NavBar from './NavBar.jsx';
 import { Toaster } from 'react-hot-toast';
-
-import AccountCarer from './AccountCarer.jsx';
-import CreateProfile from './CreateProfile.jsx';
-import ViewProfile from './ViewProfile.jsx';
-import EditProfile from './EditProfile.jsx';
-
+import AccountCarer from './AccountCarer';
+import CreateProfile from './CreateProfile';
+import ViewProfile from './ViewProfile';
+import EditProfile from './EditProfile';
 import './App.css';
 import axios from 'axios';
+import { UserContextProvider } from '../Context/userContext.jsx';
+import Dashboard from './Dashboard';
+
 
 axios.defaults.baseURL = 'http://localhost:5505';
 axios.defaults.withCredentials = true;
@@ -28,22 +29,25 @@ function App() {
 
   return (
     <>
-      <NavBar />
-      <Toaster position="bottom-right" toastOptions={{ duration: 5000 }} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignupPrompt />} />
-        <Route path="/signup-user" element={<SignupUser />} />
-        <Route path="/signup-carer" element={<SignupCarer />} />
+      <UserContextProvider>
+        <NavBar />
+        <Toaster position="bottom-right" toastOptions={{ duration: 5000 }} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/signup" element={<SignupPrompt />} />
+          <Route path="/signup-user" element={<SignupUser />} />
+          <Route path="/signup-carer" element={<SignupCarer />} />
 
-        <Route path="/account-carer" element={<AccountCarer />} />
-        <Route path="/create-profile" element={<CreateProfile />} />
-        <Route path="/view-profile" element={<ViewProfile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/account-carer" element={<AccountCarer />} />
+          <Route path="/create-profile" element={<CreateProfile />} />
+          <Route path="/view-profile" element={<ViewProfile />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
 
-        <Route path="*" element={<h3>Page not found</h3>} />
-      </Routes>
+          <Route path="*" element={<h3>Page not found</h3>} />
+        </Routes>
+      </UserContextProvider>
     </>
   );
 }

@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './NavBar.css'
 
 
-function ResponsiveNavbar() {
+function NavBar() {
   
 
   return (
@@ -30,4 +30,4 @@ function ResponsiveNavbar() {
   )
 }
 
-export default ResponsiveNavbar
+export default NavBar

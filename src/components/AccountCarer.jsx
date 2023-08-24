@@ -1,10 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link, Route, Routes, useNavigate } from 'react-router-dom';
-import NavBar from './NavBar';
 import CreateProfile from './CreateProfile';
 import ViewProfile from './ViewProfile';
-import './NavBar.css';
 import './AccountCarer.css';
 
 function AccountCarer() {
@@ -17,7 +15,6 @@ function AccountCarer() {
 
   return (
     <div>
-      <NavBar />
       <div className="centered-container">
         <div className="account-container">
           <h2>Dashboard Overview</h2>

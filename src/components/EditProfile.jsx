@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const EditProfile = ({ userProfile, onUpdateProfile }) => {
-  const [editedProfile, setEditedProfile] = useState(userProfile);
+  const [editedProfile, setEditedProfile] = useState(userProfile || {
+    aboutMe: '',
+    experience: '',
+    additionalServices: [],
+  })
   const navigate = useNavigate();
 
   const handleInputChange = (event) => {

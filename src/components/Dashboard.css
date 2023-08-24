@@ -1,12 +1,10 @@
-
-.centered-container-home {
+.dashboard-welcome {
     background-color: #222222;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 10vh;
-    margin: 3px;
+    margin: 0px;
     padding: 0;
 }
-

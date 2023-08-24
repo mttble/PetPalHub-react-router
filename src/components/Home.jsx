@@ -5,7 +5,7 @@ import './Home.css'
 function Home() {
   // Logic for login page
     return (
-        <div className="centered-container">
+        <div className="centered-container-home">
         <h1>Welcome to PetPal Hub</h1>
         </div>
     );

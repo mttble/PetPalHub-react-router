@@ -6,8 +6,8 @@ function SignupPrompt() {
   // Logic for signup page
   return (
     <>
-      <div className="centered-container">
-        <h1>Signup Prompt</h1>
+      <div className="centered-container-signup">
+        <h1>Signup As a User or Carer</h1>
       </div>
       <div className="signup-prompt">
         <Link to="/signup-user" className="signup-user">

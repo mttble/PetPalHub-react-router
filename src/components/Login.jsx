@@ -45,7 +45,7 @@ function Login() {
 
     return (
         <>
-            <div className="centered-container">
+            <div className="centered-container-login">
                 <h1>Login Page</h1>
             </div>
             <form className="login-form" onSubmit={ loginUser }>

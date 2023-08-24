@@ -1,12 +1,35 @@
-import { useContext } from 'react'
-import { UserContext } from '../Context/userContext'
+import { useContext } from 'react';
+import { UserContext } from '../Context/userContext.jsx';
 
-export default function Dashboard() {
-    const {user} = useContext(UserContext)
-    return (
-        <div>
-            <h1>Dashboard</h1>
-            {!!user && (<h2>Hello {user.firstName}!</h2>)}
-        </div>
-    )
-}
+import './Dashboard.css'
+
+const Dashboard = () => {
+    const userContext = useContext(UserContext);
+
+    const handleLogout = () => {
+        userContext.logout(); // Call the logout function from context
+    };
+
+    if (userContext.user) {
+        if (userContext.user.role === 'user') {
+            return (
+                <div className='dashboard-welcome'>
+                    <h1>hello {userContext.user.firstName}, you are a user</h1>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+                
+            );
+        } else if (userContext.user.role === 'carer') {
+            return (
+                <div className='dashboard-welcome'>
+                    <h1>hello {userContext.user.firstName}, you are a carer</h1>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            );
+        }
+    }
+
+    return <div className='dashboard-welcome'>Page not displayed</div>;
+};
+
+export default Dashboard;

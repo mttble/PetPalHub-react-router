@@ -13,6 +13,7 @@ import EditProfile from './EditProfile';
 import './App.css';
 import axios from 'axios';
 import { UserContextProvider } from '../Context/userContext.jsx';
+
 import Dashboard from './Dashboard';
 import Layout from './Layout.jsx';
 
@@ -30,25 +31,48 @@ function App() {
   return (
     <>
       <UserContextProvider>
-        <Toaster position="bottom-right" toastOptions={{ duration: 5000 }} />
-        <Routes>
-          <Route path = "/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/signup" element={<SignupPrompt />} />
-            <Route path="/signup-user" element={<SignupUser />} />
-            <Route path="/signup-carer" element={<SignupCarer />} />
 
-            <Route path="/account-carer" element={<AccountCarer />} />
-            <Route path="/create-profile" element={<CreateProfile />} />
-            <Route path="/view-profile" element={<ViewProfile />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
+          <Toaster position="bottom-right" toastOptions={{ duration: 5000 }} />
+          <Routes>
+            <Route path = "/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignupPrompt />} />
+              <Route path="/signup-user" element={<SignupUser />} />
+              <Route path="/signup-carer" element={<SignupCarer />} />
 
-            <Route path="*" element={<h3>Page not found</h3>} />
-          </Route>
-          
-        </Routes>
+
+
+
+              {/* common routes for both users and carers */}
+              <Route path="/dashboard" element={<Dashboard />} />
+
+
+
+
+              {/* Routes specific to carer */}
+              <Route path="/account-carer" element={<AccountCarer />} />
+              <Route path="/create-profile" element={<CreateProfile />} />
+              <Route path="/view-profile" element={<ViewProfile />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+
+
+
+
+
+
+              {/* Routes specific to users */}
+
+
+
+
+
+
+
+              <Route path="*" element={<h3>Page not found</h3>} />
+            </Route>
+          </Routes>
+
       </UserContextProvider>
     </>
   );

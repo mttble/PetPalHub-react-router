@@ -9,26 +9,28 @@ import './Login.css';
 
 function Login() {
     const navigate = useNavigate();
-    const {setUser} = useContext(UserContext)
+    const userContext = useContext(UserContext); // Get the setUser function from the context
     const [data, setData] = useState({
         email: '',
         password: '',
     });
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     const loginUser = async (e) => {
         e.preventDefault();
         const { email, password } = data;
-        setIsLoading(true)
+        setIsLoading(true);
         try {
             const response = await axios.post('/login', {
                 email,
                 password
             });
-            setUser(response.data)
+
             if (response.data.error) {
                 toast.error(response.data.error);
             } else {
+                userContext.setUser(response.data); // Update user data in global context
+                localStorage.setItem('userData', JSON.stringify(response.data)); // Store user data in local storage
                 toast.success('Logged in successfully')
                 setData({});
                 navigate('/dashboard');
@@ -40,7 +42,7 @@ function Login() {
                 toast.error('An error occurred while logging in.');
             }
         }
-        setIsLoading(false)
+        setIsLoading(false);
     };
 
     return (

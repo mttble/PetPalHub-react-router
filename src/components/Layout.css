@@ -7,8 +7,5 @@
 .content-container {
     flex: 1;
     background-color: #222222;
-}
-
-.content {
-    overflow: auto;
+    padding-top: 60px; /* Adjust this value based on your NavBar height */
 }

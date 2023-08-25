@@ -3,15 +3,17 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CreateProfile.css';
 import { UserContext } from '../Context/userContext';
+import axios from 'axios';
 
 const CreateProfile = ({ onCreateProfile }) => {
   const userContext = useContext(UserContext)
+  const [avatar, setAvatar] = useState(null)
   
   const [profile, setProfile] = useState({
+    petType: [],
+    additionalServices: [],
     aboutMe: '',
     experience: '',
-    additionalServices: [],
-    petType: [],
   });
 
   const navigate = useNavigate();
@@ -57,6 +59,10 @@ const CreateProfile = ({ onCreateProfile }) => {
   };
   
   
+  const handleAvatarUpload = (event) => {
+
+  }
+
   
   const handleCreateProfile = () => {
     onCreateProfile(profile);
@@ -68,7 +74,6 @@ const CreateProfile = ({ onCreateProfile }) => {
     'Pet Transportation',
     'Grooming',
     'Dog walks',
-    'Daily updates',
     'Flexible drop-off/pick-up',
   ];
 
@@ -83,6 +88,26 @@ const CreateProfile = ({ onCreateProfile }) => {
           <div className="create-profile-title">
             <h1>Create Profile</h1>
           </div>
+
+          <div className='profile-avatar'>
+            {avatar ? (
+            <img src={avatar} alt="Profile Avatar" className="avatar" />
+            ) : (
+            <div>
+              <h3>Profile Avatar</h3>
+            </div>
+            )}
+          </div>
+
+          <div className="upload-avatar">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarUpload}
+            />
+          </div>
+
+
           <div className="create-profile-heading">
             <h4>Pet Types</h4>
           </div>
@@ -101,6 +126,8 @@ const CreateProfile = ({ onCreateProfile }) => {
             </div>
             ))}
           </div>
+
+
           <div className="create-profile-heading">
             <h4>Additional Services</h4>
           </div>
@@ -119,6 +146,8 @@ const CreateProfile = ({ onCreateProfile }) => {
               </div>
             ))}
           </div>
+
+
           <div className="create-profile-heading">
             <h4>About Me</h4>
           </div>
@@ -130,6 +159,8 @@ const CreateProfile = ({ onCreateProfile }) => {
               onChange={handleInputChange}
             />
           </div>
+
+
           <div className="create-profile-heading">
             <h4>Experience</h4>
           </div>
@@ -141,6 +172,8 @@ const CreateProfile = ({ onCreateProfile }) => {
               onChange={handleInputChange}
             />
           </div>
+
+
           <div className="create-profile-submit-button">
             <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create Profile</button>
           </div>
@@ -148,8 +181,9 @@ const CreateProfile = ({ onCreateProfile }) => {
       );
     }
     else return (
-      <h1>hello</h1>
+      <h1>Hello</h1>
     )
+    
   }
 }
 

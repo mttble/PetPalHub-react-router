@@ -28,7 +28,7 @@ if (userContext.user) {
                     PetPal Requests
                   </Button>
                 </Link>
-                <Link to="/create-profile">
+                <Link to="/create-pet">
                   <Button variant="primary" className="account-button">
                     Add Pet
                   </Button>

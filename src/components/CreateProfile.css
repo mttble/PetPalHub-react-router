@@ -44,3 +44,43 @@
     background-color: #0056b3;
 }
 
+.create-profile-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    margin-bottom: 50px;
+}
+
+
+.create-profile-heading {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.create-profile-title {
+    text-align: center;
+}
+
+.create-profile-textarea-container {
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    height: 100%; /* Make sure the container takes up the full height */
+}
+
+.create-profile-textarea {
+    width: 100%; /* Make sure the textarea takes up the full width of its container */
+}
+
+.create-profile-submit-button {
+    text-align: center;
+    padding-top: 20px;
+}

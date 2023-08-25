@@ -33,7 +33,7 @@ function Login() {
                 localStorage.setItem('userData', JSON.stringify(response.data)); // Store user data in local storage
                 toast.success('Logged in successfully')
                 setData({});
-                navigate('/dashboard');
+                navigate('/');
             }
         } catch (error) {
             if (error.response) {

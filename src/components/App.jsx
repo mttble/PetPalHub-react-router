@@ -6,7 +6,7 @@ import SignupPrompt from './SignupPrompt.jsx';
 import SignupUser from './SignupUser.jsx';
 import SignupCarer from './SignupCarer.jsx';
 import { Toaster } from 'react-hot-toast';
-import AccountCarer from './AccountCarer';
+import Account from './Account';
 import CreateProfile from './CreateProfile';
 import ViewProfile from './ViewProfile';
 import EditProfile from './EditProfile';
@@ -51,7 +51,7 @@ function App() {
 
 
               {/* Routes specific to carer */}
-              <Route path="/account-carer" element={<AccountCarer />} />
+              <Route path="/account" element={<Account />} />
               <Route path="/create-profile" element={<CreateProfile />} />
               <Route path="/view-profile" element={<ViewProfile />} />
               <Route path="/edit-profile" element={<EditProfile />} />

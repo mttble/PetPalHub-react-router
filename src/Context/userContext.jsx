@@ -1,9 +1,13 @@
-import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
+    const navigate = useNavigate()
     const [user, setUser] = useState(null);
 
     const logout = () => {
@@ -18,34 +22,14 @@ export const UserContextProvider = ({ children }) => {
             document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none`;
             console.log('cookie removed')
         }
+        navigate('/');
     };
 
     useEffect(() => {
-        const storedUserData = localStorage.getItem('userData');
-        const userRole = storedUserData ? JSON.parse(storedUserData).role : null;
-    
-        if (storedUserData) {
-            setUser(JSON.parse(storedUserData));
-        } else if (userRole === 'user') {
-            axios
-                .get(`/profile/user`, { withCredentials: true })
-                .then(({ data }) => {
-                    setUser(data);
-                    localStorage.setItem('userData', JSON.stringify(data));
-                })
-                .catch(error => {
-                    console.error('Error fetching user profile ' + error);
-                });
-        } else if (userRole === 'carer') {
-            axios
-                .get(`/profile/carer`, { withCredentials: true })
-                .then(({ data }) => {
-                    setUser(data);
-                    localStorage.setItem('userData', JSON.stringify(data));
-                })
-                .catch(error => {
-                    console.error('Error fetching carer profile ' + error);
-                });
+        if (!user)  {
+            axios.get('/profile').then(({data}) => {
+                setUser(data)
+            })
         }
     }, []);
 

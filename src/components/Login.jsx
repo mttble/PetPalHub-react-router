@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios'
-import { toast } from 'react-hot-toast'
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/userContext';
 
@@ -33,7 +33,7 @@ function Login() {
                 localStorage.setItem('userData', JSON.stringify(response.data)); // Store user data in local storage
                 toast.success('Logged in successfully')
                 setData({});
-                navigate('/dashboard');
+                navigate('/');
             }
         } catch (error) {
             if (error.response) {

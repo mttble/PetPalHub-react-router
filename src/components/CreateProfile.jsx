@@ -5,6 +5,7 @@ import './CreateProfile.css';
 import { UserContext } from '../Context/userContext';
 import axios from 'axios';
 
+
 const CreateProfile = ({ onCreateProfile }) => {
   const userContext = useContext(UserContext)
   const [avatar, setAvatar] = useState(null)
@@ -64,10 +65,22 @@ const CreateProfile = ({ onCreateProfile }) => {
   }
 
   
-  const handleCreateProfile = () => {
-    onCreateProfile(profile);
-    navigate('/view-profile');
-  };
+  const handleCreateProfile = async () => {
+    try {
+      // Make a POST request to the backend with the profile data
+      const response = await axios.post('http://localhost:5505/carer/profile', profile);
+  
+      if (response.status === 201) {
+        console.log(response.data.message);
+        navigate('/view-profile');
+      } else {
+        console.error('Failed to create profile:', response.data);
+      }
+    } catch (error) {
+      console.error('Error creating profile:', error, error.response.data);
+    }
+  
+  }
 
   const additionalServicesOptions = [
     'Pet Photography',

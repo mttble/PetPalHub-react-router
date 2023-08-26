@@ -1,86 +1,99 @@
-
 .create-profile-container {
     background-color: #f5f5f5;
     border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    color: black;
-    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    color: #333;
+    padding: 40px; 
     text-align: center;
     max-width: 800px;
-    margin: 0 auto;
-}
-
-.create-profile-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.comment-box {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.submit-button {
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
+    margin: 3rem auto;
+    position: relative;  /* Added for centering the "create profile" */
 }
 
 .create-profile-box {
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+    max-width: 450px;
     margin: 0 auto;
-    padding: 20px;
     background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     color: black;
     margin-bottom: 50px;
-}
-
-
-.create-profile-heading {
-    text-align: center;
-    padding-top: 20px;
 }
 
 .create-profile-title {
     text-align: center;
 }
 
+.create-profile-heading h4 {
+    color: #444;
+    font-size: 24px; 
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
 .create-profile-textarea-container {
     display: flex;
-    justify-content: center; /* Horizontally center content */
-    align-items: center; /* Vertically center content */
-    height: 100%; /* Make sure the container takes up the full height */
+    justify-content: center; 
+    align-items: center; 
+    margin: 20px 0;
 }
 
 .create-profile-textarea {
-    width: 100%; /* Make sure the textarea takes up the full width of its container */
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.avatar-preview {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%; 
+    margin-top: 20px;
+}
+
+.placeholder-avatar {
+    width: 200px;
+    height: 200px;
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 50%; 
+    color: #888; 
+    margin-top: 20px;
+}
+
+.upload-avatar-label {
+    display: block;
+    cursor: pointer;
+    margin-top: 15px;
+    text-align: center;
+    padding: 6px 6%;  /* Reduced padding and made it 50% narrower */
+    font-size: 14.2px;  /* Reduced font size by 20% */
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 50%;  /* Make the label/button 50% narrower */
+    margin-left: 25%;  /* Center the label/button */
+    background-color: #08903c;
+}
+
+.upload-avatar-label:hover {
+    background-color: #077017;
 }
 
 .create-profile-submit-button {
     text-align: center;
-    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.create-profile-submit-button .btn {
+    font-size: 20px;
+    padding: 10px 30px;
 }

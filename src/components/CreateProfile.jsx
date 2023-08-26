@@ -3,11 +3,17 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CreateProfile.css';
 import { UserContext } from '../Context/userContext';
-import axios from 'axios'
+import axios from 'axios';
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+
 
 const CreateProfile = ({ onCreateProfile }) => {
   const userContext = useContext(UserContext)
-  
+  const [avatar, setAvatar] = useState(null);
+
+
   const [profile, setProfile] = useState({
     aboutMe: '',
     experience: '',
@@ -61,18 +67,39 @@ const CreateProfile = ({ onCreateProfile }) => {
   
   const handleCreateProfile = async () => {
     try {
-      // Make a POST request to the backend with the profile data
-      const response = await axios.post('http://localhost:5505/carer/profile', profile);
-  
-      if (response.status === 201) {
-        console.log(response.data.message);
-        navigate('/view-profile');
-      } else {
-        console.error('Failed to create profile:', response.data);
+      const formData = new FormData();
+
+      // Append each profile key-value to the formData
+      for (const key in profile) {
+          if (Array.isArray(profile[key])) {
+              profile[key].forEach(item => {
+                  formData.append(key, item);
+              });
+          } else {
+              formData.append(key, profile[key]);
+          }
       }
-    } catch (error) {
+
+      // Append the avatar image if available
+      if (avatar) {
+          formData.append('avatar', avatar);
+      }
+
+      const response = await axios.post('http://localhost:5505/carer/profile', formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data',
+          },
+      });
+
+      if (response.status === 201) {
+          console.log(response.data.message);
+          navigate('/view-profile');
+      } else {
+          console.error('Failed to create profile:', response.data);
+      }
+  } catch (error) {
       console.error('Error creating profile:', error, error.response.data);
-    }
+  }
   
   }
 
@@ -89,6 +116,22 @@ const CreateProfile = ({ onCreateProfile }) => {
     'Dogs',
     'Cats',
   ]
+
+  const handleAvatarUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatar(file); 
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setAvatar(null);
+    }
+  };
+  
+
+
   if (userContext.user) {
     if (userContext.user.role === 'carer') {
       return (
@@ -153,6 +196,25 @@ const CreateProfile = ({ onCreateProfile }) => {
               value={profile.experience}
               onChange={handleInputChange}
             />
+          </div>
+          <div className="profile-avatar">
+              {avatar ? (
+                  <img src={URL.createObjectURL(avatar)} alt="Profile Avatar" className="avatar-preview" />
+              ) : (
+                  <div className="placeholder-avatar">
+                      <h3>Profile Picture</h3>
+                  </div>
+              )}
+          </div>
+          <div className="upload-avatar">
+              <input
+                  type="file"
+                  accept="image/*"
+                  id="avatarUpload"  // Add an id here to link with the label
+                  style={{ display: 'none' }} // Hide the default input
+                  onChange={handleAvatarUpload}
+              />
+              <label htmlFor="avatarUpload" className="upload-avatar-label btn btn-secondary">Upload Picture</label>
           </div>
           <div className="create-profile-submit-button">
             <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create Profile</button>

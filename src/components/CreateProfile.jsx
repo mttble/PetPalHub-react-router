@@ -1,7 +1,7 @@
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CreateProfile.css';
 import { UserContext } from '../Context/userContext';
 import axios from 'axios';
 
@@ -119,7 +119,7 @@ const CreateProfile = ({ onCreateProfile }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(file); 
+        setAvatar(file);
       };
       reader.readAsDataURL(file);
     } else {

@@ -119,7 +119,7 @@ const CreateProfile = ({ onCreateProfile }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(file); 
+        setAvatar(file);
       };
       reader.readAsDataURL(file);
     } else {

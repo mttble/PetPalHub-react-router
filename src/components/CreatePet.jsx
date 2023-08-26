@@ -38,7 +38,7 @@ const CreatePet = ({ onCreatePet }) => {
     }
 
     
-    const handleCreateProfile = async () => {
+    const handleCreatePet = async () => {
         try {
         // Make a POST request to the backend with the profile data
         const response = await axios.post('/carer/profile', profile);
@@ -66,7 +66,7 @@ const CreatePet = ({ onCreatePet }) => {
 
             <div className='profile-avatar'>
                 {avatar ? (
-                <img src={avatar} alt="Profile Avatar" className="avatar" />
+                <img src={avatar} alt="Pet Avatar" className="avatar" />
                 ) : (
                 <div>
                 <h3>Profile Avatar</h3>
@@ -138,7 +138,7 @@ const CreatePet = ({ onCreatePet }) => {
 
 
             <div className="create-profile-submit-button">
-                <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Add Pet</button>
+                <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreatePet}>Add Pet</button>
             </div>
             </div>
         );

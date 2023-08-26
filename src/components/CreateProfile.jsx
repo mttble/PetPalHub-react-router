@@ -135,7 +135,6 @@ const CreateProfile = ({ onCreateProfile }) => {
   };
   
 
-
   if (userContext.user) {
     if (userContext.user.role === 'carer') {
       return (

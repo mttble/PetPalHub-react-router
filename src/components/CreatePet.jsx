@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/userContext';
-import './CreateProfile.css';
+import './CreatePet.css';
 
 
 const CreatePet = ({ onCreatePet }) => {
@@ -14,7 +14,7 @@ const CreatePet = ({ onCreatePet }) => {
         petName: '',
         breed: '',
         age: '',
-        gender: '',
+        gender: 'Male',
         medicalConditions: '',
         emergencyContact: '',
         specialInstructions: '',
@@ -32,28 +32,51 @@ const CreatePet = ({ onCreatePet }) => {
     };
 
     
-    
     const handleAvatarUpload = (event) => {
-
-    }
-
+        const file = event.target.files[0];
+        const reader = new FileReader();
     
+        reader.onloadend = () => {
+            setAvatar(file);
+        };
+    
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleCreatePet = async () => {
         try {
-        // Make a POST request to the backend with the profile data
-        const response = await axios.post('/carer/profile', profile);
+            const formData = new FormData();
+            console.log(avatar)
+
+            // Append each pet key-value to the formData
+            for (const key in pet) {
+                formData.append(key, pet[key]);
+            }
     
-        if (response.status === 201) {
-            console.log(response.data.message);
-            navigate('/view-profile');
-        } else {
-            console.error('Failed to create profile:', response.data);
-        }
+            // Append the avatar image if available
+            if (avatar) {
+                formData.append('petImage', avatar);
+            }
+    
+            const response = await axios.post('http://localhost:5505/pet/profile', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+    
+            if (response.status === 201) {
+                console.log(response.data.message);
+                navigate('/view-pet-profile'); 
+            } else {
+                console.error('Failed to create pet:', response.data);
+            }
         } catch (error) {
-        console.error('Error creating profile:', error, error.response.data);
+            console.error('Error creating pet:', error, error.response.data);
         }
-    
     }
+    
 
 
     if (userContext.user) {
@@ -64,12 +87,12 @@ const CreatePet = ({ onCreatePet }) => {
                 <h1>Add Pet</h1>
             </div>
 
-            <div className='profile-avatar'>
+            <div className='avatar-preview'>
                 {avatar ? (
-                <img src={avatar} alt="Pet Avatar" className="avatar" />
+                <img src={URL.createObjectURL(avatar)} alt="Pet Avatar" />
                 ) : (
                 <div>
-                <h3>Profile Avatar</h3>
+                    <h3>Profile Avatar</h3>
                 </div>
                 )}
             </div>

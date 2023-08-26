@@ -136,14 +136,6 @@ const CreateProfile = ({ onCreateProfile }) => {
           <div className="create-profile-title">
             <h1>Create Profile</h1>
           </div>
-
-          <div className="upload-avatar">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleAvatarUpload}
-            />
-          </div>
           <div className="create-profile-heading">
             <h4>Pet Types</h4>
           </div>

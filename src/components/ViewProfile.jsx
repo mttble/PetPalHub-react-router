@@ -55,6 +55,9 @@ const ViewProfile = () => {
             )}
           </div>
 
+          <h2 className="profile-heading">Location:</h2>
+          <p>{profileData.location}</p>
+
           <h2 className="profile-heading">About Me:</h2>
           <p>{profileData.aboutMe}</p>
 

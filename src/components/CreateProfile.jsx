@@ -19,6 +19,7 @@ const CreateProfile = ({ onCreateProfile }) => {
     additionalServices: [],
     aboutMe: '',
     experience: '',
+    location: '',
   });
 
   const navigate = useNavigate();
@@ -215,6 +216,17 @@ const CreateProfile = ({ onCreateProfile }) => {
               className="create-profile-textarea"
               name="experience"
               value={profile.experience}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="create-profile-heading">
+            <h4>Location (used by users to search):</h4>
+          </div>
+          <div className='create-profile-textarea-container'>
+            <textarea
+              className="create-profile-textarea"
+              name="location"
+              value={profile.location}
               onChange={handleInputChange}
             />
           </div>

@@ -67,6 +67,8 @@ const ProfileCard = () => {
                         <div className="profile-section">
                         <h5 className="profile-heading-card">Experience:</h5>
                         <p>{profileData.experience}</p>
+                        <h5 className="profile-heading-card">Location:</h5>
+                        <p>{profileData.location}</p>
                         </div>
                     </div>
                     <div className="right-column">

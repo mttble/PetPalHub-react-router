@@ -14,7 +14,7 @@ import './App.css';
 import axios from 'axios';
 import { UserContextProvider } from '../Context/userContext.jsx';
 
-import Dashboard from './Dashboard';
+
 import Layout from './Layout.jsx';
 import CreatePet from './CreatePet.jsx';
 
@@ -46,7 +46,7 @@ function App() {
 
 
               {/* common routes for both users and carers */}
-              <Route path="/dashboard" element={<Dashboard />} />
+
 
 
 

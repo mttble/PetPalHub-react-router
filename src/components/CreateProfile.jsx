@@ -14,6 +14,7 @@ const CreateProfile = ({ onCreateProfile }) => {
   const [avatar, setAvatar] = useState(null)
   
   const [profile, setProfile] = useState({
+    companyFullName:'',
     petType: [],
     additionalServices: [],
     aboutMe: '',
@@ -83,7 +84,13 @@ const CreateProfile = ({ onCreateProfile }) => {
           formData.append('avatar', avatar);
       }
 
-      const response = await axios.post('http://localhost:5505/carer/profile', formData, {
+      // adding the users id as well to the create profile for retrieval purposes
+      const userData = JSON.parse(localStorage.getItem('userData')); // Get user data from local storage
+      if (userData && userData._id) {
+        formData.append('userId', userData._id); // Include user's ID in the form data
+      }
+      
+      const response = await axios.post('/carer/profile', formData, {
           headers: {
               'Content-Type': 'multipart/form-data',
           },
@@ -135,6 +142,18 @@ const CreateProfile = ({ onCreateProfile }) => {
         <div className="create-profile-box">
           <div className="create-profile-title">
             <h1>Create Profile</h1>
+          </div>
+          <div className="create-profile-heading">
+            <h4>Company or Full Name</h4>
+          </div>
+          <div className='create-profile-text-container'>
+            <input
+              className="create-profile-text-input"
+              type="text"
+              name="companyFullName"
+              value={profile.companyFullName}
+              onChange={handleInputChange}
+            />
           </div>
           <div className="create-profile-heading">
             <h4>Pet Types</h4>

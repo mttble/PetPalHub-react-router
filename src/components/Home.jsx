@@ -50,11 +50,11 @@ function Home() {
 
   return (
     <div>
-      <div className="dashboard-welcome">
+      <div className="dashboard-welcome-container">
         {userContext.user ? (
-          <h1>Welcome to PetPal Hub, {userContext.user.firstName}!</h1>
+          <h1 className="dashboard-welcome">Welcome to PetPal Hub, {userContext.user.firstName}!</h1>
         ) : (
-          <h1>Welcome to PetPal Hub</h1>
+          <h1 className="dashboard-welcome">Welcome to PetPal Hub</h1>
         )}
       </div>
 
@@ -65,6 +65,22 @@ function Home() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+      </div>
+
+      <div className="pagination">
+        <Button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <Button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
       </div>
 
       <div className="profile-cards">
@@ -126,22 +142,6 @@ function Home() {
               </div>
             </div>
           ))}
-      </div>
-
-      <div className="pagination">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span>Page {currentPage} of {totalPages}</span>
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
       </div>
     </div>
   );

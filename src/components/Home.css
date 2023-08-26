@@ -96,3 +96,17 @@
     margin: 20px auto; /* Center horizontally with auto margin */
     max-width: 300px; /* Adjust the max-width as needed */
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+.dashboard-welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Adjust height as needed */
+    /* Add any additional styling you want for the container */
+}

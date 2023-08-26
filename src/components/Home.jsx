@@ -33,10 +33,14 @@ function Home() {
     console.log('Book Now clicked for:', profile);
   };
 
-  const filteredProfiles = profileData.filter((profile) =>
-    profile.companyFullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    profile.location.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredProfiles = profileData.filter((profile) => {
+    const searchWords = searchTerm.toLowerCase().split(' ');
+  
+    return searchWords.every((word) =>
+      profile.companyFullName.toLowerCase().includes(word) ||
+      profile.location.toLowerCase().includes(word)
+    );
+  });
 
   const indexOfLastProfile = currentPage * profilesPerPage;
   const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;

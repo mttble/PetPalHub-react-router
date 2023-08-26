@@ -1,9 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './CreateProfile.css';
-import { UserContext } from '../Context/userContext';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/userContext';
+import './CreateProfile.css';
 
 
 const CreateProfile = ({ onCreateProfile }) => {
@@ -68,7 +68,7 @@ const CreateProfile = ({ onCreateProfile }) => {
   const handleCreateProfile = async () => {
     try {
       // Make a POST request to the backend with the profile data
-      const response = await axios.post('http://localhost:5505/carer/profile', profile);
+      const response = await axios.post('/carer/profile', profile);
   
       if (response.status === 201) {
         console.log(response.data.message);

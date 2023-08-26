@@ -16,6 +16,7 @@ import { UserContextProvider } from '../Context/userContext.jsx';
 
 import Dashboard from './Dashboard';
 import Layout from './Layout.jsx';
+import CreatePet from './CreatePet.jsx';
 
 
 axios.defaults.baseURL = 'http://localhost:5505';
@@ -62,6 +63,7 @@ function App() {
 
 
               {/* Routes specific to users */}
+              <Route path="/create-pet" element={<CreatePet />} />
 
 
 

@@ -1,14 +1,52 @@
 import React, { useContext, useState, useEffect } from 'react';
-import './Home.css'
+import './Home.css';
 import { UserContext } from '../Context/userContext';
-import ProfileCard from './ProfileCard'
-
+import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import './Home.css'
 
 function Home() {
-  
   const userContext = useContext(UserContext);
-  
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [profileData, setProfileData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const profilesPerPage = 2; // Number of profiles to display per page
+
+  useEffect(() => {
+    const fetchCarerProfiles = async () => {
+      try {
+        const response = await axios.get('/carer/carer-profiles');
+        if (response.status === 200) {
+          setProfileData(response.data);
+        } else {
+          console.error('Failed to fetch carer profiles:', response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching carer profiles:', error);
+      }
+    };
+
+    fetchCarerProfiles();
+  }, []);
+
+  const handleBookNowClick = (profile) => {
+    console.log('Book Now clicked for:', profile);
+  };
+
+  const filteredProfiles = profileData.filter((profile) =>
+    profile.companyFullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    profile.location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastProfile = currentPage * profilesPerPage;
+  const indexOfFirstProfile = indexOfLastProfile - profilesPerPage;
+  const currentProfiles = filteredProfiles.slice(indexOfFirstProfile, indexOfLastProfile);
+
+  const totalPages = Math.ceil(filteredProfiles.length / profilesPerPage);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <div>
@@ -19,12 +57,94 @@ function Home() {
           <h1>Welcome to PetPal Hub</h1>
         )}
       </div>
+
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="Search by name or location..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       <div className="profile-cards">
-        <ProfileCard />
-        <ProfileCard />
+        {currentProfiles.length > 0 &&
+          currentProfiles.map((profile, index) => (
+            <div key={index} className="create-profile-box">
+              <div className="profile-info">
+                <div className="profile-image">
+                  {profile.profileImage ? (
+                    <img
+                      src={`http://localhost:5505${profile.profileImage}`}
+                      alt="Profile"
+                      className="avatar-preview-card"
+                    />
+                  ) : (
+                    <div className="placeholder-avatar-card">
+                      <h3>No Profile Picture</h3>
+                    </div>
+                  )}
+                </div>
+                <div className="company-name">
+                  <h3>{profile.companyFullName}</h3>
+                  <h5 className="profile-heading">Pet Types:</h5>
+                  <ul>
+                    {profile.petType.map((type, index) => (
+                      <li key={index}>{type}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="profile-details">
+                <div className="left-column">
+                  <div className="profile-section">
+                    <h5 className="profile-heading-card">About Me:</h5>
+                    <p>{profile.aboutMe}</p>
+                  </div>
+                  <div className="profile-section">
+                    <h5 className="profile-heading-card">Experience:</h5>
+                    <p>{profile.experience}</p>
+                    <h5 className="profile-heading-card">Location:</h5>
+                    <p>{profile.location}</p>
+                  </div>
+                </div>
+                <div className="right-column">
+                  <div className="profile-section">
+                    <h5 className="profile-heading-card">Additional Services:</h5>
+                    <ul>
+                      {profile.additionalServices.map((service, index) => (
+                        <li key={index}>{service}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <Button variant="primary" className="size-sm-lg" onClick={() => handleBookNowClick(profile)}>
+                  Book Now
+                </Button>
+              </div>
+            </div>
+          ))}
+      </div>
+
+      <div className="pagination">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
-};
+}
 
 export default Home;

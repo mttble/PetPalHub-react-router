@@ -68,66 +68,46 @@ const CreateProfile = () => {
   const handleCreateProfile = async () => {
     try {
       const formData = new FormData();
-  
+
       // Append each profile key-value to the formData
       for (const key in profile) {
-        if (Array.isArray(profile[key])) {
-          profile[key].forEach((item) => {
-            formData.append(key, item);
-          });
-        } else {
-          formData.append(key, profile[key]);
-        }
+          if (Array.isArray(profile[key])) {
+              profile[key].forEach(item => {
+                  formData.append(key, item);
+              });
+          } else {
+              formData.append(key, profile[key]);
+          }
       }
-  
+
       // Append the avatar image if available
       if (avatar) {
-        formData.append('avatar', avatar);
+          formData.append('avatar', avatar);
       }
-  
+
+      // adding the users id as well to the create profile for retrieval purposes
       const userData = JSON.parse(localStorage.getItem('userData')); // Get user data from local storage
-  
-      // Check if the user already has an existing profile
-      const existingProfileResponse = await axios.get('/carer/profile', {
-        params: {
-          userId: userData._id,
-        },
-      });
-  
-      if (existingProfileResponse.data) {
-        // Update existing profile
-        const profileId = existingProfileResponse.data._id;
-        const updateResponse = await axios.put(`/carer/profile/${profileId}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-  
-        if (updateResponse.status === 200) {
-          console.log('Profile updated successfully');
-          navigate('/view-profile');
-        } else {
-          console.error('Failed to update profile:', updateResponse.data);
-        }
-      } else {
-        // Create new profile
-        const createResponse = await axios.post('/carer/profile', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-  
-        if (createResponse.status === 201) {
-          console.log(createResponse.data.message);
-          navigate('/view-profile');
-        } else {
-          console.error('Failed to create profile:', createResponse.data);
-        }
+      if (userData && userData._id) {
+        formData.append('userId', userData._id); // Include user's ID in the form data
       }
-    } catch (error) {
-      console.error('Error creating/updating profile:', error);
-    }
-  };
+      
+      const response = await axios.post('/carer/profile', formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data',
+          },
+      });
+
+      if (response.status === 201) {
+          console.log(response.data.message);
+          navigate('/view-profile');
+      } else {
+          console.error('Failed to create profile:', response.data);
+      }
+  } catch (error) {
+      console.error('Error creating profile:', error, error.response.data);
+  }
+  
+  }
 
   const additionalServicesOptions = [
     'Pet Photography',
@@ -270,7 +250,7 @@ const CreateProfile = () => {
               <label htmlFor="avatarUpload" className="upload-avatar-label btn btn-secondary">Upload Picture</label>
           </div>
           <div className="create-profile-submit-button">
-            <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create Profile</button>
+            <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create/Update Profile</button>
           </div>
         </div>
       );

@@ -12,6 +12,7 @@ const CreatePet = ({ onCreatePet }) => {
 
     const [pet, setPet] = useState({
         petName: '',
+        type: '',
         breed: '',
         age: '',
         gender: 'Male',
@@ -30,7 +31,6 @@ const CreatePet = ({ onCreatePet }) => {
         [name]: value,
         }));
     };
-
     
     const handleAvatarUpload = (event) => {
         const file = event.target.files[0];
@@ -52,12 +52,23 @@ const CreatePet = ({ onCreatePet }) => {
 
             // Append each pet key-value to the formData
             for (const key in pet) {
-                formData.append(key, pet[key]);
+                if (Array.isArray(pet[key])) {
+                    pet[key].forEach(item => {
+                        formData.append(key, item);
+                    });
+                } else {
+                    formData.append(key, pet[key]);
+                }
             }
     
             // Append the avatar image if available
             if (avatar) {
                 formData.append('petImage', avatar);
+            }
+
+            const userData = JSON.parse(localStorage.getItem('userData')); // Get user data from local storage
+            if (userData && userData._id) {
+                formData.append('ownerId', userData._id); // Include owner's ID in the form data
             }
     
             const response = await axios.post('http://localhost:5505/pet/profile', formData, {
@@ -68,7 +79,7 @@ const CreatePet = ({ onCreatePet }) => {
     
             if (response.status === 201) {
                 console.log(response.data.message);
-                navigate('/view-pet-profile');
+                navigate('/view-pets');
             } else {
                 console.error('Failed to create pet:', response.data);
             }
@@ -76,16 +87,17 @@ const CreatePet = ({ onCreatePet }) => {
             console.error('Error creating pet:', error, error.response.data);
         }
     }
-    
+
 
 
     if (userContext.user) {
         if (userContext.user.role === 'user') {
         return (
             <div className="create-profile-box">
-            <div className="create-profile-title">
-                <h1>Add Pet</h1>
-            </div>
+                <div className="create-profile-title">
+                    <h1>Add Pet</h1>
+                </div>
+            
 
             <div className='avatar-preview'>
                 {avatar ? (
@@ -109,7 +121,15 @@ const CreatePet = ({ onCreatePet }) => {
             <div className="create-profile-heading">
                 <h4>Pet Profile</h4>
             </div>
+                <div>
+                    <h4>Pet Type</h4>
+                </div>
             <div>
+                <label htmlFor="petType">Pet type:</label>
+                <select value={pet.petType} onChange={(e) => setPet({ ...pet, petType: e.target.value })} id="petType" name="petType">
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                </select>
                 <label htmlFor="petName">Pet name:</label>
                 <input value={ pet.petName } onChange={(e) => setPet({...pet, petName: e.target.value})} type="petName" placeholder="name" id="petName" name="petName"/>
                 <label htmlFor="breed">Breed:</label>

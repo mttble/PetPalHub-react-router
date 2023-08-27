@@ -110,8 +110,9 @@ input[name="medicalConditions"] {
     padding: 0.5rem;
 }
 
-select[name="gender"] {
-    height: 30px; 
+select[name="gender"],
+select[name="petType"] {
+    height: 40px; 
     width: 7rem;
-    padding: 0.2rem 0.5rem; 
+    padding: 0.2rem 0.5rem;
 }

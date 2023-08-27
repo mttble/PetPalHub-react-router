@@ -13,7 +13,7 @@ import EditProfile from './EditProfile';
 import './App.css';
 import axios from 'axios';
 import { UserContextProvider } from '../Context/userContext.jsx';
-import BookingFormPage from './BookingForm.jsx';
+
 import ViewPets from './ViewPets.jsx';
 
 
@@ -66,7 +66,7 @@ function App() {
 
               {/* Routes specific to users */}
               <Route path="/create-pet" element={<CreatePet />} />
-              <Route path="/booking-form" element={<BookingFormPage />} />
+
               <Route path="/view-pets" element={<ViewPets />} />
 
 

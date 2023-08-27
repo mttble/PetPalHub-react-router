@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-const CreateProfile = ({ onCreateProfile }) => {
+const CreateProfile = () => {
   const userContext = useContext(UserContext)
   const [avatar, setAvatar] = useState(null)
   
@@ -250,7 +250,7 @@ const CreateProfile = ({ onCreateProfile }) => {
               <label htmlFor="avatarUpload" className="upload-avatar-label btn btn-secondary">Upload Picture</label>
           </div>
           <div className="create-profile-submit-button">
-            <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create Profile</button>
+            <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create/Update Profile</button>
           </div>
         </div>
       );

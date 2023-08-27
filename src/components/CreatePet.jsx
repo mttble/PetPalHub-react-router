@@ -6,7 +6,7 @@ import { UserContext } from '../Context/userContext';
 import './CreatePet.css';
 
 
-const CreatePet = ({ onCreatePet }) => {
+const CreatePet = () => {
     const userContext = useContext(UserContext)
     const [avatar, setAvatar] = useState(null)
 

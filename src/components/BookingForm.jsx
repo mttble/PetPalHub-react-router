@@ -13,19 +13,6 @@ function BookingForm() {
     message: '',
   });
 
-  const handlePetSelection = (petId) => {
-    if (bookingInfo.selectedPets.includes(petId)) {
-      setBookingInfo((prevState) => ({
-        ...prevState,
-        selectedPets: prevState.selectedPets.filter((pet) => pet !== petId),
-      }));
-    } else {
-      setBookingInfo((prevState) => ({
-        ...prevState,
-        selectedPets: [...prevState.selectedPets, petId],
-      }));
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,21 +44,11 @@ function BookingForm() {
       <h2>PetPal Request</h2>
       <h3>Booking For: Carer</h3>
       <form onSubmit={handleSubmit}>
-        {/* ... */}
+        
         <h4>Select Pets:</h4>
-        {/* Assume petsData is an array of pet objects */}
-        {petsData.map((pet) => (
-          <label key={pet.id}>
-            <input
-              type="checkbox"
-              value={pet.id}
-              checked={bookingInfo.selectedPets.includes(pet.id)}
-              onChange={() => handlePetSelection(pet.id)}
-            />
-            {pet.name}
-          </label>
-        ))}
-        {/* ... */}
+        
+        <h5>call to pet logic goes here</h5>
+        
         <h4>Select Dates:</h4>
         <label>Start Date:
           <input
@@ -87,16 +64,16 @@ function BookingForm() {
             onChange={(e) => setBookingInfo({ ...bookingInfo, endDate: e.target.value })}
           />
         </label>
-        {/* ... */}
+        
         <label>Message:</label>
         <textarea
           value={bookingInfo.message}
           onChange={(e) => setBookingInfo({ ...bookingInfo, message: e.target.value })}
         />
-        {/* ... */}
+        
         <button type="submit">Submit</button>
         <button type="button" onClick={() => navigate('/account')}>Cancel</button>
-        {/* ... */}
+        
       </form>
     </div>
   );

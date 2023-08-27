@@ -20,10 +20,10 @@ const ViewProfile = () => {
           if (response.status === 200) {
             setProfileData(response.data);
           } else {
-            console.error('Failed to fetch profile data:', response.data);
+            console.log('No profile data to display', response.data);
           }
         } else {
-          console.error('User email not found in local storage.');
+          console.error('User not found in local storage.');
         }
       } catch (error) {
         console.error('Error fetching profile data:', error);
@@ -32,6 +32,26 @@ const ViewProfile = () => {
   
     fetchProfileData();
   }, []);
+
+  const handleDeleteProfile = async () => {
+    try {
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      const response = await axios.delete('/carer/profile', {
+        params: {
+          userId: userData._id
+        }
+      });
+
+      if (response.status === 200) {
+        console.log('Profile deleted successfully');
+        window.location.reload();
+      } else {
+        console.error('Failed to delete profile:', response.data);
+      }
+    } catch (error) {
+      console.error('Error deleting profile:', error);
+    }
+  };
 
   return (
     <div className="create-profile-box">
@@ -77,9 +97,10 @@ const ViewProfile = () => {
               <li key={index}>{service}</li>
             ))}
           </ul>
+          <button className="size-sm-lg btn btn-danger" onClick={handleDeleteProfile}>Delete Profile</button>
         </div>
       ) : (
-        <p>Loading profile data...</p>
+        <p>No profile data to display.</p>
       )}
     </div>
   );

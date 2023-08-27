@@ -16,48 +16,16 @@ function BookingForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      bookingInfo.selectedPets.length === 0 ||
-      !bookingInfo.endDate ||
-      !bookingInfo.pickUpTime ||
-      !bookingInfo.dropOffTime ||
-      bookingInfo.message.length < 15
-    ) {
-      // Show error messages
-      if (bookingInfo.selectedPets.length === 0) {
-        alert('Please select at least one pet.');
-      }
-      if (!bookingInfo.endDate) {
-        alert('Please select an end date.');
-      }
-      if (!bookingInfo.pickUpTime) {
-        alert('Please select a pick-up time.');
-      }
-      if (!bookingInfo.dropOffTime) {
-        alert('Please select a drop-off time.');
-      }
-      if (bookingInfo.message.length < 15) {
-        alert('Please provide a message with a minimum of 15 characters.');
-      }
-      return;
-    }
-    // Submit the booking information
-    console.log('Booking submitted:', bookingInfo);
-    // Redirect to Account page
-    navigate('/account');
+    // Do nothing for now
   };
 
   return (
     <div className="booking-form-box-card">
-      <div className="booking-form-title-card">
-        <h2>PetPal Request</h2>
-      </div>
-      <div className="booking-form-subtitle-card">
-        <h5>Booking For: </h5>
-      </div>
+      <h2>PetPal Request</h2>
+      <h3>Booking For: </h3>
       <form onSubmit={handleSubmit}>
         <div className="booking-form-container-card">
-          <h5>Select Pets: </h5>
+          <h5>Select Pets:</h5>
           {/* Call to pet logic goes here */}
         </div>
         <div className="booking-form-container-card">
@@ -66,13 +34,17 @@ function BookingForm() {
           <input
             type="date"
             value={bookingInfo.startDate}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, startDate: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, startDate: e.target.value })
+            }
           />
           <label>End Date:</label>
           <input
             type="date"
             value={bookingInfo.endDate}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, endDate: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, endDate: e.target.value })
+            }
           />
         </div>
         <div className="booking-form-container-card">
@@ -81,25 +53,39 @@ function BookingForm() {
           <input
             type="time"
             value={bookingInfo.pickUpTime}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, pickUpTime: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, pickUpTime: e.target.value })
+            }
           />
           <label>Drop-off time:</label>
           <input
             type="time"
             value={bookingInfo.dropOffTime}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, dropOffTime: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, dropOffTime: e.target.value })
+            }
           />
         </div>
-        <div className="booking-form-container-card">
-          <h6>Message/Care Instructions:</h6>
+        <div className="booking-form-textarea-container-card">
+          <label>Message/Care Instructions: </label>
           <textarea
             value={bookingInfo.message}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, message: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, message: e.target.value })
+            }
           />
         </div>
         <div className="booking-form-button-container-card">
-          <button type="submit" className="booking-form-button-card">Submit</button>
-          <button type="button" className="booking-form-button-card" onClick={() => navigate('/account')}>Cancel</button>
+          <button type="submit" className="booking-form-button-card">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate('/account')}
+            className="booking-form-button-card"
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

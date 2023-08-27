@@ -11,7 +11,7 @@ const ViewProfile = () => {
     const fetchProfileData = async () => {
       try {
         const userData = JSON.parse(localStorage.getItem('userData'));
-        if (userData && userData.email) {
+        if (userData && userData._id) {
           const response = await axios.get('/carer/profile', {
             params: {
               userId: userData._id

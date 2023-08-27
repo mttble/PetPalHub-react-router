@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import './Home.css';
 import { UserContext } from '../Context/userContext';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';

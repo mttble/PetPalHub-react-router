@@ -14,6 +14,8 @@ import './App.css';
 import axios from 'axios';
 import { UserContextProvider } from '../Context/userContext.jsx';
 
+import ViewPets from './ViewPets.jsx';
+
 
 import Layout from './Layout.jsx';
 import CreatePet from './CreatePet.jsx';
@@ -64,6 +66,8 @@ function App() {
 
               {/* Routes specific to users */}
               <Route path="/create-pet" element={<CreatePet />} />
+
+              <Route path="/view-pets" element={<ViewPets />} />
 
 
 

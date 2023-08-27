@@ -33,6 +33,25 @@ const ViewPets = () => {
         fetchPetProfile();
     }, [userContext.user]);
 
+    const handleDeletePet = async (petId) => {
+        try {
+            const response = await axios.delete(`http://localhost:5505/pet/${petId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+                },
+            });
+    
+            if (response.status === 200) {
+                console.log('Pet deleted successfully.');
+                window.location.reload();
+            } else {
+                console.error('Failed to delete pet:', response.data);
+            }
+        } catch (error) {
+            console.error('Error deleting pet:', error);
+        }
+    };
+
     return (
         <div className="view-pets-container-view">
             <h1>View Pets</h1>
@@ -60,6 +79,7 @@ const ViewPets = () => {
                                     <p>{pet.general}</p>
                                 </div>
                             </div>
+                            <button onClick={() => handleDeletePet(pet._id)}>Delete</button>
                         </div>
                     ))
                 ) : (

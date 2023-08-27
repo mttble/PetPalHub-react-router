@@ -70,7 +70,6 @@ const CreatePet = ({ onCreatePet }) => {
             if (userData && userData._id) {
                 formData.append('ownerId', userData._id); // Include owner's ID in the form data
             }
-            console.log(formData);
             const response = await axios.post('http://localhost:5505/pet/profile', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',

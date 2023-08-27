@@ -9,7 +9,7 @@ import axios from 'axios';
 
 
 
-const CreateProfile = ({ onCreateProfile }) => {
+const CreateProfile = () => {
   const userContext = useContext(UserContext)
   const [avatar, setAvatar] = useState(null)
   
@@ -68,46 +68,66 @@ const CreateProfile = ({ onCreateProfile }) => {
   const handleCreateProfile = async () => {
     try {
       const formData = new FormData();
-
+  
       // Append each profile key-value to the formData
       for (const key in profile) {
-          if (Array.isArray(profile[key])) {
-              profile[key].forEach(item => {
-                  formData.append(key, item);
-              });
-          } else {
-              formData.append(key, profile[key]);
-          }
+        if (Array.isArray(profile[key])) {
+          profile[key].forEach((item) => {
+            formData.append(key, item);
+          });
+        } else {
+          formData.append(key, profile[key]);
+        }
       }
-
+  
       // Append the avatar image if available
       if (avatar) {
-          formData.append('avatar', avatar);
+        formData.append('avatar', avatar);
       }
-
-      // adding the users id as well to the create profile for retrieval purposes
-      const userData = JSON.parse(localStorage.getItem('userData')); // Get user data from local storage
-      if (userData && userData._id) {
-        formData.append('userId', userData._id); // Include user's ID in the form data
-      }
-      
-      const response = await axios.post('/carer/profile', formData, {
-          headers: {
-              'Content-Type': 'multipart/form-data',
-          },
-      });
-
-      if (response.status === 201) {
-          console.log(response.data.message);
-          navigate('/view-profile');
-      } else {
-          console.error('Failed to create profile:', response.data);
-      }
-  } catch (error) {
-      console.error('Error creating profile:', error, error.response.data);
-  }
   
-  }
+      const userData = JSON.parse(localStorage.getItem('userData')); // Get user data from local storage
+  
+      // Check if the user already has an existing profile
+      const existingProfileResponse = await axios.get('/carer/profile', {
+        params: {
+          userId: userData._id,
+        },
+      });
+  
+      if (existingProfileResponse.data) {
+        // Update existing profile
+        const profileId = existingProfileResponse.data._id;
+        const updateResponse = await axios.put(`/carer/profile/${profileId}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        if (updateResponse.status === 200) {
+          console.log('Profile updated successfully');
+          navigate('/view-profile');
+        } else {
+          console.error('Failed to update profile:', updateResponse.data);
+        }
+      } else {
+        // Create new profile
+        const createResponse = await axios.post('/carer/profile', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        if (createResponse.status === 201) {
+          console.log(createResponse.data.message);
+          navigate('/view-profile');
+        } else {
+          console.error('Failed to create profile:', createResponse.data);
+        }
+      }
+    } catch (error) {
+      console.error('Error creating/updating profile:', error);
+    }
+  };
 
   const additionalServicesOptions = [
     'Pet Photography',

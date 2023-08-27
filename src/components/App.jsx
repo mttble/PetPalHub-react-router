@@ -18,6 +18,7 @@ import ViewPets from './ViewPets.jsx';
 import Layout from './Layout.jsx';
 import CreatePet from './CreatePet.jsx';
 import BookingForm from './BookingForm';
+import BookingPage from './BookingPage'; // Import BookingPage component
 
 axios.defaults.baseURL = 'http://localhost:5505';
 axios.defaults.withCredentials = true;
@@ -53,6 +54,9 @@ function App() {
             <Route path="/create-pet" element={<CreatePet />} />
             <Route path="/view-pets" element={<ViewPets />} />
             <Route path="/booking-form" element={<BookingForm />} />
+
+            {/* Route for BookingPage */}
+            <Route path="/booking-page" element={<BookingPage />} />
 
             <Route path="*" element={<h3>Page not found</h3>} />
           </Route>

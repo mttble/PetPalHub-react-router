@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './BookingForm.css';
 
 function BookingForm() {
   const navigate = useNavigate();
-  
+
   const [bookingInfo, setBookingInfo] = useState({
     startDate: '',
     endDate: '',
@@ -13,67 +14,79 @@ function BookingForm() {
     message: '',
   });
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      bookingInfo.selectedPets.length === 0 ||
-      !bookingInfo.endDate ||
-      bookingInfo.message.length < 15
-    ) {
-      // Show error messages
-      if (bookingInfo.selectedPets.length === 0) {
-        alert('Please select at least one pet.');
-      }
-      if (!bookingInfo.endDate) {
-        alert('Please select an end date.');
-      }
-      if (bookingInfo.message.length < 15) {
-        alert('Please provide a message with a minimum of 15 characters.');
-      }
-      return;
-    }
-    // Submit the booking information
-    console.log('Booking submitted:', bookingInfo);
-    // Redirect to Account page
-    navigate('/account');
+    // Do nothing for now
   };
 
   return (
-    <div>
+    <div className="booking-form-box-card">
       <h2>PetPal Request</h2>
-      <h3>Booking For: Carer</h3>
+      <h3>Booking For: </h3>
       <form onSubmit={handleSubmit}>
-        
-        <h4>Select Pets:</h4>
-        
-        <h5>call to pet logic goes here</h5>
-        
-        <h4>Select Dates:</h4>
-        <label>Start Date:
+        <div className="booking-form-container-card">
+          <h5>Select Pets:</h5>
+          {/* Call to pet logic goes here */}
+        </div>
+        <div className="booking-form-container-card">
+          <h5>Select Dates:</h5>
+          <label>Start Date:</label>
           <input
             type="date"
             value={bookingInfo.startDate}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, startDate: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, startDate: e.target.value })
+            }
           />
-        </label>
-        <label>End Date:
+          <label>End Date:</label>
           <input
             type="date"
             value={bookingInfo.endDate}
-            onChange={(e) => setBookingInfo({ ...bookingInfo, endDate: e.target.value })}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, endDate: e.target.value })
+            }
           />
-        </label>
-        
-        <label>Message:</label>
-        <textarea
-          value={bookingInfo.message}
-          onChange={(e) => setBookingInfo({ ...bookingInfo, message: e.target.value })}
-        />
-        
-        <button type="submit">Submit</button>
-        <button type="button" onClick={() => navigate('/account')}>Cancel</button>
-        
+        </div>
+        <div className="booking-form-container-card">
+          <h5>Select Time:</h5>
+          <label>Pick-up time:</label>
+          <input
+            type="time"
+            value={bookingInfo.pickUpTime}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, pickUpTime: e.target.value })
+            }
+          />
+          <label>Drop-off time:</label>
+          <input
+            type="time"
+            value={bookingInfo.dropOffTime}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, dropOffTime: e.target.value })
+            }
+          />
+        </div>
+        <div className="booking-form-textarea-container-card">
+          <label>Message/Care Instructions: </label>
+          <textarea
+            value={bookingInfo.message}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, message: e.target.value })
+            }
+          />
+        </div>
+        <div className="booking-form-button-container-card">
+          <button type="submit" className="booking-form-button-card">
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate('/account')}
+            className="booking-form-button-card"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -68,7 +68,7 @@ const CreatePet = ({ onCreatePet }) => {
     
             if (response.status === 201) {
                 console.log(response.data.message);
-                navigate('/view-pet-profile'); 
+                navigate('/view-pet-profile');
             } else {
                 console.error('Failed to create pet:', response.data);
             }

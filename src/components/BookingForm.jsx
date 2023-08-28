@@ -12,6 +12,7 @@ function BookingForm() {
 
   const location = useLocation();
   const selectedProfile = location.state?.selectedProfile;
+  console.log(selectedProfile.companyFullName)
 
   const [userPets, setUserPets] = useState([]);
 
@@ -111,7 +112,7 @@ function BookingForm() {
   return (
     <div className="booking-form-box-card">
       <h2>PetPal Request</h2>
-      <h3>Booking For: </h3>
+      <h3>Requested Carer: {selectedProfile.companyFullName}</h3>
       <form onSubmit={handleSubmit}>
         <div className="booking-form-container-card">
           <h5>Select Pets:</h5>

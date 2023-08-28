@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Account.css';
 import { UserContext } from '../Context/userContext';
 
 function Account() {
-  
   const userContext = useContext(UserContext);
 
 

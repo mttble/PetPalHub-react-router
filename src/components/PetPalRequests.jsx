@@ -4,7 +4,6 @@ import './PetPalRequests.css';
 import { Button } from 'react-bootstrap';
 import { UserContext } from '../Context/userContext';
 
-
 function PetPalRequests() {
     const userContext = useContext(UserContext);
     
@@ -44,7 +43,7 @@ function PetPalRequests() {
         const fetchBookings = async () => {
             try {
                 if (userContext.user && userContext.user._id) {
-                    const response = await axios.get('user//bookings', {
+                    const response = await axios.get('user/bookings', {
                         params: {
                             userId: userContext.user._id, 
                         },
@@ -76,6 +75,10 @@ function PetPalRequests() {
     };
 
     if (userContext.user) {
+        if (bookings.length === 0) {
+            return <div className="no-booking-message">No booking for now</div>;
+        }
+
         return (
             <div>
                 {bookings.map(booking => (

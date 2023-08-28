@@ -85,8 +85,9 @@ function BookingForm() {
         return pet ? pet.petName : null;
     }).filter(Boolean);  // This filter will remove any null values
     
-
-
+    console.log(userContext.user);
+    const userfirstName = userContext.user.firstName
+    
     const data = {
         startDate: startDate,
         endDate: endDate,
@@ -96,7 +97,8 @@ function BookingForm() {
         petNames: selectedPetNames,
         carerId: selectedProfile.userId,
         carerName: selectedProfile.companyFullName,
-        message: bookingInfo.message
+        message: bookingInfo.message,
+        userName: userfirstName
     };
     
     const postBooking = async (data) => {

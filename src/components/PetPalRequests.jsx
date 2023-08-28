@@ -13,11 +13,22 @@ function PetPalRequests() {
         const fetchBookings = async () => {
             try {
                 if (userContext.user && userContext.user._id) {
-                    const response = await axios.get('user/bookings', {
+                    // Determine path and paramKey based on the role
+                    let path, paramKey;
+                    if (userContext.user.role === 'user') {
+                        path = 'user/bookings';
+                        paramKey = 'userId';
+                    } else {
+                        path = 'carer/bookings';
+                        paramKey = 'carerId';
+                    }
+    
+                    const response = await axios.get(path, {
                         params: {
-                            userId: userContext.user._id, 
+                            [paramKey]: userContext.user._id,
                         },
                     });
+    
                     if (response.status === 200) {
                         setBookings(response.data);
                     } else {
@@ -28,9 +39,11 @@ function PetPalRequests() {
                 console.error('Error fetching booking data:', error);
             }
         };
-
+    
         fetchBookings();
     }, [userContext.user]);
+    
+    
 
     const handleDeleteRequest = async (bookingId) => {
          // Ask the user to confirm the deletion
@@ -79,6 +92,9 @@ function PetPalRequests() {
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>Carer name: {booking.carerName}</h2>
+                        </div>    
+                        <div className="pet-pal-request-container-card">
+                            <h2>User name: {booking.userName}</h2>
                         </div>    
                         <div className="pet-pal-request-container-card">
                             <h5>For Dates:</h5>

@@ -1,7 +1,12 @@
 /* Common styles for all devices */
-.account-button {
-    width: 150px;  
-    height: 40px; 
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif; /* This ensures the font is the same as in home.css */
+}
+
+.account-button-card {
+    width: 150px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,81 +14,120 @@
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;  
+    text-overflow: ellipsis;
+    background-color: #ffffff;
+    border: 5px solid #FFC107;  /* Matched the border from home.css */
+    transition: transform 0.3s;  /* Removed color transitions */
 }
 
-/* Mobile view */
-.centered-container-account {
+.account-button-card:hover {
+    transform: translateY(-5px);  /* Transition from home.css */
+}
+
+.centered-container-account-card {
     background-color: #222222;
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: auto;
     padding: 5%;
 }
 
-.account-container {
-    background-color: #f5f5f5;
+.dashboard-overview {
+    background-color: #FFC107;
+    padding: 15px 25px;
     border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 140px;  
+    text-align: center;
     color: black;
-    padding: 10%; 
+    font-weight: bold;  /* Ensuring it's set to bold */
+    font-size: 24px; 
+}
+
+.dashboard-overview h2 {
+    margin: 0;
+    font-weight: bold;  /* Explicitly setting the heading to bold */
+}
+
+.account-container-card {
+    background-color: #f5f5f5;
+    border-radius: 15px;  /* Rounded border from home.css */
+    box-shadow: 1px 1px 5px 3.5px #FFC107;  /* Shadow from home.css */
+    color: black;
+    padding: 10%;
     text-align: center;
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
+    transition: transform 0.3s;  /* Transition from home.css */
 }
 
-.account-buttons {
+.account-container-card:hover {
+    transform: translateY(-5px);  /* Transition from home.css */
+}
+
+.account-buttons-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem; 
-    margin-top: 3.5rem; 
+    gap: 1rem;
+    margin-top: 3.5rem;
 }
 
-.other-buttons-section,
-.view-profile-button-section {
+.other-buttons-section-card,
+.view-profile-button-section-card {
     display: flex;
     flex-direction: column;
-    gap: 1rem; 
+    gap: 1rem;
+}
+
+/* Mobile view adjustment */
+@media (max-width: 650px) {
+    .account-buttons-card {
+        margin-top: 1rem;  /* Adjusting the top margin of the blue buttons */
+    }
 }
 
 /* Tablet view */
 @media (min-width: 650px) and (max-width: 1023px) {
-    .other-buttons-section {
+    .other-buttons-section-card {
         flex-direction: row;
         gap: 1rem;
         justify-content: space-between;
     }
 
-    .view-profile-button-section {
+    .view-profile-button-section-card {
         flex-direction: row;
         gap: 1rem;
         justify-content: flex-start; /* Align to the start */
+    }
+
+    .account-buttons-card {
+        margin-top: 1rem;  /* Move the blue buttons up */
     }
 }
 
 /* Desktop view */
 @media (min-width: 1024px) {
-    .account-container {
+    .account-container-card {
         padding: 3%;
         width: 85%;
         max-width: none;
-        min-height: 43vh; 
+        min-height: 35vh; 
     }
 
-    .account-buttons {
-        margin-top: 7rem;
+    .account-buttons-card {
+        margin-top: 5rem;
         flex-direction: row;
         justify-content: center;
         gap: 1.5vw;
     }
 
-    .other-buttons-section,
-    .view-profile-button-section {
+    .other-buttons-section-card,
+    .view-profile-button-section-card {
         flex-direction: row;
         gap: 1.5vw;
     }

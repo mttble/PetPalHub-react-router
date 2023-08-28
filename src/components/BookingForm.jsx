@@ -1,8 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BookingForm.css';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
+
 
 function BookingForm() {
+
+  const location = useLocation();
+  const selectedProfile = location.state?.selectedProfile;
+
+  const [userPets, setUserPets] = useState([]);
+
+  const fetchPets = async () => {
+    try {
+        const response = await axios.get('/pet/pet-profiles', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching pets:", error.message);
+    }
+};
+
   const navigate = useNavigate();
 
   const [bookingInfo, setBookingInfo] = useState({
@@ -10,13 +33,69 @@ function BookingForm() {
     endDate: '',
     dropOffTime: '',
     pickUpTime: '',
-    selectedPets: [],
+    selectedPets: '',
     message: '',
   });
 
-  const handleSubmit = (e) => {
+
+  useEffect(() => {
+    const loadPets = async () => {
+        const pets = await fetchPets();
+        setUserPets(pets);
+    };
+    
+    loadPets();
+}, []);
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Do nothing for now
+    
+
+    function combineDateAndTime(date, time) {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+      const hour = parseInt(time.split(':')[0]);
+      const minute = parseInt(time.split(':')[1]);
+    
+      return new Date(year, month, day, hour, minute);
+    }
+
+    const pickUpDateTime = combineDateAndTime(new Date(bookingInfo.startDate), bookingInfo.pickUpTime);
+    const dropOffDateTime = combineDateAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
+
+
+    const data = {
+      pickUpDateTime: pickUpDateTime.toISOString(),
+      dropOffDateTime: dropOffDateTime.toISOString(),
+      petIds: bookingInfo.selectedPets,
+      carerId: selectedProfile.userId,
+      message: bookingInfo.message
+    };
+  
+
+    const postBooking = async (data) => {
+      try {
+          const response = await axios.post('/user/booking', data, {
+              headers: {
+                  'Content-Type': 'application/json',
+              }
+          });
+          return response.data;
+      } catch (error) {
+          console.error("There was a problem with the Axios request:", error.message);
+      }
+    };
+    
+    const response = await postBooking(data);
+    if (response) {
+      // You might want to handle the response here. For instance:
+      // Check if the booking was successful and navigate or show a message.
+      navigate('/success');
+    } else {
+      // Handle errors, perhaps set an error state or show a notification
+    }
   };
 
   return (
@@ -26,7 +105,30 @@ function BookingForm() {
       <form onSubmit={handleSubmit}>
         <div className="booking-form-container-card">
           <h5>Select Pets:</h5>
-          {/* Call to pet logic goes here */}
+          {userPets.map(pet => (
+              <div key={pet._id}>
+                  <input 
+                      type="checkbox" 
+                      id={pet._id}
+                      value={pet._id}
+                      checked={bookingInfo.selectedPets.includes(pet._id)}
+                      onChange={(e) => {
+                          if (e.target.checked) {
+                              setBookingInfo(prevState => ({
+                                  ...prevState,
+                                  selectedPets: [...prevState.selectedPets, e.target.value]
+                              }));
+                          } else {
+                              setBookingInfo(prevState => ({
+                                  ...prevState,
+                                  selectedPets: prevState.selectedPets.filter(id => id !== e.target.value)
+                              }));
+                          }
+                      }}
+                  />
+                  <label htmlFor={pet._id}>{pet.petName}</label>
+              </div>
+          ))}
         </div>
         <div className="booking-form-container-card">
           <h5>Select Dates:</h5>

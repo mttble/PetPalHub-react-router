@@ -79,13 +79,23 @@ function BookingForm() {
     const { dateString: endDate, timeString: dropOffTime } =
       extractDateStringAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
 
+
+    const selectedPetNames = bookingInfo.selectedPets.map(petId => {
+      const pet = petProfile.find(p => p._id === petId);
+        return pet ? pet.petName : null;
+    }).filter(Boolean);  // This filter will remove any null values
+    
+
+
     const data = {
         startDate: startDate,
         endDate: endDate,
         pickUpTime: pickUpTime,
         dropOffTime: dropOffTime,
         petIds: bookingInfo.selectedPets,
+        petNames: selectedPetNames,
         carerId: selectedProfile.userId,
+        carerName: selectedProfile.companyFullName,
         message: bookingInfo.message
     };
     

@@ -1,11 +1,11 @@
-import React from 'react';
-import './BookingPage.css'; // Make sure to import the correct CSS file
+import React from 'react'
+import './BookingPage.css'
 
 function BookingPage() {
   return (
-    <div className="booking-form-box-card"> {/* Use the same class for styling */}
-      <h2>Booking Confirmation</h2>
-      <div className="booking-form-container-card"> {/* Use the same class for styling */}
+    <div className="booking-form-box-card">
+      <h2>Confirmed Bookings</h2>
+      <div className="booking-form-container-card">
         <h4>Booking Information:</h4>
         <p>Start Date: August 15, 2023</p>
         <p>End Date: August 20, 2023</p>

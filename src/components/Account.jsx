@@ -52,7 +52,7 @@ function Account() {
               <h2>Dashboard Overview</h2>
               <div className="account-buttons">
                 <div className="other-buttons-section">
-                  <Link to="/bookings">
+                  <Link to="/booking-page">
                     <Button variant="primary" className="account-button" >
                       Bookings
                     </Button>

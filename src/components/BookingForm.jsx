@@ -8,6 +8,8 @@ import { useLocation } from 'react-router-dom';
 
 function BookingForm() {
 
+  // Convert local date to UTC
+
   const location = useLocation();
   const selectedProfile = location.state?.selectedProfile;
 
@@ -51,30 +53,38 @@ function BookingForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-
-    function combineDateAndTime(date, time) {
+    function extractDateStringAndTime(date, time) {
       const year = date.getFullYear();
       const month = date.getMonth();
       const day = date.getDate();
       const hour = parseInt(time.split(':')[0]);
       const minute = parseInt(time.split(':')[1]);
-    
-      return new Date(year, month, day, hour, minute);
-    }
+  
+      const combinedDate = new Date(year, month, day, hour, minute);
+  
+      // Extract date and time as strings
+      const dateString = combinedDate.toISOString().split('T')[0];
+      const timeString = combinedDate.toTimeString().split(' ')[0].slice(0, 5); // to get HH:MM format
+  
+      return { dateString, timeString };
+  }
+    const { dateString: startDate, timeString: pickUpTime } = 
+      extractDateStringAndTime(new Date(bookingInfo.startDate), bookingInfo.pickUpTime);
 
-    const pickUpDateTime = combineDateAndTime(new Date(bookingInfo.startDate), bookingInfo.pickUpTime);
-    const dropOffDateTime = combineDateAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
-
+    const { dateString: endDate, timeString: dropOffTime } = 
+      extractDateStringAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
 
     const data = {
-      pickUpDateTime: pickUpDateTime.toISOString(),
-      dropOffDateTime: dropOffDateTime.toISOString(),
-      petIds: bookingInfo.selectedPets,
-      carerId: selectedProfile.userId,
-      message: bookingInfo.message
+        startDate: startDate,
+        endDate: endDate,
+        pickUpTime: pickUpTime,
+        dropOffTime: dropOffTime,
+        petIds: bookingInfo.selectedPets,
+        carerId: selectedProfile.userId,
+        message: bookingInfo.message
     };
+    
   
-
     const postBooking = async (data) => {
       try {
           const response = await axios.post('/user/booking', data, {

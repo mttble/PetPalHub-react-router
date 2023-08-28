@@ -2,10 +2,13 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../Context/userContext';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 import './Home.css'
 
 function Home() {
   const userContext = useContext(UserContext);
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [profileData, setProfileData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,6 +33,7 @@ function Home() {
 
   const handleBookNowClick = (profile) => {
     console.log('Book Now clicked for:', profile);
+    navigate('/booking-form',{ state: { selectedProfile: profile } });
   };
 
   const filteredProfiles = profileData.filter((profile) => {

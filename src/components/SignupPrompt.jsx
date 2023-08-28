@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './SignupPrompt.css'
 
 function SignupPrompt() {
-  // Logic for signup page
+
   return (
     <>
       <div className="centered-container-signup">

@@ -1,42 +1,40 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Account.css';
 import { UserContext } from '../Context/userContext';
 
 function Account() {
-  
   const userContext = useContext(UserContext);
 
-
-if (userContext.user) {
-  if (userContext.user.role === 'user') {
+  if (userContext.user) {
+    if (userContext.user.role === 'user') {
       return (
-        <div className="centered-container-account">
-          <div className="account-container">
+        <div className="centered-container-account-card">
+          <div className="account-container-card">
             <h2>Dashboard Overview</h2>
-            <div className="account-buttons">
-              <div className="other-buttons-section">
+            <div className="account-buttons-card">
+              <div className="other-buttons-section-card">
                 <Link to="/booking-page">
-                  <Button variant="primary" className="account-button" >
+                  <Button variant="primary" className="account-button-card">
                     Bookings
                   </Button>
                 </Link>
                 <Link to="/booking-form">
-                  <Button variant="primary" className="account-button">
+                  <Button variant="primary" className="account-button-card">
                     PetPal Requests
                   </Button>
                 </Link>
                 <Link to="/create-pet">
-                  <Button variant="primary" className="account-button">
+                  <Button variant="primary" className="account-button-card">
                     Add Pet
                   </Button>
                 </Link>
               </div>
-              <div className="view-profile-button-section">
+              <div className="view-profile-button-section-card">
                 <Link to="/view-pets">
-                  <Button variant="primary" className="account-button">
+                  <Button variant="primary" className="account-button-card">
                     View Pets
                   </Button>
                 </Link>
@@ -44,34 +42,33 @@ if (userContext.user) {
             </div>
           </div>
         </div>
-          
       );
-  } else if (userContext.user.role === 'carer') {
+    } else if (userContext.user.role === 'carer') {
       return (
-        <div className="centered-container-account">
-          <div className="account-container">
+        <div className="centered-container-account-card">
+          <div className="account-container-card">
             <h2>Dashboard Overview</h2>
-            <div className="account-buttons">
-              <div className="other-buttons-section">
+            <div className="account-buttons-card">
+              <div className="other-buttons-section-card">
                 <Link to="/bookings">
-                  <Button variant="primary" className="account-button" >
+                  <Button variant="primary" className="account-button-card">
                     Bookings
                   </Button>
                 </Link>
                 <Link to="/petpal-requests">
-                  <Button variant="primary" className="account-button">
+                  <Button variant="primary" className="account-button-card">
                     PetPal Requests
                   </Button>
                 </Link>
                 <Link to="/create-profile">
-                  <Button variant="primary" className="account-button">
+                  <Button variant="primary" className="account-button-card">
                     Create Profile
                   </Button>
                 </Link>
               </div>
-              <div className="view-profile-button-section">
+              <div className="view-profile-button-section-card">
                 <Link to="/view-profile">
-                  <Button variant="primary" className="account-button">
+                  <Button variant="primary" className="account-button-card">
                     View Profile
                   </Button>
                 </Link>
@@ -80,11 +77,10 @@ if (userContext.user) {
           </div>
         </div>
       );
+    }
   }
+
+  return <div className="dashboard-welcome-card">Page not displayed</div>;
 }
-
-return <div className='dashboard-welcome'>Page not displayed</div>;
-};
-
 
 export default Account;

@@ -62,8 +62,26 @@ function PetPalRequests() {
         fetchBookings();
     }, [userContext.user]);
 
-    const handleDeleteRequest = (bookingId) => {
-        // logic to delete booking by its ID
+    const handleDeleteRequest = async (bookingId) => {
+         // Ask the user to confirm the deletion
+        const userConfirmed = window.confirm("Are you sure you want to delete this booking?");
+        
+        if (userConfirmed) {
+            // logic to delete booking by its ID
+            try {
+                const response = await axios.delete(`user/booking/${bookingId}`);
+                
+                if (response.status === 200) {
+                    // Successfully deleted the booking, now remove it from the UI
+                    const newBookings = bookings.filter(booking => booking._id !== bookingId);
+                    setBookings(newBookings);
+                } else {
+                    console.error('Failed to delete booking:', response.data);
+                }
+            } catch (error) {
+                console.error('Error deleting booking:', error);
+            }
+        }
     };
 
     const handleDenyRequest = (bookingId) => {

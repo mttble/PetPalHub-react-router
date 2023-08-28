@@ -1,102 +1,148 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 import './PetPalRequests.css';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 import { UserContext } from '../Context/userContext';
 
 function PetPalRequests() {
-
     const userContext = useContext(UserContext);
-
-    const [bookingInfo, setBookingInfo] = useState({
-        startDate: '',
-        endDate: '',
-        dropOffTime: '',
-        pickUpTime: '',
-        selectedPets: [],
-        message: '',
-    });
-
-    const handleDeleteRequest = (e) => {
-        e.preventDefault();
-        // Do nothing for now
-    };
-
-    const handleDenyRequest = (e) => {
-        e.preventDefault();
-        // Do nothing for now
-    };
-
-    const handleApproveRequest = (e) => {
-        e.preventDefault();
-        // Do nothing for now
-    };
     
-    if (userContext.user) {
-        if (userContext.user.role === 'user') {
-            return (
-                <div className="pet-pal-request-box-card">
-                    <h2>PetPal Request</h2>
-                    <h3>Booking For: </h3>
-                    <div className="pet-pal-request-container-card">
-                        <h5>For Pets:</h5>
-                        <p>Display selected pets here</p>
-                    </div>
-                    <div className="pet-pal-request-container-card">
-                        <h5>For Dates:</h5>
-                        <p>Start Date: {bookingInfo.startDate}</p>
-                        <p>End Date: {bookingInfo.endDate}</p>
-                    </div>
-                    <div className="pet-pal-request-container-card">
-                        <h5>For Time:</h5>
-                        <p>Pick-up time: {bookingInfo.pickUpTime}</p>
-                        <p>Drop-off time: {bookingInfo.dropOffTime}</p>
-                    </div>
-                    <div className="pet-pal-request-textarea-container-card">
-                        <label className="pet-pal-request-centered-label">
-                        Message/Care Instructions:
-                        </label>
-                        <p>{bookingInfo.message}</p>
-                    </div>
-                    <div>
-                        <Button className="size-sm-lg btn btn-danger" onClick={() => handleDeleteRequest()}>Delete Request</Button>
-                    </div>
-                </div>
-            );
-        } else if (userContext.user.role === 'carer') {
-            return (
-                <div className="pet-pal-request-box-card">
-                    <h2>PetPal Request</h2>
-                    <h3>Booking For: </h3>
-                    <div className="pet-pal-request-container-card">
-                        <h5>For Pets:</h5>
-                        <p>Display selected pets here</p>
-                    </div>
-                    <div className="pet-pal-request-container-card">
-                        <h5>For Dates:</h5>
-                        <p>Start Date: {bookingInfo.startDate}</p>
-                        <p>End Date: {bookingInfo.endDate}</p>
-                    </div>
-                    <div className="pet-pal-request-container-card">
-                        <h5>For Time:</h5>
-                        <p>Pick-up time: {bookingInfo.pickUpTime}</p>
-                        <p>Drop-off time: {bookingInfo.dropOffTime}</p>
-                    </div>
-                    <div className="pet-pal-request-textarea-container-card">
-                        <label className="pet-pal-request-centered-label">
-                        Message/Care Instructions:
-                        </label>
-                        <p>{bookingInfo.message}</p>
-                    </div>
-                    <div>
-                        <Button className="size-sm-lg btn" onClick={() => handleApproveRequest()}>Approve</Button>
-                        <Button className="size-sm-lg btn btn-danger" onClick={() => handleDenyRequest()}>Deny</Button>
-                    </div>
-                </div>
-            )
+    const [bookings, setBookings] = useState([]);
+    const [petNames, setPetNames] = useState({});
+
+    useEffect(() => {
+        const fetchPetNames = async () => {
+            const petIds = new Set();
+            bookings.forEach(booking => {
+                booking.petIds.forEach(id => petIds.add(id));
+            });
+
+            const promises = Array.from(petIds).map(async id => {
+                const response = await axios.get(`/pet/pet-profiles/${id}`);
+                if (response.status === 200) {
+                    return { id, name: response.data.petName };
+                } else {
+                    console.error('Failed to fetch pet data:', response.data);
+                    return { id, name: `Unknown (${id})` };
+                }
+            });
+
+            const petData = await Promise.all(promises);
+            const newPetNames = {};
+            petData.forEach(pet => {
+                newPetNames[pet.id] = pet.name;
+            });
+
+            setPetNames(newPetNames);
+        };
+
+        fetchPetNames();
+    }, [bookings]);
+
+    useEffect(() => {
+        const fetchBookings = async () => {
+            try {
+                if (userContext.user && userContext.user._id) {
+                    const response = await axios.get('user/bookings', {
+                        params: {
+                            userId: userContext.user._id, 
+                        },
+                    });
+                    if (response.status === 200) {
+                        setBookings(response.data);
+                    } else {
+                        console.error('Failed to fetch booking data:', response.data);
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching booking data:', error);
+            }
+        };
+
+        fetchBookings();
+    }, [userContext.user]);
+
+    const handleDeleteRequest = async (bookingId) => {
+         // Ask the user to confirm the deletion
+        const userConfirmed = window.confirm("Are you sure you want to delete this booking?");
+        
+        if (userConfirmed) {
+            // logic to delete booking by its ID
+            try {
+                const response = await axios.delete(`user/booking/${bookingId}`);
+                
+                if (response.status === 200) {
+                    // Successfully deleted the booking, now remove it from the UI
+                    const newBookings = bookings.filter(booking => booking._id !== bookingId);
+                    setBookings(newBookings);
+                } else {
+                    console.error('Failed to delete booking:', response.data);
+                }
+            } catch (error) {
+                console.error('Error deleting booking:', error);
+            }
         }
-    } else return (
-        <div className='dashboard-welcome'>Page not displayed</div>
-    )
+    };
+
+    const handleDenyRequest = (bookingId) => {
+        // logic to deny booking by its ID
+    };
+
+    const handleApproveRequest = (bookingId) => {
+        // logic to approve booking by its ID
+    };
+
+    if (userContext.user) {
+        if (bookings.length === 0) {
+            return <div className="no-booking-message">No booking for now</div>;
+        }
+
+        return (
+            <div>
+                {bookings.map(booking => (
+                    <div className="pet-pal-request-box-card" key={booking._id}>
+                        <h2>PetPal Request</h2>
+                        <h3>Booking For: </h3>
+                        <div className="pet-pal-request-container-card">
+                            <h5>For Pets:</h5>
+                            <p>{booking.petIds.map(id => petNames[id] || 'Loading...').join(', ')}</p>
+                        </div>
+                        <div className="pet-pal-request-container-card">
+                            <h5>For Dates:</h5>
+                            <p>Start Date: {booking.startDate}</p>
+                            <p>End Date: {booking.endDate}</p>
+                        </div>
+                        <div className="pet-pal-request-container-card">
+                            <h5>For Time:</h5>
+                            <p>Pick-up time: {booking.pickUpTime}</p>
+                            <p>Drop-off time: {booking.dropOffTime}</p>
+                        </div>
+                        <div className="pet-pal-request-textarea-container-card">
+                            <label className="pet-pal-request-centered-label">
+                            Message/Care Instructions:
+                            </label>
+                            <p>{booking.message}</p>
+                        </div>
+                        {userContext.user.role === 'user' && (
+                            <div>
+                                <Button className="size-sm-lg btn btn-danger" onClick={() => handleDeleteRequest(booking._id)}>Delete Request</Button>
+                            </div>
+                        )}
+                        {userContext.user.role === 'carer' && (
+                            <div>
+                                <Button className="size-sm-lg btn" onClick={() => handleApproveRequest(booking._id)}>Approve</Button>
+                                <Button className="size-sm-lg btn btn-danger" onClick={() => handleDenyRequest(booking._id)}>Deny</Button>
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </div>
+        );
+    } else {
+        return (
+            <div className='dashboard-welcome'>Page not displayed</div>
+        );
+    }
 }
 
 export default PetPalRequests;

@@ -7,7 +7,7 @@
     text-align: center;
     max-width: 800px;
     margin: 3rem auto;
-    position: relative;  /* Added for centering the "create profile" */
+    position: relative;
 }
 
 .create-profile-box {
@@ -74,13 +74,13 @@
     cursor: pointer;
     margin-top: 15px;
     text-align: center;
-    padding: 6px 6%;  /* Reduced padding and made it 50% narrower */
-    font-size: 14.2px;  /* Reduced font size by 20% */
+    padding: 6px 6%;
+    font-size: 14.2px;
     border: 1px solid #aaa;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    width: 50%;  /* Make the label/button 50% narrower */
-    margin-left: 25%;  /* Center the label/button */
+    width: 50%;
+    margin-left: 25%;
     background-color: #08903c;
 }
 

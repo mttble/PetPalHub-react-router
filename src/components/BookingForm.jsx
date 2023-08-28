@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BookingForm.css';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../Context/userContext';
+import { toast } from 'react-hot-toast';
 
 
 
 function BookingForm() {
+  const userContext = useContext(UserContext);
 
-  // Convert local date to UTC
 
   const location = useLocation();
   const selectedProfile = location.state?.selectedProfile;
-  console.log(selectedProfile.companyFullName)
 
-  const [userPets, setUserPets] = useState([]);
 
-  const fetchPets = async () => {
-    try {
-        const response = await axios.get('/pet/pet-profiles', {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching pets:", error.message);
-    }
-};
 
   const navigate = useNavigate();
 
@@ -41,14 +29,30 @@ function BookingForm() {
   });
 
 
+  const [petProfile, setPetProfile] = useState(null)
+
   useEffect(() => {
-    const loadPets = async () => {
-        const pets = await fetchPets();
-        setUserPets(pets);
-    };
-    
-    loadPets();
-}, []);
+      const fetchPetProfile = async () => {
+          try {
+              if (userContext.user && userContext.user._id) {
+                  const pets = await axios.get('/pet/pet-profiles', {
+                      params: {
+                          userId: userContext.user._id, // Use user ID from context
+                      },
+                  });
+                  if (pets.status === 200) {
+                      setPetProfile(pets.data);
+                  } else {
+                      console.error('Failed to fetch pet profile data:', pets.data);
+                  }
+              }
+          } catch (error) {
+              console.error('Error fetching pet profile data:', error);
+          }
+      };
+
+      fetchPetProfile();
+  }, [userContext.user]);
 
 
   const handleSubmit = async (e) => {
@@ -69,10 +73,10 @@ function BookingForm() {
   
       return { dateString, timeString };
   }
-    const { dateString: startDate, timeString: pickUpTime } = 
+    const { dateString: startDate, timeString: pickUpTime } =
       extractDateStringAndTime(new Date(bookingInfo.startDate), bookingInfo.pickUpTime);
 
-    const { dateString: endDate, timeString: dropOffTime } = 
+    const { dateString: endDate, timeString: dropOffTime } =
       extractDateStringAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
 
     const data = {
@@ -85,7 +89,6 @@ function BookingForm() {
         message: bookingInfo.message
     };
     
-  
     const postBooking = async (data) => {
       try {
           const response = await axios.post('/user/booking', data, {
@@ -103,7 +106,8 @@ function BookingForm() {
     if (response) {
       // You might want to handle the response here. For instance:
       // Check if the booking was successful and navigate or show a message.
-      navigate('/success');
+      toast.success('Request sent successfully')
+      navigate('/');
     } else {
       // Handle errors, perhaps set an error state or show a notification
     }
@@ -113,10 +117,13 @@ function BookingForm() {
     <div className="booking-form-box-card">
       <h2>PetPal Request</h2>
       <h3>Requested Carer: {selectedProfile.companyFullName}</h3>
-      <form onSubmit={handleSubmit}>
+      {petProfile === null ? (
+        <p>Loading...</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
         <div className="booking-form-container-card">
           <h5>Select Pets:</h5>
-          {userPets.map(pet => (
+          {petProfile.map(pet => (
               <div key={pet._id}>
                   <input 
                       type="checkbox" 
@@ -201,6 +208,7 @@ function BookingForm() {
           </button>
         </div>
       </form>
+      )}
     </div>
   );
 }

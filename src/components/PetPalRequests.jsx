@@ -8,46 +8,27 @@ function PetPalRequests() {
     const userContext = useContext(UserContext);
     
     const [bookings, setBookings] = useState([]);
-    const [petNames, setPetNames] = useState({});
-
-    useEffect(() => {
-        const fetchPetNames = async () => {
-            const petIds = new Set();
-            bookings.forEach(booking => {
-                booking.petIds.forEach(id => petIds.add(id));
-            });
-
-            const promises = Array.from(petIds).map(async id => {
-                const response = await axios.get(`/pet/pet-profiles/${id}`);
-                if (response.status === 200) {
-                    return { id, name: response.data.petName };
-                } else {
-                    console.error('Failed to fetch pet data:', response.data);
-                    return { id, name: `Unknown (${id})` };
-                }
-            });
-
-            const petData = await Promise.all(promises);
-            const newPetNames = {};
-            petData.forEach(pet => {
-                newPetNames[pet.id] = pet.name;
-            });
-
-            setPetNames(newPetNames);
-        };
-
-        fetchPetNames();
-    }, [bookings]);
 
     useEffect(() => {
         const fetchBookings = async () => {
             try {
                 if (userContext.user && userContext.user._id) {
-                    const response = await axios.get('user/bookings', {
+                    // Determine path and paramKey based on the role
+                    let path, paramKey;
+                    if (userContext.user.role === 'user') {
+                        path = 'user/bookings';
+                        paramKey = 'userId';
+                    } else {
+                        path = 'carer/bookings';
+                        paramKey = 'carerId';
+                    }
+    
+                    const response = await axios.get(path, {
                         params: {
-                            userId: userContext.user._id, 
+                            [paramKey]: userContext.user._id,
                         },
                     });
+    
                     if (response.status === 200) {
                         setBookings(response.data);
                     } else {
@@ -58,9 +39,11 @@ function PetPalRequests() {
                 console.error('Error fetching booking data:', error);
             }
         };
-
+    
         fetchBookings();
     }, [userContext.user]);
+    
+    
 
     const handleDeleteRequest = async (bookingId) => {
          // Ask the user to confirm the deletion
@@ -84,13 +67,30 @@ function PetPalRequests() {
         }
     };
 
-    const handleDenyRequest = (bookingId) => {
-        // logic to deny booking by its ID
+    const handleDenyRequest = async (bookingId) => {
+        try {
+            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Denied' });
+            if (response.status === 200) {
+                console.log(`Successfully denied booking with ID: ${bookingId}`);
+              // Handle successful denial: e.g., remove booking from list or update its status.
+            }
+          } catch (error) {
+            // Handle error: e.g., show a message to the carer.
+          }
     };
 
-    const handleApproveRequest = (bookingId) => {
-        // logic to approve booking by its ID
+    const handleApproveRequest = async (bookingId) => {
+        try {
+            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Approved'});
+            if (response.status === 200) {
+                console.log(`Successfully approved booking with ID: ${bookingId}`); 
+              // Handle successful approval: e.g., remove booking from list or update its status.
+            }
+          } catch (error) {
+            // Handle error: e.g., show a message to the carer.
+          }
     };
+ 
 
     if (userContext.user) {
         if (bookings.length === 0) {
@@ -105,8 +105,14 @@ function PetPalRequests() {
                         <h3>Booking For: </h3>
                         <div className="pet-pal-request-container-card">
                             <h5>For Pets:</h5>
-                            <p>{booking.petIds.map(id => petNames[id] || 'Loading...').join(', ')}</p>
+                            <p>{booking.petNames.join(', ')}</p>
                         </div>
+                        <div className="pet-pal-request-container-card">
+                            <h2>Carer name: {booking.carerName}</h2>
+                        </div>    
+                        <div className="pet-pal-request-container-card">
+                            <h2>User name: {booking.userName}</h2>
+                        </div>    
                         <div className="pet-pal-request-container-card">
                             <h5>For Dates:</h5>
                             <p>Start Date: {booking.startDate}</p>

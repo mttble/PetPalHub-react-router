@@ -19,6 +19,7 @@ import Layout from './Layout.jsx';
 import CreatePet from './CreatePet.jsx';
 import BookingForm from './BookingForm';
 import BookingPage from './BookingPage'; // Import BookingPage component
+import PetPalRequests from './PetPalRequests.jsx';
 
 axios.defaults.baseURL = 'http://localhost:5505';
 axios.defaults.withCredentials = true;
@@ -42,21 +43,25 @@ function App() {
             <Route path="/signup-user" element={<SignupUser />} />
             <Route path="/signup-carer" element={<SignupCarer />} />
 
+
             {/* common routes for both users and carers */}
+            <Route path="/booking-page" element={<BookingPage />} />
+            <Route path="/petpal-requests" element={<PetPalRequests />} />
+
             
+
             {/* Routes specific to carer */}
             <Route path="/account" element={<Account />} />
             <Route path="/create-profile" element={<CreateProfile />} />
             <Route path="/view-profile" element={<ViewProfile />} />
             <Route path="/edit-profile" element={<EditProfile />} />
 
+
             {/* Routes specific to users */}
             <Route path="/create-pet" element={<CreatePet />} />
             <Route path="/view-pets" element={<ViewPets />} />
             <Route path="/booking-form" element={<BookingForm />} />
 
-            {/* Route for BookingPage */}
-            <Route path="/booking-page" element={<BookingPage />} />
 
             <Route path="*" element={<h3>Page not found</h3>} />
           </Route>

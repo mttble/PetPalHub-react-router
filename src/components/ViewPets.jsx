@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../Context/userContext';
 import './ViewPets.css';
-
+import { Button } from 'react-bootstrap';
 
 
 const ViewPets = () => {
@@ -79,7 +79,7 @@ const ViewPets = () => {
                                     <p>{pet.general}</p>
                                 </div>
                             </div>
-                            <button onClick={() => handleDeletePet(pet._id)}>Delete</button>
+                            <Button className="size-sm-lg btn btn-danger" onClick={() => handleDeletePet(pet._id)}>Delete</Button>
                         </div>
                     ))
                 ) : (

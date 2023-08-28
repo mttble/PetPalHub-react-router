@@ -67,13 +67,30 @@ function PetPalRequests() {
         }
     };
 
-    const handleDenyRequest = (bookingId) => {
-        // logic to deny booking by its ID
+    const handleDenyRequest = async (bookingId) => {
+        try {
+            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Denied' });
+            if (response.status === 200) {
+                console.log(`Successfully denied booking with ID: ${bookingId}`);
+              // Handle successful denial: e.g., remove booking from list or update its status.
+            }
+          } catch (error) {
+            // Handle error: e.g., show a message to the carer.
+          }
     };
 
-    const handleApproveRequest = (bookingId) => {
-        // logic to approve booking by its ID
+    const handleApproveRequest = async (bookingId) => {
+        try {
+            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Approved'});
+            if (response.status === 200) {
+                console.log(`Successfully approved booking with ID: ${bookingId}`); 
+              // Handle successful approval: e.g., remove booking from list or update its status.
+            }
+          } catch (error) {
+            // Handle error: e.g., show a message to the carer.
+          }
     };
+ 
 
     if (userContext.user) {
         if (bookings.length === 0) {

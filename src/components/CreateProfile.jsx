@@ -90,6 +90,9 @@ const CreateProfile = () => {
       if (userData && userData._id) {
         formData.append('userId', userData._id); // Include user's ID in the form data
       }
+      if (userData && userData.email) {
+        formData.append('carerEmail', userData.email); // Include user's email in the form data
+      }
       
       const response = await axios.post('/carer/profile', formData, {
           headers: {
@@ -97,8 +100,8 @@ const CreateProfile = () => {
           },
       });
 
+
       if (response.status === 201) {
-          console.log(response.data.message);
           navigate('/view-profile');
       } else {
           console.error('Failed to create profile:', response.data);

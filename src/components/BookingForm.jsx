@@ -9,15 +9,11 @@ import { toast } from 'react-hot-toast';
 
 
 function BookingForm() {
-  const userContext = useContext(UserContext);
+  const userContext = useContext(UserContext)
+  const navigate = useNavigate()
 
-
-  const location = useLocation();
-  const selectedProfile = location.state?.selectedProfile;
-
-
-
-  const navigate = useNavigate();
+  const location = useLocation()
+  const selectedProfile = location.state?.selectedProfile
 
   const [bookingInfo, setBookingInfo] = useState({
     startDate: '',
@@ -85,8 +81,8 @@ function BookingForm() {
         return pet ? pet.petName : null;
     }).filter(Boolean);  // This filter will remove any null values
     
-    console.log(userContext.user);
     const userfirstName = userContext.user.firstName
+    const userEmail = userContext.user.email
     
     const data = {
         startDate: startDate,
@@ -97,9 +93,12 @@ function BookingForm() {
         petNames: selectedPetNames,
         carerId: selectedProfile.userId,
         carerName: selectedProfile.companyFullName,
+        carerEmail: selectedProfile.carerEmail,
         message: bookingInfo.message,
-        userName: userfirstName
-    };
+        userName: userfirstName,
+        userEmail: userEmail
+    }
+
     
     const postBooking = async (data) => {
       try {
@@ -137,8 +136,8 @@ function BookingForm() {
           <h5>Select Pets:</h5>
           {petProfile.map(pet => (
               <div key={pet._id}>
-                  <input 
-                      type="checkbox" 
+                  <input
+                      type="checkbox"
                       id={pet._id}
                       value={pet._id}
                       checked={bookingInfo.selectedPets.includes(pet._id)}

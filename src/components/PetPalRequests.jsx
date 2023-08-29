@@ -17,90 +17,91 @@ function PetPalRequests() {
                 
                 if (userContext.user.role === 'carer') {
                     response = await axios.get('user/petPalRequests', {
-                        params: { carerId: userContext.user._id } 
+                        params: { carerId: userContext.user._id }
                     });
                 } else {
                     response = await axios.get('user/petPalRequests', {
-                        params: { userId: userContext.user._id } 
+                        params: { userId: userContext.user._id }
                     });
+                    console.log(response);
                 }
     
-                setBookings(response.data);  
+                setBookings(response.data)
             } catch (error) {
-                console.error("Error fetching PetPal requests:", error);
+                console.error("Error fetching PetPal requests:", error)
             }
         };
     
-        fetchPetPalRequests();
-    }, [userContext.user]);
+        fetchPetPalRequests()
+    }, [userContext.user])
     
     
     
 
     const handleDeleteRequest = async (bookingId) => {
          // Ask the user to confirm the deletion
-        const userConfirmed = window.confirm("Are you sure you want to delete this booking?");
+        const userConfirmed = window.confirm("Are you sure you want to delete this booking?")
         
         if (userConfirmed) {
             // logic to delete booking by its ID
             try {
-                const response = await axios.delete(`user/booking/${bookingId}`);
+                const response = await axios.delete(`user/booking/${bookingId}`)
                 
                 if (response.status === 200) {
                     // Successfully deleted the booking, now remove it from the UI
-                    const newBookings = bookings.filter(booking => booking._id !== bookingId);
+                    const newBookings = bookings.filter(booking => booking._id !== bookingId)
                     setBookings(newBookings);
                 } else {
-                    console.error('Failed to delete booking:', response.data);
+                    console.error('Failed to delete booking:', response.data)
                 }
             } catch (error) {
-                console.error('Error deleting booking:', error);
+                console.error('Error deleting booking:', error)
             }
         }
     };
 
     const handleDenyRequest = async (bookingId) => {
         try {
-            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Denied' });
+            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Denied' })
             if (response.status === 200) {
-                console.log(`Successfully denied booking with ID: ${bookingId}`);
+                console.log(`Successfully denied booking with ID: ${bookingId}`)
                 const updatedBookings = bookings.map(booking => {
                     if (booking._id === bookingId) {
-                        return {...booking, status: 'Denied'};
+                        return {...booking, status: 'Denied'}
                     }
                     return booking;
                 });
-                setBookings(updatedBookings);
-              }
-          } catch (error) {
+                setBookings(updatedBookings)
+            }
+        } catch (error) {
             // Handle error: e.g., show a message to the carer.
         }
     };
 
     const handleApproveRequest = async (bookingId) => {
         try {
-            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Approved'});
+            const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Approved'})
             if (response.status === 200) {
-                console.log(`Successfully approved booking with ID: ${bookingId}`); 
+                console.log(`Successfully approved booking with ID: ${bookingId}`)
                 const updatedBookings = bookings.map(booking => {
                     if (booking._id === bookingId) {
-                        return {...booking, status: 'Approved'};
+                        return {...booking, status: 'Approved'}
                     }
                     return booking;
                 });
                 setBookings(updatedBookings);
-              }
-          } catch (error) {
+            }
+        } catch (error) {
             // Handle error: e.g., show a message to the carer.
         }
     };
     
 
     if (userContext.user) {
-        const unapprovedBookings = bookings.filter(booking => booking.status !== 'Approved');
+        const unapprovedBookings = bookings.filter(booking => booking.status !== 'Approved')
 
         if (unapprovedBookings.length === 0) {
-            return <div className="no-booking-message">No Pending or Denied booking for now</div>;
+            return <div className="no-booking-message">No Pending or Denied booking for now</div>
         }
     
         return (
@@ -122,9 +123,11 @@ function PetPalRequests() {
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>Carer name: {booking.carerName}</h2>
+                            <h2>Carer email: {booking.carerEmail}</h2>
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>User name: {booking.userName}</h2>
+                            <h2>User Email: {booking.userEmail}</h2>
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h5>For Dates:</h5>
@@ -138,7 +141,7 @@ function PetPalRequests() {
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>Booking Status: {booking.status}</h2>
-                        </div>    
+                        </div>
                         <div className="pet-pal-request-textarea-container-card">
                             <label className="pet-pal-request-centered-label">
                             Message/Care Instructions:
@@ -163,8 +166,8 @@ function PetPalRequests() {
     } else {
         return (
             <div className='dashboard-welcome'>Page not displayed</div>
-        );
+        )
     }
 }
 
-export default PetPalRequests;
+export default PetPalRequests

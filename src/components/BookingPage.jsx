@@ -70,8 +70,8 @@ function BookingPage() {
 
                 <div className="pet-pal-request-container-card">
                     <h5>For Time:</h5>
-                    <p>Pick-up Time: {booking.pickupTime}</p>
-                    <p>Drop-off Time: {booking.dropoffTime}</p>
+                    <p>Pick-up Time: {booking.pickUpTime}</p>
+                    <p>Drop-off Time: {booking.dropOffTime}</p>
                 </div>
 
                 {booking.status && (

@@ -89,6 +89,8 @@
     box-shadow: 1px 1px 5px 3.5px #FFC107;
     transition: transform 0.3s;
     margin: 30px 40px 50px;
+    position: relative;
+    max-width: 700px;
 }
 
 .create-profile-box-card:hover {
@@ -98,6 +100,7 @@
 .profile-info-card, .profile-details-card {
     display: flex;
     gap: 15px;
+    margin-bottom: 10px;
 }
 
 .profile-image-card {
@@ -200,4 +203,15 @@
     .pagination {
         gap: 30px;
     }
+}
+
+.black-text {
+    color: black;
+}
+
+.centered-button-home {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
 }

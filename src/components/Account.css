@@ -1,7 +1,7 @@
 /* Common styles for all devices */
 * {
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif; /* This ensures the font is the same as in home.css */
+    font-family: 'Arial', sans-serif; 
 }
 
 .account-button-card {
@@ -16,12 +16,12 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     background-color: #ffffff;
-    border: 5px solid #FFC107;  /* Matched the border from home.css */
-    transition: transform 0.3s;  /* Removed color transitions */
+    border: 5px solid #FFC107;  
+    transition: transform 0.3s;  
 }
 
 .account-button-card:hover {
-    transform: translateY(-5px);  /* Transition from home.css */
+    transform: translateY(-5px);  
 }
 
 .centered-container-account-card {
@@ -42,30 +42,31 @@
     margin-bottom: 140px;  
     text-align: center;
     color: black;
-    font-weight: bold;  /* Ensuring it's set to bold */
+    font-weight: bold;  
     font-size: 24px; 
 }
 
 .dashboard-overview h2 {
     margin: 0;
-    font-weight: bold;  /* Explicitly setting the heading to bold */
+    font-weight: bold;  
 }
 
 .account-container-card {
     background-color: #f5f5f5;
-    border-radius: 15px;  /* Rounded border from home.css */
-    box-shadow: 1px 1px 5px 3.5px #FFC107;  /* Shadow from home.css */
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px 3.5px #FFC107;
     color: black;
     padding: 10%;
     text-align: center;
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    transition: transform 0.3s;  /* Transition from home.css */
+    transition: transform 0.3s;  
 }
 
 .account-container-card:hover {
-    transform: translateY(-5px);  /* Transition from home.css */
+    transform: translateY(-5px); 
+    transform: scale(1.03); 
 }
 
 .account-buttons-card {
@@ -84,15 +85,13 @@
     gap: 1rem;
 }
 
-/* Mobile view adjustment */
-@media (max-width: 650px) {
-    .account-buttons-card {
-        margin-top: 1rem;  /* Adjusting the top margin of the blue buttons */
-    }
+.account-buttons-card {
+    margin-top: 1rem;
 }
 
+
 /* Tablet view */
-@media (min-width: 650px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .other-buttons-section-card {
         flex-direction: row;
         gap: 1rem;
@@ -102,16 +101,16 @@
     .view-profile-button-section-card {
         flex-direction: row;
         gap: 1rem;
-        justify-content: flex-start; /* Align to the start */
+        justify-content: flex-start;
     }
 
     .account-buttons-card {
-        margin-top: 1rem;  /* Move the blue buttons up */
+        margin-top: 1rem;
     }
 }
 
 /* Desktop view */
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
     .account-container-card {
         padding: 3%;
         width: 85%;

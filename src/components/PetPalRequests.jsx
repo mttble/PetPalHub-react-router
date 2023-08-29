@@ -3,6 +3,7 @@ import axios from 'axios';
 import './PetPalRequests.css';
 import { Button } from 'react-bootstrap';
 import { UserContext } from '../Context/userContext';
+import { Link } from 'react-router-dom';
 
 function PetPalRequests() {
     const userContext = useContext(UserContext);
@@ -73,7 +74,7 @@ function PetPalRequests() {
               }
           } catch (error) {
             // Handle error: e.g., show a message to the carer.
-          }
+        }
     };
 
     const handleApproveRequest = async (bookingId) => {
@@ -91,9 +92,9 @@ function PetPalRequests() {
               }
           } catch (error) {
             // Handle error: e.g., show a message to the carer.
-          }
+        }
     };
- 
+    
 
     if (userContext.user) {
         const unapprovedBookings = bookings.filter(booking => booking.status !== 'Approved');
@@ -110,15 +111,21 @@ function PetPalRequests() {
                         <h2>PetPal Request</h2>
                         <h3>Booking For: </h3>
                         <div className="pet-pal-request-container-card">
-                            <h5>For Pets:</h5>
-                            <p>{booking.petNames.join(', ')}</p>
+                        <h5>For Pets:</h5>
+                        {booking.petIds.map((petId, index) => (
+                            <div key={index}>
+                                <Link to={`/pet-details/${petId}`} className="pet-link">
+                                    {booking.petNames[index]}
+                                </Link>
+                            </div>
+                        ))}
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>Carer name: {booking.carerName}</h2>
-                        </div>    
+                        </div>
                         <div className="pet-pal-request-container-card">
                             <h2>User name: {booking.userName}</h2>
-                        </div>    
+                        </div>
                         <div className="pet-pal-request-container-card">
                             <h5>For Dates:</h5>
                             <p>Start Date: {booking.startDate}</p>

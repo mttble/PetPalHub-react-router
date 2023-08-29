@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/userContext';
 import axios from 'axios';
+import './CreateProfile.css'
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -142,126 +143,135 @@ const CreateProfile = () => {
   if (userContext.user) {
     if (userContext.user.role === 'carer') {
       return (
-        <div className="create-profile-box">
-          <div className="create-profile-title">
+        <>
+          <div className="create-profile-card-title">
             <h1>Create Profile</h1>
           </div>
-          <div className="create-profile-heading">
-            <h4>Company or Full Name</h4>
-          </div>
-          <div className='create-profile-text-container'>
-            <input
-              className="create-profile-text-input"
-              type="text"
-              name="companyFullName"
-              value={profile.companyFullName}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="create-profile-heading">
-            <h4>Pet Types</h4>
-          </div>
-          <div>
-            {petType.map((type) => (
-            <div key={type}>
-              <label>
-                <input
-                  type="checkbox"
-                  name={type}
-                  checked={profile.petType.includes(type)}
-                  onChange={handleCheckboxChangePetType}
-                />
-                {type}
-              </label>
-            </div>
-            ))}
-          </div>
-
-
-          <div className="create-profile-heading">
-            <h4>Additional Services</h4>
-          </div>
-          <div>
-            {additionalServicesOptions.map((service) => (
-              <div key={service}>
-                <label>
-                  <input
-                    type="checkbox"
-                    name={service}
-                    checked={profile.additionalServices.includes(service)}
-                    onChange={handleCheckboxChange}
-                  />
-                  {service}
-                </label>
-              </div>
-            ))}
-          </div>
-
-
-          <div className="create-profile-heading">
-            <h4>About Me</h4>
-          </div>
-          <div className='create-profile-textarea-container'>
-            <textarea
-              className="create-profile-textarea"
-              name="aboutMe"
-              value={profile.aboutMe}
-              onChange={handleInputChange}
-            />
-          </div>
-
-
-          <div className="create-profile-heading">
-            <h4>Experience</h4>
-          </div>
-          <div className='create-profile-textarea-container'>
-            <textarea
-              className="create-profile-textarea"
-              name="experience"
-              value={profile.experience}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="create-profile-heading">
-            <h4>Location (used by users to search):</h4>
-          </div>
-          <div className='create-profile-textarea-container'>
-            <textarea
-              className="create-profile-textarea"
-              name="location"
-              value={profile.location}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="profile-avatar">
+          <div className="create-profile-card-box">
+            
+          <div className="profile-card-avatar">
               {avatar ? (
-                  <img src={URL.createObjectURL(avatar)} alt="Profile Avatar" className="avatar-preview" />
+                <img src={URL.createObjectURL(avatar)} alt="Profile Avatar" className="avatar-card-preview" />
               ) : (
-                  <div className="placeholder-avatar">
-                      <h3>Profile Picture</h3>
-                  </div>
+                <div className="placeholder-card-avatar">
+                  <h3>Profile Picture</h3>
+                </div>
               )}
-          </div>
-          <div className="upload-avatar">
+            </div>
+
+            <div className="upload-card-avatar">
               <input
-                  type="file"
-                  accept="image/*"
-                  id="avatarUpload"  // Add an id here to link with the label
-                  style={{ display: 'none' }} // Hide the default input
-                  onChange={handleAvatarUpload}
+                type="file"
+                accept="image/*"
+                id="avatarUpload"
+                style={{ display: 'none' }}
+                onChange={handleAvatarUpload}
               />
-              <label htmlFor="avatarUpload" className="upload-avatar-label btn btn-secondary">Upload Picture</label>
-          </div>
-          <div className="create-profile-submit-button">
-            <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create/Update Profile</button>
-          </div>
+              <label htmlFor="avatarUpload" className="upload-avatar-card-label btn btn-secondary">Upload Picture</label>
+            </div>
+            <div className="create-profile-card-heading">
+              <h4>Company or Full Name</h4>
+            </div>
+            <div className="create-profile-card-text-container">
+              <input
+                className="create-profile-card-text-input"
+                type="text"
+                name="companyFullName"
+                value={profile.companyFullName}
+                onChange={handleInputChange}
+              />
+            </div>
+            
+            <div className="categories-container">
+
+            <div className="pet-types">
+              <div className="create-profile-card-heading">
+                <h4>Pet Types</h4>
+              </div>
+              {petType.map((type) => (
+                <div key={type}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name={type}
+                      checked={profile.petType.includes(type)}
+                      onChange={handleCheckboxChangePetType}
+                    />
+                    {type}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            <div className="additional-services">
+              <div className="create-profile-card-heading">
+                <h4>Additional Services</h4>
+              </div>
+              {additionalServicesOptions.map((service) => (
+                <div key={service}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name={service}
+                      checked={profile.additionalServices.includes(service)}
+                      onChange={handleCheckboxChange}
+                    />
+                    {service}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            </div>
+
+            <div className="about-section">
+        <div className="create-profile-card-heading">
+          <h4>About Me</h4>
         </div>
-      );
+        <div className="create-profile-card-textarea-container">
+          <textarea
+            className="create-profile-card-textarea"
+            name="aboutMe"
+            value={profile.aboutMe}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="create-profile-card-heading">
+          <h4>Experience</h4>
+        </div>
+        <div className="create-profile-card-textarea-container">
+          <textarea
+            className="create-profile-card-textarea"
+            name="experience"
+            value={profile.experience}
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="create-profile-card-heading">
+          <h4>Location (used by users to search):</h4>
+        </div>
+        <div className="create-profile-card-textarea-container">
+          <textarea
+            className="create-profile-card-textarea"
+            name="location"
+            value={profile.location}
+            onChange={handleInputChange}
+          />
+        </div>         
+      </div>
+
+      <div className="create-profile-card-submit-button">
+        <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreateProfile}>Create/Update Profile</button>
+      </div>
+      
+    </div>
+  </>
+);
+    } else {
+      return <h1>Hello</h1>;
     }
-    else return (
-      <h1>Hello</h1>
-    )
-    
   }
 }
 

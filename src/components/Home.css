@@ -63,7 +63,6 @@
     text-align: center;
 }
 
-
 .book-now-btn {
     color: #FFC107;
     background-color: transparent;
@@ -147,30 +146,31 @@
     font-weight: bold;
 }
 
-/* Mobile */
-@media (max-width: 480px) {
-    .search-bar-container {
-        display: block;
-        margin-top: 10px;
-    }
-    .dashboard-welcome {
-        font-size: 18px;
-    }
-    .search-bar-container input {
-        width: 75%;
-        padding: 5px 10px;
-        font-size: 14px;
-    }
-    .pagination button {
-        padding: 5px 9px; 
-        font-size: 12px;
-        width: 70px;      
-        overflow: hidden; 
-    }
+.search-bar-container {
+    display: block;
+    margin-top: 10px;
+}
+.dashboard-welcome {
+    font-size: 18px;
+}
+.search-bar-container input {
+    width: 75%;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+.pagination button {
+    padding: 5px 9px; 
+    font-size: 12px;
+    width: 70px;      
+    overflow: hidden; 
+}
+.pagination button:disabled {
+    display: none;
 }
 
+
 /* Tablet */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .search-bar-container, .create-profile-box-card {
         display: block;
     }
@@ -187,7 +187,7 @@
 }
 
 /* Desktop */
-@media (min-width: 769px) {
+@media (min-width: 992px) {
     .search-bar-container {
         display: block;
     }
@@ -215,3 +215,4 @@
     right: 0;
     margin: 10px;
 }
+

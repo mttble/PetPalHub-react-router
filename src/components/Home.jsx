@@ -110,7 +110,7 @@ function Home() {
                                     <h5 className="profile-heading-card">Pet Types:</h5>
                                     <ul>
                                         {profile.petType.map((type, index) => (
-                                            <li key={index}>{type}</li>
+                                            <li className="black-text" key={index}>{type}</li>
                                         ))}
                                     </ul>
                                 </div>
@@ -119,13 +119,13 @@ function Home() {
                                 <div className="left-column-card">
                                     <div className="profile-section-card">
                                         <h5 className="profile-heading-card">About Me:</h5>
-                                        <p>{profile.aboutMe}</p>
+                                        <p className="black-text">{profile.aboutMe}</p>
                                     </div>
                                     <div className="profile-section-card">
                                         <h5 className="profile-heading-card">Experience:</h5>
-                                        <p>{profile.experience}</p>
+                                        <p className="black-text">{profile.experience}</p>
                                         <h5 className="profile-heading-card">Location:</h5>
-                                        <p>{profile.location}</p>
+                                        <p className="black-text">{profile.location}</p>
                                     </div>
                                 </div>
                                 <div className="right-column-card">
@@ -133,13 +133,13 @@ function Home() {
                                         <h5 className="profile-heading-card">Additional Services:</h5>
                                         <ul>
                                             {profile.additionalServices.map((service, index) => (
-                                                <li key={index}>{service}</li>
+                                                <li className="black-text"  key={index}>{service}</li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div className='centered-button-home'>
                                 <Button variant="primary" className="size-sm-lg-card" onClick={() => handleBookNowClick(profile)}>
                                     Book Now
                                 </Button>

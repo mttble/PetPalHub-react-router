@@ -19,6 +19,7 @@ const ViewPets = () => {
                             userId: userContext.user._id, // Use user ID from context
                         },
                     });
+                    console.log(response.data)
                     if (response.status === 200) {
                         setPetProfile(response.data);
                     } else {
@@ -60,7 +61,17 @@ const ViewPets = () => {
                     petProfile.map((pet) => (
                         <div className="pet-card-view" key={pet._id}>
                             <div className="pet-avatar-view">
-                                <img src={pet.petImageURL} alt="Pet Avatar-view" />
+                            {pet.petImage ? (
+                                <img
+                                    src={`http://localhost:5505${pet.petImage}`}
+                                    alt="Profile"
+                                    className="avatar-preview1"
+                                />
+                                ) : (
+                                <div className="placeholder-avatar">
+                                    <h3>No Profile Picture</h3>
+                                </div>
+                                )}
                             </div>
                             <div className="pet-details-view">
                                 <h2>{pet.petName}</h2>

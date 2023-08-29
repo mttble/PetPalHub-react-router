@@ -129,7 +129,7 @@ function BookingForm() {
       <h2>PetPal Request</h2>
       <h3>Requested Carer: {selectedProfile.companyFullName}</h3>
       {petProfile === null ? (
-        <p>Loading...</p>
+        <p>Try Logging in and adding a pet!</p>
       ) : (
         <form onSubmit={handleSubmit}>
         <div className="booking-form-container-card">

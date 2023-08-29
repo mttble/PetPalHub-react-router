@@ -19,7 +19,6 @@ function Home() {
                 const response = await axios.get('/carer/carer-profiles');
                 if (response.status === 200) {
                     setProfileData(response.data);
-                    console.log(response.data)
                 } else {
                     console.error('Failed to fetch carer profiles:', response.data);
                 }

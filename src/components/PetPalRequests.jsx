@@ -23,7 +23,6 @@ function PetPalRequests() {
                     response = await axios.get('user/petPalRequests', {
                         params: { userId: userContext.user._id }
                     });
-                    console.log(response);
                 }
     
                 setBookings(response.data)
@@ -123,11 +122,11 @@ function PetPalRequests() {
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>Carer name: {booking.carerName}</h2>
-                            <h2>Carer email: {booking.carerEmail}</h2>
+                            <p>Carer email: {booking.carerEmail}</p>
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>User name: {booking.userName}</h2>
-                            <h2>User Email: {booking.userEmail}</h2>
+                            <p>User Email: {booking.userEmail}</p>
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h5>For Dates:</h5>

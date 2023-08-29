@@ -11,38 +11,29 @@ function PetPalRequests() {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        const fetchBookings = async () => {
+        const fetchPetPalRequests = async () => {
             try {
-                if (userContext.user && userContext.user._id) {
-                    // Determine path and paramKey based on the role
-                    let path, paramKey;
-                    if (userContext.user.role === 'user') {
-                        path = 'user/bookings';
-                        paramKey = 'userId';
-                    } else {
-                        path = 'carer/bookings';
-                        paramKey = 'carerId';
-                    }
-    
-                    const response = await axios.get(path, {
-                        params: {
-                            [paramKey]: userContext.user._id,
-                        },
+                let response;
+                
+                if (userContext.user.role === 'carer') {
+                    response = await axios.get('user/petPalRequests', {
+                        params: { carerId: userContext.user._id } 
                     });
-    
-                    if (response.status === 200) {
-                        setBookings(response.data);
-                    } else {
-                        console.error('Failed to fetch booking data:', response.data);
-                    }
+                } else {
+                    response = await axios.get('user/petPalRequests', {
+                        params: { userId: userContext.user._id } 
+                    });
                 }
+    
+                setBookings(response.data);  
             } catch (error) {
-                console.error('Error fetching booking data:', error);
+                console.error("Error fetching PetPal requests:", error);
             }
         };
     
-        fetchBookings();
+        fetchPetPalRequests();
     }, [userContext.user]);
+    
     
     
 
@@ -73,9 +64,15 @@ function PetPalRequests() {
             const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Denied' });
             if (response.status === 200) {
                 console.log(`Successfully denied booking with ID: ${bookingId}`);
-              // Handle successful denial: e.g., remove booking from list or update its status.
-            }
-        } catch (error) {
+                const updatedBookings = bookings.map(booking => {
+                    if (booking._id === bookingId) {
+                        return {...booking, status: 'Denied'};
+                    }
+                    return booking;
+                });
+                setBookings(updatedBookings);
+              }
+          } catch (error) {
             // Handle error: e.g., show a message to the carer.
         }
     };
@@ -84,23 +81,32 @@ function PetPalRequests() {
         try {
             const response = await axios.put('carer/booking/updateStatus', { bookingId, status: 'Approved'});
             if (response.status === 200) {
-                console.log(`Successfully approved booking with ID: ${bookingId}`)
-              // Handle successful approval: e.g., remove booking from list or update its status.
-            }
-        } catch (error) {
+                console.log(`Successfully approved booking with ID: ${bookingId}`); 
+                const updatedBookings = bookings.map(booking => {
+                    if (booking._id === bookingId) {
+                        return {...booking, status: 'Approved'};
+                    }
+                    return booking;
+                });
+                setBookings(updatedBookings);
+              }
+          } catch (error) {
             // Handle error: e.g., show a message to the carer.
         }
     };
     
 
     if (userContext.user) {
-        if (bookings.length === 0) {
-            return <div className="no-booking-message">No booking for now</div>;
-        }
+        const unapprovedBookings = bookings.filter(booking => booking.status !== 'Approved');
 
+        if (unapprovedBookings.length === 0) {
+            return <div className="no-booking-message">No Pending or Denied booking for now</div>;
+        }
+    
         return (
             <div>
-                {bookings.map(booking => (
+                {bookings
+                .map(booking => (
                     <div className="pet-pal-request-box-card" key={booking._id}>
                         <h2>PetPal Request</h2>
                         <h3>Booking For: </h3>
@@ -130,6 +136,9 @@ function PetPalRequests() {
                             <p>Pick-up time: {booking.pickUpTime}</p>
                             <p>Drop-off time: {booking.dropOffTime}</p>
                         </div>
+                        <div className="pet-pal-request-container-card">
+                            <h2>Booking Status: {booking.status}</h2>
+                        </div>    
                         <div className="pet-pal-request-textarea-container-card">
                             <label className="pet-pal-request-centered-label">
                             Message/Care Instructions:

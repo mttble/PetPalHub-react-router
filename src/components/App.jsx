@@ -21,6 +21,7 @@ import BookingForm from './BookingForm';
 import BookingPage from './BookingPage'; // Import BookingPage component
 import PetPalRequests from './PetPalRequests.jsx';
 import PetDetails from './PetDetails'
+import ChangeDetails from './ChangeDetails.jsx';
 
 axios.defaults.baseURL = 'http://localhost:5505';
 axios.defaults.withCredentials = true;
@@ -49,6 +50,7 @@ function App() {
             <Route path="/booking-page" element={<BookingPage />} />
             <Route path="/petpal-requests" element={<PetPalRequests />} />
             <Route path="/pet-details/:petId" element={<PetDetails />} />
+            <Route path="/change-details" element={<ChangeDetails />} />
 
             
 

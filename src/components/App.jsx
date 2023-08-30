@@ -1,37 +1,32 @@
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Home from './Home.jsx';
-import Login from './Login.jsx';
-import SignupPrompt from './SignupPrompt.jsx';
-import SignupUser from './SignupUser.jsx';
-import SignupCarer from './SignupCarer.jsx';
-import { Toaster } from 'react-hot-toast';
-import Account from './Account';
-import CreateProfile from './CreateProfile';
-import ViewProfile from './ViewProfile';
-import EditProfile from './EditProfile';
-import './App.css';
-import axios from 'axios';
-import { UserContextProvider } from '../Context/userContext.jsx';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { UserContextProvider } from '../Context/userContext.jsx'
 
-import ViewPets from './ViewPets.jsx';
-import Layout from './Layout.jsx';
-import CreatePet from './CreatePet.jsx';
-import BookingForm from './BookingForm';
-import BookingPage from './BookingPage'; // Import BookingPage component
-import PetPalRequests from './PetPalRequests.jsx';
+import Home from './Home.jsx'
+import Login from './Login.jsx'
+import SignupPrompt from './SignupPrompt.jsx'
+import SignupUser from './SignupUser.jsx'
+import SignupCarer from './SignupCarer.jsx'
+import Account from './Account'
+import CreateProfile from './CreateProfile'
+import ViewProfile from './ViewProfile'
+import axios from 'axios'
+import ViewPets from './ViewPets.jsx'
+import Layout from './Layout.jsx'
+import CreatePet from './CreatePet.jsx'
+import BookingForm from './BookingForm'
+import BookingPage from './BookingPage'
+import PetPalRequests from './PetPalRequests.jsx'
 import PetDetails from './PetDetails'
-import ChangeDetails from './ChangeDetails.jsx';
+import ChangeDetails from './ChangeDetails.jsx'
 
-axios.defaults.baseURL = 'http://localhost:5505';
+import './stylesheets/App.css'
+
+axios.defaults.baseURL = 'http://localhost:5505'
 axios.defaults.withCredentials = true;
 
 function App() {
-  const [currentForm, setCurrentForm] = useState('login');
-
-  const toggleForm = (forName) => {
-    setCurrentForm(forName);
-  };
 
   return (
     <>
@@ -52,14 +47,12 @@ function App() {
             <Route path="/pet-details/:petId" element={<PetDetails />} />
             <Route path="/change-details" element={<ChangeDetails />} />
 
-            
 
             {/* Routes specific to carer */}
             <Route path="/account" element={<Account />} />
             <Route path="/create-profile" element={<CreateProfile />} />
             <Route path="/view-profile" element={<ViewProfile />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
-
+            
 
             {/* Routes specific to users */}
             <Route path="/create-pet" element={<CreatePet />} />

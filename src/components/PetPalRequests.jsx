@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import './PetPalRequests.css';
 import { Button } from 'react-bootstrap';
 import { UserContext } from '../Context/userContext';
 import { Link } from 'react-router-dom';
+
+import './stylesheets/PetPalRequests.css';
 
 function PetPalRequests() {
     const userContext = useContext(UserContext);

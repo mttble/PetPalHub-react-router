@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import './SignupUser.css'
+import './stylesheets/SignupUser.css'
 
 function SignupUser() {
     const navigate = useNavigate()

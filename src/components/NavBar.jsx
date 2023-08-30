@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { UserContext } from '../Context/userContext.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './NavBar.css'
+import './stylesheets/NavBar.css'
 
 
 function NavBar() {

@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../Context/userContext';
-import './ViewPets.css';
 import { Button } from 'react-bootstrap';
+
+import './stylesheets/ViewPets.css';
 
 
 const ViewPets = () => {

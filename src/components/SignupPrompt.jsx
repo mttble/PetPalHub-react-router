@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './SignupPrompt.css'
+import './stylesheets/SignupPrompt.css'
 
 function SignupPrompt() {
 

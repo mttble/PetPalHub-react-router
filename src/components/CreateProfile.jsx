@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/userContext';
 import axios from 'axios';
-import './CreateProfile.css'
+import './stylesheets/CreateProfile.css'
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 

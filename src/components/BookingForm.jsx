@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './BookingForm.css';
+import './stylesheets/BookingForm.css';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { UserContext } from '../Context/userContext';
@@ -180,20 +180,20 @@ function BookingForm() {
         </div>
         <div className="booking-form-container-card">
           <h5>Select Time:</h5>
-          <label>Pick-up time:</label>
-          <input
-            type="time"
-            value={bookingInfo.pickUpTime}
-            onChange={(e) =>
-              setBookingInfo({ ...bookingInfo, pickUpTime: e.target.value })
-            }
-          />
           <label>Drop-off time:</label>
           <input
             type="time"
             value={bookingInfo.dropOffTime}
             onChange={(e) =>
               setBookingInfo({ ...bookingInfo, dropOffTime: e.target.value })
+            }
+          />
+          <label>Pick-up time:</label>
+          <input
+            type="time"
+            value={bookingInfo.pickUpTime}
+            onChange={(e) =>
+              setBookingInfo({ ...bookingInfo, pickUpTime: e.target.value })
             }
           />
         </div>

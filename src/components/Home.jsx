@@ -3,7 +3,7 @@ import { UserContext } from '../Context/userContext';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
+import './stylesheets/Home.css';
 
 function Home() {
     const userContext = useContext(UserContext);
@@ -30,7 +30,6 @@ function Home() {
     }, []);
 
     const handleBookNowClick = (profile) => {
-        console.log('Book Now clicked for:', profile);
         navigate('/booking-form', { state: { selectedProfile: profile } });
     };
 

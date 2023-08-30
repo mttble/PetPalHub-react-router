@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import { UserContext } from '../Context/userContext'
-import './ChangeDetails.css'
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { UserContext } from '../Context/userContext';
+import './ChangeDetails.css';
 
 function ChangeDetails() {
     const userContext = useContext(UserContext)

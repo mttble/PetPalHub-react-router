@@ -124,7 +124,6 @@
 
     .account-buttons-card {
         margin-top: 5rem;
-        flex-direction: row;
         justify-content: center;
         gap: 1.5vw;
     }

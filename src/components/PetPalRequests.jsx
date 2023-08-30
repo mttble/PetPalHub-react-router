@@ -136,8 +136,8 @@ function PetPalRequests() {
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h5>For Time:</h5>
-                            <p>Pick-up time: {booking.pickUpTime}</p>
                             <p>Drop-off time: {booking.dropOffTime}</p>
+                            <p>Pick-up time: {booking.pickUpTime}</p>
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h2>Booking Status: {booking.status}</h2>

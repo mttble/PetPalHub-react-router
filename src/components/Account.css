@@ -1,7 +1,7 @@
 /* Common styles for all devices */
 * {
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif; 
+    font-family: 'Arial', sans-serif;
 }
 
 .account-button-card {
@@ -16,12 +16,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     background-color: #ffffff;
-    border: 5px solid #FFC107;  
-    transition: transform 0.3s;  
+    transition: transform 0.3s;
 }
 
 .account-button-card:hover {
-    transform: translateY(-5px);  
+    transform: translateY(-5px);
 }
 
 .centered-container-account-card {
@@ -39,16 +38,16 @@
     background-color: #FFC107;
     padding: 15px 25px;
     border-radius: 10px;
-    margin-bottom: 140px;  
+    margin-bottom: 140px;
     text-align: center;
     color: black;
-    font-weight: bold;  
-    font-size: 24px; 
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .dashboard-overview h2 {
     margin: 0;
-    font-weight: bold;  
+    font-weight: bold;
 }
 
 .account-container-card {
@@ -61,12 +60,12 @@
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    transition: transform 0.3s;  
+    transition: transform 0.3s;
 }
 
 .account-container-card:hover {
-    transform: translateY(-5px); 
-    transform: scale(1.03); 
+    transform: translateY(-5px);
+    transform: scale(1.03);
 }
 
 .account-buttons-card {
@@ -91,7 +90,7 @@
 
 
 /* Tablet view */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1309px) {
     .other-buttons-section-card {
         flex-direction: row;
         gap: 1rem;
@@ -107,15 +106,20 @@
     .account-buttons-card {
         margin-top: 1rem;
     }
+    .account-button-card {
+        width: 200px;
+        height: 60px;
+        font-size: 20px !important;
+    }
 }
 
 /* Desktop view */
-@media (min-width: 992px) {
+@media (min-width: 1310px) {
     .account-container-card {
         padding: 3%;
-        width: 85%;
-        max-width: none;
-        min-height: 35vh; 
+
+        max-width: 1200px;
+        min-height: 350px;
     }
 
     .account-buttons-card {
@@ -129,5 +133,10 @@
     .view-profile-button-section-card {
         flex-direction: row;
         gap: 1.5vw;
+    }
+    .account-button-card {
+        width: 250px;
+        height: 60px;
+        font-size: 30px !important;
     }
 }

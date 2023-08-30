@@ -31,15 +31,15 @@
 }
 
 .search-bar-container input {
-    width: 90%;  
+    width: 90%;
     padding: 8px 16px;
     border-radius: 5px;
-    border: 2px solid #D0D0D0;  
+    border: 2px solid #D0D0D0;
     outline: none;
     transition: border-color 0.2s;
 }
 
-.search-bar-container input:focus, 
+.search-bar-container input:focus,
 .search-bar-container input:active {
     border-color: #FFC107;
 }
@@ -48,7 +48,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;  
+    gap: 20px;
     width: fit-content;
     margin: 0 auto;
     padding: 50px 0 0;
@@ -59,7 +59,7 @@
     font-size: 14px;
     border-color: #FFC107;
     transition: background-color 0.3s, color 0.3s;
-    width: 120px; 
+    width: 120px;
     text-align: center;
 }
 
@@ -159,10 +159,10 @@
     font-size: 14px;
 }
 .pagination button {
-    padding: 5px 9px; 
+    padding: 5px 9px;
     font-size: 12px;
-    width: 70px;      
-    overflow: hidden; 
+    width: 70px;
+    overflow: hidden;
 }
 .pagination button:disabled {
     display: none;

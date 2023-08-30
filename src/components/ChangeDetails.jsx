@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { UserContext } from '../Context/userContext';
-import './ChangeDetails.css';
+import './stylesheets/ChangeDetails.css';
 
 function ChangeDetails() {
     const userContext = useContext(UserContext)

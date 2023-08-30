@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
-import './Account.css';
+import './stylesheets/Account.css';
 import { UserContext } from '../Context/userContext';
 
 function Account() {

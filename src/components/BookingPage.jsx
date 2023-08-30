@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../Context/userContext';
-import './BookingPage.css';
+import './stylesheets/BookingPage.css';
 
 function BookingPage() {
     const userContext = useContext(UserContext)
@@ -102,8 +102,8 @@ function BookingPage() {
 
                 <div className="pet-pal-request-container-card">
                     <h5>For Time:</h5>
-                    <p>Pick-up Time: {booking.pickUpTime}</p>
                     <p>Drop-off Time: {booking.dropOffTime}</p>
+                    <p>Pick-up Time: {booking.pickUpTime}</p>
                 </div>
 
                 {booking.status && (

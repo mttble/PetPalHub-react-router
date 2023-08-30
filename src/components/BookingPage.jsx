@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import './BookingPage.css';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../Context/userContext';
+import './BookingPage.css';
 
 function BookingPage() {
     const userContext = useContext(UserContext)

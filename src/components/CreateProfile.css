@@ -14,7 +14,7 @@
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    transition: transform 0.3s; 
+    transition: transform 0.3s;
 }
 
 .create-profile-card-box:hover {
@@ -25,18 +25,18 @@
     background-color: #FFC107;
     padding: 10px;
     border-radius: 5px;
-    max-width: 300px; 
-    margin: 0 auto 140px; 
+    max-width: 300px;
+    margin: 0 auto 140px;
     text-align: center;
     color: black;
-    font-weight: bold;  
+    font-weight: bold;
     font-size: 24px;
     font-family: 'Poppins', sans-serif;
 }
 
 .create-profile-card-title h1 {
     margin: 0;
-    font-weight: bold;  
+    font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -105,7 +105,7 @@ label {
     cursor: pointer;
     background-color: #FFC107;
     color: #333;
-    padding: 2px 5px; 
+    padding: 2px 5px;
     transition: all 0.3s;
 }
 
@@ -122,17 +122,6 @@ label {
     padding: 10px 30px;
 }
 
-.btn-primary {
-    background-color: #FFC107;
-    border-color: #FFC107;
-    color: #333;
-}
-
-.btn-primary:hover {
-    background-color: #ffaa00;
-    border-color: #ffaa00;
-}
-
 .about-section {
     margin-top: 40px;
 }
@@ -144,8 +133,8 @@ label {
     }
 
     .profile-card-avatar {
-        width: 200px; 
-        height: 200px; 
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -157,14 +146,15 @@ input[type="checkbox"] {
 @media (min-width: 992px) {
     .create-profile-card-box {
         width: 95%;
-        max-width: none;
+        max-width: 800px;
         padding: 2% 5%;
+        margin-bottom: 50px;
     }
 
     .categories-container {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
     }
 
     .pet-types, .additional-services {

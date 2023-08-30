@@ -6,8 +6,7 @@ import './ChangeDetails.css'
 
 function ChangeDetails() {
     const userContext = useContext(UserContext)
-    const isCarer = userContext.user.role === 'carer'
-
+    
     const [data, setData] = useState({
         country: '',
         state: '',
@@ -18,12 +17,14 @@ function ChangeDetails() {
         email: '',
         password: '',
     });
-
+    
+    const renderAdditionalInputs = userContext.user?.role === 'carer';
 
     const updateUserDetails = async (e) => {
         e.preventDefault();
 
         try {
+            if (userContext.user) {
             const userId = userContext.user._id
             const userRole = userContext.user.role
             const response = await axios.put(`/change-details/${userRole}/${userId}`, data);
@@ -32,11 +33,13 @@ function ChangeDetails() {
                 toast.error(response.data.error);
             } else {
                 toast.success('Details updated successfully');
-            }
+            }}
         } catch (error) {
             console.log(error);
         }
     };
+
+
 
     return (
         <>
@@ -63,8 +66,8 @@ function ChangeDetails() {
                         id="city"
                         placeholder="City"
                     />
-                {isCarer && (
-                    <>
+                {renderAdditionalInputs && (
+                        <>
                         <label htmlFor="street">Street:</label>
                         <input
                             value={data.street}
@@ -81,7 +84,7 @@ function ChangeDetails() {
                             placeholder="Postal Code"
                         />
                     </>
-                )}
+                    )}
                 <label htmlFor="phoneNumber">phone number:</label>
                     <input
                         value={data.phoneNumber}
@@ -110,7 +113,7 @@ function ChangeDetails() {
                 </form>
             </div>
         </>
-    );
+    )
 }
 
 export default ChangeDetails;

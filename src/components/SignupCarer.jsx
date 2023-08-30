@@ -11,11 +11,13 @@ function SignupCarer() {
         lastName: '',
         phoneNumber: '',
         dateOfBirth: '',
-        country: '',
-        state: '',
-        city: '',
-        street: '',
-        postalCode: '',
+        address: {
+            country: '',
+            state: '',
+            city: '',
+            street: '',
+            postalCode: '',
+        },
         email: '',
         password: '',
     })
@@ -26,7 +28,7 @@ function SignupCarer() {
         const dobParts = data.dateOfBirth.split('-');
         const formattedDob = `${dobParts[2]}/${dobParts[1]}/${dobParts[0]}`;
 
-        const {firstName, lastName, phoneNumber, dateOfBirth, country, state, city, street, postalCode, email, password} = data
+        const {firstName, lastName, phoneNumber, dateOfBirth, address: {country, state, city, street, postalCode}, email, password} = data
         try {
             if (!firstName || !lastName) {
                 toast.error("First name and last name are required.");
@@ -106,19 +108,19 @@ function SignupCarer() {
                 <input value={data.dateOfBirth} onChange={(e) => setData({...data, dateOfBirth: e.target.value})} type="date" id="dateOfBirth" />
                 
                 <label htmlFor="country">Country:</label>
-                <input value={data.country} onChange={(e) => setData({...data, country: e.target.value})} type="text" id="country" placeholder="Country" />
+                <input value={data.address.country} onChange={(e) => setData({...data, address: {...data.address, country: e.target.value}})} type="text" id="country" placeholder="Country" />
                 
                 <label htmlFor="state">State:</label>
-                <input value={data.state} onChange={(e) => setData({...data, state: e.target.value})} type="text" id="state" placeholder="State" />
+                <input value={data.address.state} onChange={(e) => setData({...data, address: {...data.address, state: e.target.value}})} type="text" id="state" placeholder="State" />
 
                 <label htmlFor="city">City:</label>
-                <input value={data.city} onChange={(e) => setData({...data, city: e.target.value})} type="text" id="city" placeholder="City" />
+                <input value={data.address.city} onChange={(e) => setData({...data, address: {...data.address, city: e.target.value}})} type="text" id="city" placeholder="City" />
 
                 <label htmlFor="street">Street:</label>
-                <input value={data.street} onChange={(e) => setData({...data, street: e.target.value})} type="text" id="street" placeholder="Street Address" />
+                <input value={data.address.street} onChange={(e) => setData({...data, address: {...data.address, street: e.target.value}})} type="text" id="street" placeholder="Street Address" />
 
                 <label htmlFor="postalCode">Postal Code:</label>
-                <input value={data.postalCode} onChange={(e) => setData({...data, postalCode: e.target.value})} type="text" id="postalCode" placeholder="Postal Code" />
+                <input value={data.address.postalCode} onChange={(e) => setData({...data, address: {...data.address, postalCode: e.target.value}})} type="text" id="postalCode" placeholder="Postal Code" />
 
                 <label htmlFor="email">Email:</label>
                 <input value={data.email} onChange={(e) => setData({...data, email: e.target.value})} type="email" placeholder="youremail@gmail.com" id="email" name="email"/>

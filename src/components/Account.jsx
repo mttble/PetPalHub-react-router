@@ -39,6 +39,12 @@ function Account() {
                   {userContext.user.role === 'user' ? 'View Pets' : 'View Profile'}
                 </Button>
               </Link>
+              <Link to="/change-details">
+                <Button variant="primary" className="account-button-card custom-button">
+                  Change Details
+                </Button>
+              </Link>
+              
             </div>
           </div>
         </div>

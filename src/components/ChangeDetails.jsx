@@ -17,7 +17,7 @@ function ChangeDetails() {
         email: '',
         password: '',
     });
-    
+
     const renderAdditionalInputs = userContext.user?.role === 'carer';
 
     const updateUserDetails = async (e) => {
@@ -27,8 +27,9 @@ function ChangeDetails() {
             if (userContext.user) {
             const userId = userContext.user._id
             const userRole = userContext.user.role
-            const response = await axios.put(`/change-details/${userRole}/${userId}`, data);
-
+            const response = await axios.put(`/change-details/${userRole}/${userId}`, data, {
+                withCredentials: true,
+            });
             if (response.data.error) {
                 toast.error(response.data.error);
             } else {
@@ -38,7 +39,6 @@ function ChangeDetails() {
             console.log(error);
         }
     };
-
 
 
     return (

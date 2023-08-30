@@ -169,9 +169,10 @@ const CreateProfile = () => {
               />
               <label htmlFor="avatarUpload" className="upload-avatar-card-label btn btn-secondary">Upload Picture</label>
             </div>
-            <div className="create-profile-card-heading">
-              <h4>Company or Full Name</h4>
+            <div className="create-profile-card-heading centered-title">
+            <h4>Company or Full Name</h4>
             </div>
+
             <div className="create-profile-card-text-container">
               <input
                 className="create-profile-card-text-input"

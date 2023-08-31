@@ -39,7 +39,7 @@ function PetDetails() {
                     <div className="pet-avatar-view">
                         {petDetails.petImage ? (
                             <img
-                                src={`http://localhost:5505${petDetails.petImage}`}
+                                src={`https://petpalhub-api.onrender.com${petDetails.petImage}`}
                                 alt="Profile"
                                 className="avatar-preview1"
                             />

@@ -63,7 +63,7 @@ function SignupUser() {
                 return;
             }
             const role = 'user'
-            const {data} = await axios.post('http://localhost:5505/register', {firstName, lastName, phoneNumber, dateOfBirth: formattedDob, country, state, city, email, password, role})
+            const {data} = await axios.post('/register', {firstName, lastName, phoneNumber, dateOfBirth: formattedDob, country, state, city, email, password, role})
 
             if(data.error) {
                 toast.error(data.error)

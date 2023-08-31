@@ -94,7 +94,7 @@ function Home() {
                                 <div className="profile-image-card">
                                     {profile.profileImage ? (
                                         <img
-                                            src={`http://localhost:5505${profile.profileImage}`}
+                                            src={`https://petpalhub-api.onrender.com${profile.profileImage}`}
                                             alt="Profile"
                                             className="avatar-preview-card"
                                         />

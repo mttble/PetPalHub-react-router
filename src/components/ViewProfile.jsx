@@ -12,7 +12,7 @@ const ViewProfile = () => {
       try {
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData._id) {
-          const response = await axios.get('/carer/profile', {
+          const response = await axios.get('https://petpalhub-api.onrender.com/carer/profile', {
             params: {
               userId: userData._id
             }
@@ -36,7 +36,7 @@ const ViewProfile = () => {
   const handleDeleteProfile = async () => {
     try {
       const userData = JSON.parse(localStorage.getItem('userData'));
-      const response = await axios.delete('/carer/profile', {
+      const response = await axios.delete('https://petpalhub-api.onrender.com/carer/profile', {
         params: {
           userId: userData._id
         }
@@ -64,7 +64,7 @@ const ViewProfile = () => {
           <div className="profile-box">
             {profileData.profileImage ? (
               <img
-                src={`http://localhost:5505${profileData.profileImage}`}
+                src={`https://petpalhub-api.onrender.com${profileData.profileImage}`}
                 alt="Profile"
                 className="avatar-preview1"
               />

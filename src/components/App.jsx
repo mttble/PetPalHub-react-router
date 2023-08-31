@@ -23,7 +23,7 @@ import ChangeDetails from './ChangeDetails.jsx'
 
 import './stylesheets/App.css'
 
-axios.defaults.baseURL = 'http://localhost:5505'
+axios.defaults.baseURL = `${import.meta.env.VITE_API_HOST}`
 axios.defaults.withCredentials = true;
 
 function App() {

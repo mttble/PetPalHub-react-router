@@ -37,7 +37,7 @@ const ViewPets = () => {
 
     const handleDeletePet = async (petId) => {
         try {
-            const response = await axios.delete(`http://localhost:5505/pet/${petId}`, {
+            const response = await axios.delete(`/pet/${petId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
                 },
@@ -53,7 +53,6 @@ const ViewPets = () => {
             console.error('Error deleting pet:', error);
         }
     };
-
     return (
         <div className="view-pets-container-view">
             <h1>View Pets</h1>
@@ -64,7 +63,7 @@ const ViewPets = () => {
                             <div className="pet-avatar-view">
                             {pet.petImage ? (
                                 <img
-                                    src={`http://localhost:5505${pet.petImage}`}
+                                    src={`https://petpalhub-api.onrender.com${pet.petImage}`}
                                     alt="Profile"
                                     className="avatar-preview1"
                                 />

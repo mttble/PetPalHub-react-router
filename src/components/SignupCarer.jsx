@@ -75,7 +75,7 @@ function SignupCarer() {
                 return;
             }
             const role = 'carer'
-            const {data} = await axios.post('http://localhost:5505/register', {firstName, lastName, phoneNumber, dateOfBirth: formattedDob, country, state, city, street, postalCode, email, password, role
+            const {data} = await axios.post('/register', {firstName, lastName, phoneNumber, dateOfBirth: formattedDob, country, state, city, street, postalCode, email, password, role
             })
             if(data.error) {
                 toast.error(data.error)

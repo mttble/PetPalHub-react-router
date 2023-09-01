@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './stylesheets/BookingForm.css';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { UserContext } from '../Context/userContext';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/userContext';
+import './stylesheets/BookingForm.css';
 
 
 
@@ -115,12 +114,10 @@ function BookingForm() {
     
     const response = await postBooking(data);
     if (response) {
-      // You might want to handle the response here. For instance:
-      // Check if the booking was successful and navigate or show a message.
       toast.success('Request sent successfully')
       navigate('/');
     } else {
-      // Handle errors, perhaps set an error state or show a notification
+      toast.error('There was a problem with the request')
     }
   };
 

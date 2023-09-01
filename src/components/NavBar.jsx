@@ -23,7 +23,7 @@ function NavBar() {
             <div className="navbar-brand">PetPal Hub</div>
           </Link>
           <div className="navbar-buttons">
-            <Link to="/account"> {/* Use /account route for user's account */}
+            <Link to="/account">
               <Button variant="primary" className="size-sm-lg">
                 Account User
               </Button>
@@ -41,7 +41,7 @@ function NavBar() {
             <div className="navbar-brand">PetPal Hub</div>
           </Link>
           <div className="navbar-buttons">
-            <Link to="/account"> {/* Use /account route for carer's account */}
+            <Link to="/account">
               <Button variant="primary" className="size-sm-lg">
                 Account Carer
               </Button>

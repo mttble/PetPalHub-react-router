@@ -39,7 +39,7 @@ function PetDetails() {
                     <div className="pet-avatar-view">
                         {petDetails.petImage ? (
                             <img
-                                src={`${petDetails.petImage}`}
+                                src={`https://petpalhubapi.com.au${petDetails.petImage}`}
                                 alt="Profile"
                                 className="avatar-preview1"
                             />

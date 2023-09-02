@@ -64,7 +64,7 @@ const ViewPets = () => {
                             <div className="pet-avatar-view">
                             {pet.petImage ? (
                                 <img
-                                    src={`${pet.petImage}`}
+                                    src={`https://petpalhubapi.com.au${pet.petImage}`}
                                     alt="Profile"
                                     className="avatar-preview1"
                                 />

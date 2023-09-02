@@ -94,7 +94,7 @@ function Home() {
                                 <div className="profile-image-card">
                                     {profile.profileImage ? (
                                         <img
-                                            src={`${profile.profileImage}`}
+                                            src={`https://petpalhubapi.com.au${profile.profileImage}`}
                                             alt="Profile"
                                             className="avatar-preview-card"
                                         />

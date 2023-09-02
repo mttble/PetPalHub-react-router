@@ -66,7 +66,7 @@ const ViewProfile = () => {
               <div className="profile-image-card">
                 {profileData.profileImage ? (
                   <img
-                    src={`http://localhost:5505${profileData.profileImage}`}
+                    src={`https://petpalhub-api.onrender.com${profile.profileImage}`}
                     alt="Profile"
                     className="avatar-preview1"
                   />

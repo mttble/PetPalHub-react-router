@@ -12,7 +12,7 @@ const ViewProfile = () => {
       try {
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData._id) {
-          const response = await axios.get('https://petpalhub-api.onrender.com/carer/profile', {
+          const response = await axios.get('/carer/profile', {
             params: {
               userId: userData._id
             }
@@ -36,7 +36,7 @@ const ViewProfile = () => {
   const handleDeleteProfile = async () => {
     try {
       const userData = JSON.parse(localStorage.getItem('userData'));
-      const response = await axios.delete('https://petpalhub-api.onrender.com/carer/profile', {
+      const response = await axios.delete('/carer/profile', {
         params: {
           userId: userData._id
         }
@@ -59,23 +59,24 @@ const ViewProfile = () => {
       <div className="create-profile-box">
         {profileData ? (
           <div className="profile-content">
+            
             <div className="profile-header">
               <div className="company-name-card">
                 <h2 className="company-name-text">{profileData.companyFullName}</h2>
               </div>
-              <div className="profile-image-card">
-                {profileData.profileImage ? (
-                  <img
-                    src={`https://petpalhub-api.onrender.com${profileData.profileImage}`}
-                    alt="Profile"
-                    className="avatar-preview1"
-                  />
-                ) : (
-                  <div className="placeholder-avatar">
-                    <h3>No Profile Picture</h3>
-                  </div>
-                )}
-              </div>
+              <div className="profile-image-card-view">
+                                    {profileData.profileImage ? (
+                                        <img
+                                            src={`${profileData.profileImage}`}
+                                            alt="Profile"
+                                            className="avatar-preview-card"
+                                        />
+                                    ) : (
+                                        <div className="placeholder-avatar-card">
+                                            <h3>No Profile Picture</h3>
+                                        </div>
+                                    )}
+                                </div>
             </div>
 
               <div className="location-card">

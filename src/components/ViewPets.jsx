@@ -20,7 +20,6 @@ const ViewPets = () => {
                             userId: userContext.user._id, // Use user ID from context
                         },
                     });
-                    console.log(response.data)
                     if (response.status === 200) {
                         setPetProfile(response.data);
                     } else {
@@ -65,7 +64,7 @@ const ViewPets = () => {
                             <div className="pet-avatar-view">
                             {pet.petImage ? (
                                 <img
-                                    src={`https://petpalhub-api.onrender.com${pet.petImage}`}
+                                    src={`${pet.petImage}`}
                                     alt="Profile"
                                     className="avatar-preview1"
                                 />

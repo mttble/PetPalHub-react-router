@@ -23,7 +23,8 @@ import ChangeDetails from './ChangeDetails.jsx'
 
 import './stylesheets/App.css'
 
-axios.defaults.baseURL = `${import.meta.env.VITE_API_HOST}`
+// axios.defaults.baseURL = `${import.meta.env.VITE_API_HOST}`
+axios.defaults.baseURL = 'https://petpalhub-api.onrender.com'
 axios.defaults.withCredentials = true;
 
 function App() {

@@ -95,7 +95,7 @@ const CreateProfile = () => {
         formData.append('carerEmail', userData.email); // Include user's email in the form data
       }
       
-      const response = await axios.post('https://petpalhub-api.onrender.com/carer/profile', formData, {
+      const response = await axios.post('/carer/profile', formData, {
           headers: {
               'Content-Type': 'multipart/form-data',
           },

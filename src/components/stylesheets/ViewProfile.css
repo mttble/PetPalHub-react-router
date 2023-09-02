@@ -47,6 +47,14 @@
     text-align: center;
 }
 
+.profile-image-card-view {
+    width: 300px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+}
+
 .profile-heading {
     color: #444;
     font-weight: bold;

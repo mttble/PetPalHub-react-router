@@ -14,7 +14,7 @@ export const UserContextProvider = ({ children }) => {
         // Clear user data and cookies
         setUser(null)
         localStorage.removeItem('userData');
-
+        console.log(document.cookie)
         // Remove the cookies
         const cookies = document.cookie.split('; ');
         for (const cookie of cookies) {

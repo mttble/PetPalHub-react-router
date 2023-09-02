@@ -54,8 +54,10 @@ const ViewPets = () => {
         }
     };
     return (
-        <div className="view-pets-container-view">
-            <h1>View Pets</h1>
+        <div className="view-pets-wrapper">
+            <div className="view-pets-title">
+                <h1>View Pets</h1>
+            </div>
             <div className="pets-list-view">
                 {petProfile ? (
                     petProfile.map((pet) => (
@@ -89,8 +91,8 @@ const ViewPets = () => {
                                     <h4>General Info:</h4>
                                     <p>{pet.general}</p>
                                 </div>
+                            <Button className="pet-delete-btn btn btn-danger" onClick={() => handleDeletePet(pet._id)}>Delete</Button>
                             </div>
-                            <Button className="size-sm-lg btn btn-danger" onClick={() => handleDeletePet(pet._id)}>Delete</Button>
                         </div>
                     ))
                 ) : (

@@ -1,141 +1,164 @@
 .booking-form-box-card {
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 600px;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.title {
+  background-color: #FFC107;
+  padding: 13px 25px;
+  border-radius: 10px;
+  margin: 20px auto;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+  width: fit-content;
+}
+
+.title h2 {
+  margin: 0;
+}
+
+.booking-form-title-card h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.booking-form-subtitle-card h3 {
+  text-align: center;
+  color: #555;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.booking-form-container-card {
+  margin-bottom: 1.5rem;
+}
+
+.booking-form-container-card h4 {
+  margin-bottom: 0.5rem;
+}
+
+.booking-form-container-card label {
+  display: block;
+  color: #373939;
+  margin-top: 0.5rem;
+}
+
+.booking-form-container-card input[type="date"],
+.booking-form-container-card input[type="time"] {
+  width: 130px;
+  height: 30px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.booking-form-textarea-container-card label {
+  display: block;
+  color: #373939;
+  margin-top: 0.5rem;
+}
+
+.booking-form-textarea-container-card textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 150px;
+  resize: vertical;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.booking-form-button-container-card {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.booking-form-button-card {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-right: 1rem;
+}
+
+.booking-form-button-card:last-child {
+  margin-right: 0;
+}
+
+.booking-form-button-card:hover {
+  background-color: #0056b3;
+}
+
+/* Tablet view */
+@media (min-width: 680px) and (min-width: 998px) {
+  .booking-form-box-card {
+    width: 70%;
     margin: 2rem auto;
-    width: 80%;
-    max-width: 600px;
-    padding: 1rem;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: black;
   }
-  
-  .booking-form-title-card h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .booking-form-subtitle-card h3 {
-    text-align: center;
-    color: #555;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
+
   .booking-form-container-card {
-    margin-bottom: 1.5rem;
+    text-align: center;
   }
-  
-  .booking-form-container-card h4 {
-    margin-bottom: 0.5rem;
-  }
-  
-  .booking-form-container-card label {
-    display: block;
-    color: #373939;
-    margin-top: 0.5rem;
-  }
-  
+
   .booking-form-container-card input[type="date"],
   .booking-form-container-card input[type="time"] {
     width: 130px;
     height: 30px;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    margin-right: 10px;
   }
-  
-  .booking-form-textarea-container-card label {
-    display: block;
-    color: #373939;
-    margin-top: 0.5rem;
-  }
-  
+
   .booking-form-textarea-container-card textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    min-height: 150px;
-    resize: vertical;
-    margin: 0 auto;
-    text-align: center;
+    width: 80%;
   }
-  
+
   .booking-form-button-container-card {
+    margin-top: 2rem;
+  }
+
+  .pet-pal-request-box-card h3 {
     text-align: center;
-    margin-top: 1.5rem;
   }
-  
-  .booking-form-button-card {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-right: 1rem;
+}
+
+/* Desktop view */
+@media (min-width: 998px) {
+  .booking-form-box-card {
+    width: 60%;
   }
-  
-  .booking-form-button-card:last-child {
-    margin-right: 0;
+
+  .pet-pal-request-box-card h3 {
+    text-align: center;
   }
-  
-  .booking-form-button-card:hover {
-    background-color: #0056b3;
+
+  .booking-form-container-card {
+    text-align: center;
   }
-  
-  /* Additional styles for tablet view */
-  @media (min-width: 600px) and (max-width: 767px) {
-    .booking-form-box-card {
-      width: 70%;
-      margin: 2rem auto;
-    }
-  
-    .booking-form-container-card {
-      text-align: center;
-    }
-  
-    .booking-form-container-card input[type="date"],
-    .booking-form-container-card input[type="time"] {
-      width: 130px;
-      height: 30px;
-      margin-right: 10px;
-    }
-  
-    .booking-form-textarea-container-card textarea {
-      width: 80%;
-    }
-  
-    .booking-form-button-container-card {
-      margin-top: 2rem;
-    }
+
+  .booking-form-container-card input[type="date"],
+  .booking-form-container-card input[type="time"] {
+    width: 130px;
+    height: 30px;
+    margin-right: 10px;
   }
-  
-  /* Additional styles for desktop view */
-  @media (min-width: 768px) {
-    .booking-form-box-card {
-      width: 60%;
-    }
-  
-    .booking-form-container-card {
-      text-align: center;
-    }
-  
-    .booking-form-container-card input[type="date"],
-    .booking-form-container-card input[type="time"] {
-      width: 130px;
-      height: 30px;
-      margin-right: 10px;
-    }
-  
-    .booking-form-textarea-container-card textarea {
-      width: 80%;
-    }
-  
-    .booking-form-button-container-card {
-      margin-top: 2rem;
-    }
+
+  .booking-form-textarea-container-card textarea {
+    width: 80%;
   }
-  
+
+  .booking-form-button-container-card {
+    margin-top: 2rem;
+  }
+}

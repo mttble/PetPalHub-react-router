@@ -1,19 +1,35 @@
-.create-profile-box {
-    margin: 2rem auto;
-    width: 80%;
-    max-width: 600px;
-    padding: 1rem;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* dont change colour from black */
-    color: black;
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 .create-profile-title h1 {
+    background-color: #FFC107;
+    padding: 13px 25px;
+    border-radius: 10px;
+    margin: 20px auto;
     text-align: center;
-    color: #333;
-    margin-bottom: 1rem;
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+    width: fit-content;
+}
+
+.create-profile-box {
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    box-shadow: 1px 1px 5px 3.5px #FFC107;
+    color: black;
+    padding: 5%;
+    text-align: unset;
+    width: 90%;
+    max-width: 800px;
+    margin: 8rem auto;
+    transition: transform 0.3s;
+}
+
+.create-profile-box:hover {
+    transform: translateY(-5px) scale(1.03);
 }
 
 .profile-avatar, .avatar-preview {
@@ -24,19 +40,21 @@
     width: 150px;
     background-color: #e2e2e2;
     border-radius: 50%;
+    overflow: hidden;
     margin: 0 auto;
     margin-bottom: 1rem;
 }
 
 .avatar-preview img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     border-radius: 50%;
 }
 
-.upload-avatar input {
-    display: block;
-    margin: 1rem auto;
+.pet-details-title {
+    margin-top: 4rem;
 }
 
 .create-profile-heading h4, .create-profile-heading h5 {
@@ -44,6 +62,36 @@
     color: #555;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.upload-avatar input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    position: absolute; 
+    left: 50%; 
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.upload-avatar {
+    text-align: center;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.upload-avatar label {
+    display: inline-block;
+    background-color: #FFC107;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.upload-avatar label:hover {
+    background-color: #ffa000;
 }
 
 .create-profile-textarea-container {
@@ -62,6 +110,16 @@
     text-align: center;
 }
 
+.create-profile-heading h5 {
+    margin-top: 4rem; 
+}
+
+.create-profile-heading h4 {
+    font-size: 30px;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+}
+
 .create-profile-submit-button .btn {
     background-color: #007bff;
     color: #fff;
@@ -75,12 +133,11 @@
     background-color: #0056b3;
 }
 
-
-
 label {
     display: block;
     margin-top: 1rem;
     color: #373939;
+    font-weight: bold;
 }
 
 input[type="text"],
@@ -91,17 +148,6 @@ select {
     padding: 0.5rem;
     margin-bottom: 1rem;
     display: block;
-}
-
-/* Centering the "choose file" */
-.upload-avatar {
-    text-align: center;
-    margin: 1rem 0;
-}
-
-.custom-file-upload {
-    display: inline-block;
-    
 }
 
 input[name="medicalConditions"] {
@@ -115,4 +161,52 @@ select[name="petType"] {
     height: 40px;
     width: 7rem;
     padding: 0.2rem 0.5rem;
+}
+
+/* Tablet view */
+@media (min-width: 768px) and (max-width: 1309px) {
+    .profile-avatar, .avatar-preview {
+        height: 280px;
+        width: 280px;
+    }
+
+    .avatar-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-avatar-text {
+        font-size: 18px;
+    }
+
+    .create-profile-heading h4 {
+        font-size: 45px;
+        margin-bottom: 7rem;
+    }
+}
+
+/* Desktop view */
+@media (min-width: 1310px) {
+    .profile-avatar, .avatar-preview {
+        height: 280px;
+        width: 280px;
+    }
+
+    .avatar-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .profile-avatar-text {
+        font-size: 20px;
+    }
+
+    .create-profile-heading h4 {
+        font-size: 50px;
+        margin-bottom: 8rem;
+    }
 }

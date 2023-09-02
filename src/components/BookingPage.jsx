@@ -63,8 +63,10 @@ function BookingPage() {
     };
 
     return (
-        <div>
-            <h2>Confirmed Bookings</h2>
+        <div className="confirmed-bookings-section">
+            <div className="title">
+                <h2>Confirmed Bookings</h2>
+            </div>
             {confirmedBookings
                 .filter(booking => booking.status === 'Approved')
                 .map((booking) => {
@@ -74,50 +76,47 @@ function BookingPage() {
 
                     return (
                         <div className="pet-pal-request-box-card" key={booking._id}>
-                            <div className="pet-pal-request-box-card" key={booking._id}>
-                <h3>Booking For: {booking.userName}</h3>
+                            <h3>Booking For: {booking.userName}</h3>
 
-                <div className="pet-pal-request-container-card">
-                    <h5>For Pets:</h5>
-                    <p>{booking.petNames.join(', ')}</p>
-                </div>
+                            <div className="pet-pal-request-container-card">
+                                <h5>For Pets:</h5>
+                                <p>{booking.petNames.join(', ')}</p>
+                            </div>
 
-                {booking.carerName && (
-                    <div className="pet-pal-request-container-card">
-                        <h2>Carer Name: {booking.carerName}</h2>
-                        <p>Carer Email: {booking.carerEmail}</p>
-                    </div>
-                )}
+                            {booking.carerName && (
+                                <div className="pet-pal-request-container-card">
+                                    <h2>Carer Name: {booking.carerName}</h2>
+                                    <p>Carer Email: {booking.carerEmail}</p>
+                                </div>
+                            )}
 
-                <div className="pet-pal-request-container-card">
-                    <h2>User Name: {booking.userName}</h2>
-                    <p>User Email: {booking.userEmail}</p>
-                </div>
+                            <div className="pet-pal-request-container-card">
+                                <h2>User Name: {booking.userName}</h2>
+                                <p>User Email: {booking.userEmail}</p>
+                            </div>
 
-                <div className="pet-pal-request-container-card">
-                    <h5>For Dates:</h5>
-                    <p>Start Date: {booking.startDate}</p>
-                    <p>End Date: {booking.endDate}</p>
-                </div>
+                            <div className="pet-pal-request-container-card">
+                                <h5>For Dates:</h5>
+                                <p>Start Date: {booking.startDate}</p>
+                                <p>End Date: {booking.endDate}</p>
+                            </div>
 
-                <div className="pet-pal-request-container-card">
-                    <h5>For Time:</h5>
-                    <p>Drop-off Time: {booking.dropOffTime}</p>
-                    <p>Pick-up Time: {booking.pickUpTime}</p>
-                </div>
+                            <div className="pet-pal-request-container-card">
+                                <h5>For Time:</h5>
+                                <p>Drop-off Time: {booking.dropOffTime}</p>
+                                <p>Pick-up Time: {booking.pickUpTime}</p>
+                            </div>
 
-                {booking.status && (
-                    <div className="pet-pal-request-container-card">
-                        <h2>Booking Status: {booking.status}</h2>
-                    </div>
-                )}
+                            {booking.status && (
+                                <div className="pet-pal-request-container-card">
+                                    <h2>Booking Status: {booking.status}</h2>
+                                </div>
+                            )}
 
-                <div className="pet-pal-request-textarea-container-card">
-                    <label className="pet-pal-request-centered-label">Message/Care Instructions:</label>
-                    <p>{booking.message}</p>
-                </div>
-
-            </div>
+                            <div className="pet-pal-request-textarea-container-card">
+                                <label className="pet-pal-request-centered-label">Message/Care Instructions:</label>
+                                <p>{booking.message}</p>
+                            </div>
 
                             {canDelete ? (
                                 <button
@@ -127,7 +126,7 @@ function BookingPage() {
                                     Delete Booking
                                 </button>
                             ) : (
-                                <p>This booking cannot be deleted until after the End Date.</p>
+                                <p>This booking cannot be deleted until after the end Date.</p>
                             )}
                         </div>
                     );

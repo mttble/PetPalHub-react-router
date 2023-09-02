@@ -12,7 +12,7 @@ export const UserContextProvider = ({ children }) => {
 
     const logout = () => {
         // Clear user data and cookies
-        setUser(null);
+        setUser(null);image.png
         localStorage.removeItem('userData');
 
         // Remove the cookies

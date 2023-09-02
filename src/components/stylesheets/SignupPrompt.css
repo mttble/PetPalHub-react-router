@@ -7,6 +7,20 @@
     margin-top: 20px;
 }
 
+.centered-container-signup {
+    background-color: #FFC107;
+    padding: 5px 20px;
+    border-radius: 10px;
+    margin: 25px auto;
+    margin-bottom: 150px;
+    text-align: center;
+    color: black;
+    font-family: 'Arial', sans-serif;
+    font-weight: 800 !important;
+    font-size: 24px;
+    width: fit-content;
+}
+
 .signup-user,
 .signup-carer {
     text-align: center;
@@ -55,15 +69,4 @@
         padding: 20vh 20vh;
         font-size: 32px;
     }
-}
-
-.centered-container-signup {
-    background-color: #222222;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh;
-    margin: 0px;
-    padding: 0;
 }

@@ -85,14 +85,14 @@ function ChangeDetails() {
                         />
                     </>
                     )}
-                <label htmlFor="phoneNumber">phone number:</label>
+                <label htmlFor="phoneNumber">Phone number:</label>
                     <input
                         value={data.phoneNumber}
                         onChange={(e) => setData({ ...data, phoneNumber: e.target.value })}
                         id="phoneNumber"
                         placeholder="phoneNumber"
                     />
-                    <label htmlFor="email">email:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
                         value={data.email}
                         onChange={(e) => setData({ ...data, email: e.target.value })}

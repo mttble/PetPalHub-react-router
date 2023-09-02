@@ -1,4 +1,4 @@
-/* General settings (applies to all views) */
+/* General settings */
 * {
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
@@ -214,4 +214,3 @@
     right: 0;
     margin: 10px;
 }
-

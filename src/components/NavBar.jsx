@@ -62,12 +62,12 @@ function NavBar() {
       </Link>
       <div className="navbar-buttons">
         <Link to="/login">
-          <Button variant="primary" className="size-sm-lg">
+          <Button variant="primary" className="size-sm-lg-nav">
             Login
           </Button>
         </Link>
         <Link to="/signup">
-          <Button variant="primary" className="size-sm-lg">
+          <Button variant="primary" className="size-sm-lg-nav">
             Signup
           </Button>
         </Link>

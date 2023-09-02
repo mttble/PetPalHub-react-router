@@ -106,28 +106,28 @@ function PetPalRequests() {
     
         return (
             <div>
-                {bookings
-                .map(booking => (
+                <div className="petpal-request-heading">
+                    <h2>PetPal Request</h2>
+                </div>
+                {bookings.map(booking => (
                     <div className="pet-pal-request-box-card" key={booking._id}>
-                        <h2>PetPal Request</h2>
-                        <h3>Booking For: </h3>
                         <div className="pet-pal-request-container-card">
-                        <h5>For Pets:</h5>
-                        {booking.petIds.map((petId, index) => (
-                            <div key={index}>
-                                <Link to={`/pet-details/${petId}`} className="pet-link">
-                                    {booking.petNames[index]}
-                                </Link>
-                            </div>
-                        ))}
+                            <h2>Booking For: {booking.userName}</h2>
+                            <p>Email: {booking.userEmail}</p>
                         </div>
                         <div className="pet-pal-request-container-card">
-                            <h2>Carer name: {booking.carerName}</h2>
-                            <p>Carer email: {booking.carerEmail}</p>
+                            <h5>For Pet/s:</h5>
+                            {booking.petIds.map((petId, index) => (
+                                <div key={index}>
+                                    <Link to={`/pet-details/${petId}`} className="pet-link">
+                                        {booking.petNames[index]}
+                                    </Link>
+                                </div>
+                            ))}
                         </div>
                         <div className="pet-pal-request-container-card">
-                            <h2>User name: {booking.userName}</h2>
-                            <p>User Email: {booking.userEmail}</p>
+                            <h2>Carer Name: {booking.carerName}</h2>
+                            <p>Email: {booking.carerEmail}</p>
                         </div>
                         <div className="pet-pal-request-container-card">
                             <h5>For Dates:</h5>

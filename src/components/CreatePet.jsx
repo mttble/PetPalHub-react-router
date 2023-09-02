@@ -91,38 +91,39 @@ const CreatePet = () => {
 
     if (userContext.user) {
         if (userContext.user.role === 'user') {
-        return (
-            <div className="create-profile-box">
-                <div className="create-profile-title">
-                    <h1>Add Pet</h1>
-                </div>
-            
+            return (
+                <>
+                    <div className="create-profile-title">
+                        <h1>Add Pet</h1>
+                    </div>
+                    <div className="create-profile-box">
+                        <div className="create-profile-heading">
+                            <h4>Pet Profile</h4>
+                        </div>
+                        <div className='avatar-preview'>
+                            {avatar ? (
+                            <img src={URL.createObjectURL(avatar)} alt="Pet Avatar" />
+                            ) : (
+                            <div>
+                                <h3>Profile Avatar</h3>
+                            </div>
+                            )}
+                        </div>
 
-            <div className='avatar-preview'>
-                {avatar ? (
-                <img src={URL.createObjectURL(avatar)} alt="Pet Avatar" />
-                ) : (
-                <div>
-                    <h3>Profile Avatar</h3>
-                </div>
-                )}
-            </div>
+                        <div className="upload-avatar">
+                            <input
+                            id="avatarInput"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleAvatarUpload}
+                            />
+                            <label htmlFor="avatarInput">Choose File</label>
+                        </div>
 
-            <div className="upload-avatar">
-                <input
-                type="file"
-                accept="image/*"
-                onChange={handleAvatarUpload}
-                />
-            </div>
+                        <div>
+                            <h4 className="pet-details-title">Pet Details</h4>
+                        </div>
 
-
-            <div className="create-profile-heading">
-                <h4>Pet Profile</h4>
-            </div>
-                <div>
-                    <h4>Pet Type</h4>
-                </div>
             <div>
                 <label htmlFor="petType">Pet type:</label>
                 <select value={pet.petType} onChange={(e) => setPet({ ...pet, petType: e.target.value })} id="petType" name="petType">
@@ -183,11 +184,12 @@ const CreatePet = () => {
                 <button variant="primary" className="size-sm-lg btn btn-primary" onClick={handleCreatePet}>Add Pet</button>
             </div>
             </div>
-        );
+            </>
+            )
         }
-        else return (
-        <h1>Hello</h1>
-        )
+        else {
+            return <h1>No pet to display.</h1>
+        }
         
     }
 }

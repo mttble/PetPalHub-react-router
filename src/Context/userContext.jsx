@@ -16,16 +16,8 @@ export const UserContextProvider = ({ children }) => {
         localStorage.removeItem('userData');
     
         // Remove the cookies
-        const cookies = document.cookie.split('; ');
-        for (const cookie of cookies) {
-            const [name, value] = cookie.split('=');
-    
-            if (name === 'carerToken' || name === 'userToken') {
-                // Check for the specific cookie names ('carerToken' or 'userToken')
-                // Set their expiration to the past, which deletes the cookies
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none`;
-                console.log(`Cookie '${name}' removed`);
-            }
+        document.cookie = "carerToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none";
+        document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none";
         }
         navigate('/');
     };

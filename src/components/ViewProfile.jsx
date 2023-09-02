@@ -54,8 +54,8 @@ const ViewProfile = () => {
   };
 
   return (
-
-
+    <>
+      <h1 className="mt-4 profile-title profile-card">View Profile</h1>
       <div className="create-profile-box">
         {profileData ? (
           <div className="profile-content">
@@ -119,7 +119,7 @@ const ViewProfile = () => {
           <p className="no-profile-text">No profile data to display.</p>
         )}
         </div>
-
+    </>
 )
 
 };

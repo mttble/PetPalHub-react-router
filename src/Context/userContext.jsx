@@ -10,14 +10,6 @@ export const UserContextProvider = ({ children }) => {
     const navigate = useNavigate()
     const [user, setUser] = useState(null);
 
-    const expireCookies = (cookieNames) => {
-        const expirationDate = new Date(0).toUTCString(); // Set expiration to the past
-    
-        for (const cookieName of cookieNames) {
-            document.cookie = `${cookieName}=; expires=${expirationDate}; path=/; secure; sameSite=none`;
-            console.log(`Cookie '${cookieName}' removed`);
-        }
-    };
     
     const logout = () => {
         // Clear user data and cookies

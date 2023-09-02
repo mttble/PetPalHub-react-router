@@ -49,6 +49,19 @@ function BookingForm() {
       fetchPetProfile();
   }, [userContext.user]);
 
+  const handlePetChange = (e, petId) => {
+    if (e.target.checked) {
+        setBookingInfo(prevState => ({
+            ...prevState,
+            selectedPets: [...prevState.selectedPets, petId]
+        }));
+    } else {
+        setBookingInfo(prevState => ({
+            ...prevState,
+            selectedPets: prevState.selectedPets.filter(id => id !== petId)
+        }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

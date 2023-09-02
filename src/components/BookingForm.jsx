@@ -8,90 +8,90 @@ import './stylesheets/BookingForm.css';
 
 
 function BookingForm() {
-  const userContext = useContext(UserContext)
-  const navigate = useNavigate()
+    const userContext = useContext(UserContext)
+    const navigate = useNavigate()
 
-  const location = useLocation()
-  const selectedProfile = location.state?.selectedProfile
+    const location = useLocation()
+    const selectedProfile = location.state?.selectedProfile
 
-  const [bookingInfo, setBookingInfo] = useState({
-    startDate: '',
-    endDate: '',
-    dropOffTime: '',
-    pickUpTime: '',
-    selectedPets: '',
-    message: '',
-  });
+    const [bookingInfo, setBookingInfo] = useState({
+        startDate: '',
+        endDate: '',
+        dropOffTime: '',
+        pickUpTime: '',
+        selectedPets: '',
+        message: '',
+    });
 
 
-  const [petProfile, setPetProfile] = useState(null)
+    const [petProfile, setPetProfile] = useState(null)
 
-  useEffect(() => {
-      const fetchPetProfile = async () => {
-          try {
-              if (userContext.user && userContext.user._id) {
-                  const pets = await axios.get('/pet/pet-profiles', {
-                      params: {
+    useEffect(() => {
+        const fetchPetProfile = async () => {
+            try {
+                if (userContext.user && userContext.user._id) {
+                    const pets = await axios.get('/pet/pet-profiles', {
+                        params: {
                           userId: userContext.user._id, // Use user ID from context
-                      },
-                  });
-                  if (pets.status === 200) {
-                      setPetProfile(pets.data);
-                  } else {
-                      console.error('Failed to fetch pet profile data:', pets.data);
-                  }
-              }
-          } catch (error) {
-              console.error('Error fetching pet profile data:', error);
-          }
-      };
+                        },
+                    });
+                    if (pets.status === 200) {
+                        setPetProfile(pets.data);
+                } else {
+                        console.error('Failed to fetch pet profile data:', pets.data);
+                }
+            }
+            } catch (error) {
+                console.error('Error fetching pet profile data:', error);
+            }
+    };
 
-      fetchPetProfile();
-  }, [userContext.user]);
+        fetchPetProfile();
+    }, [userContext.user]);
 
-  const handlePetChange = (e, petId) => {
-    if (e.target.checked) {
-        setBookingInfo(prevState => ({
-            ...prevState,
-            selectedPets: [...prevState.selectedPets, petId]
-        }));
-    } else {
-        setBookingInfo(prevState => ({
-            ...prevState,
-            selectedPets: prevState.selectedPets.filter(id => id !== petId)
-        }));
-    }
-  };
+    const handlePetChange = (e, petId) => {
+        if (e.target.checked) {
+            setBookingInfo(prevState => ({
+                ...prevState,
+                selectedPets: [...prevState.selectedPets, petId]
+            }));
+        } else {
+            setBookingInfo(prevState => ({
+                ...prevState,
+                selectedPets: prevState.selectedPets.filter(id => id !== petId)
+            }));
+        }
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    function extractDateStringAndTime(date, time) {
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const day = date.getDate();
-      const hour = parseInt(time.split(':')[0]);
-      const minute = parseInt(time.split(':')[1]);
-  
-      const combinedDate = new Date(year, month, day, hour, minute);
-  
-      // Extract date and time as strings
-      const dateString = combinedDate.toISOString().split('T')[0];
-      const timeString = combinedDate.toTimeString().split(' ')[0].slice(0, 5); // to get HH:MM format
-  
-      return { dateString, timeString };
-  }
-    const { dateString: startDate, timeString: pickUpTime } =
-      extractDateStringAndTime(new Date(bookingInfo.startDate), bookingInfo.pickUpTime);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        function extractDateStringAndTime(date, time) {
+            const year = date.getFullYear();
+            const month = date.getMonth();
+            const day = date.getDate();
+            const hour = parseInt(time.split(':')[0]);
+            const minute = parseInt(time.split(':')[1]);
 
-    const { dateString: endDate, timeString: dropOffTime } =
-      extractDateStringAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
+            const combinedDate = new Date(year, month, day, hour, minute);
+
+        // Extract date and time as strings
+            const dateString = combinedDate.toISOString().split('T')[0];
+            const timeString = combinedDate.toTimeString().split(' ')[0].slice(0, 5); // to get HH:MM format
+
+            return { dateString, timeString };
+        }
+        const { dateString: startDate, timeString: pickUpTime } =
+            extractDateStringAndTime(new Date(bookingInfo.startDate), bookingInfo.pickUpTime);
+
+        const { dateString: endDate, timeString: dropOffTime } =
+            extractDateStringAndTime(new Date(bookingInfo.endDate), bookingInfo.dropOffTime);
 
 
-    const selectedPetNames = bookingInfo.selectedPets.map(petId => {
-      const pet = petProfile.find(p => p._id === petId);
+        const selectedPetNames = bookingInfo.selectedPets.map(petId => {
+        const pet = petProfile.find(p => p._id === petId);
         return pet ? pet.petName : null;
-    }).filter(Boolean);  // This filter will remove any null values
+        }).filter(Boolean);  // This filter will remove any null values
     
     const userfirstName = userContext.user.firstName
     const userEmail = userContext.user.email
@@ -113,38 +113,41 @@ function BookingForm() {
 
     
     const postBooking = async (data) => {
-      try {
-          const response = await axios.post('/user/booking', data, {
-              headers: {
-                  'Content-Type': 'application/json',
-              }
-          });
-          return response.data;
-      } catch (error) {
-          console.error("There was a problem with the Axios request:", error.message);
-      }
+        try {
+            const response = await axios.post('/user/booking', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+            }
+        });
+            return response.data;
+        } catch (error) {
+            console.error("There was a problem with the Axios request:", error.message);
+        }
     };
     
     const response = await postBooking(data);
     if (response) {
-      toast.success('Request sent successfully')
-      navigate('/');
+        toast.success('Request sent successfully')
+        navigate('/');
     } else {
-      toast.error('There was a problem with the request')
+        toast.error('There was a problem with the request')
     }
-  };
-
-  return (
+    };
+    const handleCancel = () => {
+    // Navigate back to the home page when the button is clicked
+    navigate('/');
+    };
+    return (
     <>
-      <div className="heading">
-          <h2>PetPal Request</h2>
-      </div>
-      <div className="booking-form-box-card">
+        <div className="heading">
+            <h2>PetPal Request</h2>
+        </div>
+        <div className="booking-form-box-card">
         <h3 className="booking-form-subtitle-card">
-          Requested <strong>{selectedProfile.companyFullName}</strong>
+            Requested <strong>{selectedProfile.companyFullName}</strong>
         </h3>
         {petProfile === null ? (
-          <p>Try Logging in and adding a pet!</p>
+            <p>Try Logging in and adding a pet!</p>
         ) : (
         <form onSubmit={handleSubmit}>
             <div className="booking-form-container-card">
@@ -186,13 +189,13 @@ function BookingForm() {
             </div>
             <div className="booking-form-button-container-card">
                 <button type="submit" className="booking-form-button-card">Submit</button>
-                <button type="reset" className="booking-form-button-card">Reset</button>
+                <button type="button" className="booking-form-button-card" onClick={handleCancel}>Cancel</button>
             </div>
         </form>
         )}
-      </div>
+        </div>
     </>
-  );
+    );
 }
 
 export default BookingForm;

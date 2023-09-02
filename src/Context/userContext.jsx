@@ -20,7 +20,7 @@ export const UserContextProvider = ({ children }) => {
         for (const cookie of cookies) {
             const [name] = cookie.split('=');
             document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none`;
-            console.log('cookie removed')
+            console.log(`Cookie '${name}' removed`);
         }
         navigate('/');
     };

@@ -25,7 +25,13 @@ export const UserContextProvider = ({ children }) => {
         navigate('/');
     };
 
-
+    useEffect(() => {
+        if (!user)  {
+            axios.get('/profile').then(({data}) => {
+                setUser(data)
+            })
+        }
+    }, []);
 
 
     return (

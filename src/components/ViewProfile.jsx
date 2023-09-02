@@ -67,7 +67,7 @@ const ViewProfile = () => {
               <div className="profile-image-card-view">
                                     {profileData.profileImage ? (
                                         <img
-                                            src={`${profileData.profileImage}`}
+                                            src={`https://petpalhubapi.com.au${profileData.profileImage}`}
                                             alt="Profile"
                                             className="avatar-preview-card"
                                         />

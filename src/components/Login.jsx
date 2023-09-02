@@ -19,16 +19,11 @@ function Login() {
     const loginUser = async (e) => {
         e.preventDefault();
         const { email, password } = data;
-        const config = {
-            headers: {"Content-Type": "application/json"},
-            withCredentials: true
-        }
         setIsLoading(true);
         try {
             const response = await axios.post('/login', {
                 email,
-                password,
-                config
+                password
             });
 
             if (response.data.error) {

@@ -23,13 +23,14 @@ export const UserContextProvider = ({ children }) => {
         // Clear user data and cookies
         setUser(null);
         localStorage.removeItem('userData');
-    
-        // Specify the cookie names to expire
-        const cookieNames = ['carerToken', 'userToken'];
-        
-        // Call the function to expire cookies
-        expireCookies(cookieNames);
-        
+
+        // Remove the cookies
+        const cookies = document.cookie.split('; ');
+        for (const cookie of cookies) {
+            const [name] = cookie.split('=');
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none`;
+            console.log('cookie removed')
+        }
         navigate('/');
     };
 

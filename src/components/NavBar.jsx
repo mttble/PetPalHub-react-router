@@ -24,11 +24,11 @@ function NavBar() {
           </Link>
           <div className="navbar-buttons">
             <Link to="/account">
-              <Button variant="primary" className="size-sm-lg">
+              <Button variant="primary" className="size-sm-lg-nav">
                 Account User
               </Button>
             </Link>
-            <Button variant="primary" className="size-sm-lg" onClick={handleLogout}>
+            <Button variant="primary" className="size-sm-lg-nav" onClick={handleLogout}>
               Logout
             </Button>
           </div>
@@ -42,11 +42,11 @@ function NavBar() {
           </Link>
           <div className="navbar-buttons">
             <Link to="/account">
-              <Button variant="primary" className="size-sm-lg">
+              <Button variant="primary" className="size-sm-lg-nav">
                 Account Carer
               </Button>
             </Link>
-            <Button variant="primary" className="size-sm-lg" onClick={handleLogout}>
+            <Button variant="primary" className="size-sm-lg-nav" onClick={handleLogout}>
               Logout
             </Button>
           </div>

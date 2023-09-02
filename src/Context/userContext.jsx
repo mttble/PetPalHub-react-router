@@ -18,9 +18,11 @@ export const UserContextProvider = ({ children }) => {
         // Remove the cookies
         const cookies = document.cookie.split('; ');
         for (const cookie of cookies) {
-            const [name] = cookie.split('=');
+            const [name, value] = cookie.split('=');
+          if (name === 'carerToken') { // Check for the specific cookie name
             document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure; sameSite=none`;
             console.log(`Cookie '${name}' removed`);
+            }
         }
         navigate('/');
     };
